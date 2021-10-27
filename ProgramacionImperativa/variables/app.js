@@ -28,6 +28,20 @@ const i2cantidad= 3;
 
 console.log("La receta para la chocolatada es: 1- " +ingrediente1 + " "  + i1cantidad + " " + "vaso" + ", 2- " + ingrediente2 + " " + i2cantidad + " "  +"cucharadas");
 
+/////
+
+let cajonRemeras ="pantalones";
+let cajonPantalones = "remeras";
+
+console.log("antes de los cambios:")
+console.log("el cajón de remeras: " + cajonRemeras);
+console.log("cajon de pantalones: " + cajonPantalones);
 
 
+let enLaCama = cajonRemeras;
+cajonRemeras = cajonPantalones;
+cajonRemeras = enLaCama;
 
+console.log("después de los cambios:")
+console.log("el cajón de remeras: " + cajonRemeras);
+console.log("cajon de pantalones: " + cajonPantalones);
