@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+header{
+    text-align: center;
+}
+header img{
+height: 100px;
+}
+
+header h1{
+    background-color: gray;
+    color:white;
+}
+.texto-negrita{
+    font-weight: bold;
+}
+footer{
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+background-color: gray;
+        
+}
+footer h4{
+    color: white;
+
+}
