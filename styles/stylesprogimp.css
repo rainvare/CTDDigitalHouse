@@ -115,7 +115,7 @@ header img{
     background-color: #9088e0;
     color: #fff;
     width: 100%;
-    height: 500px;
+    height: 300px;
 }
 .sobrelamateria h2{ 
 text-align: center;
@@ -156,6 +156,7 @@ color: #CF9EAC;
 
 .contacto{
 width: 100%;
+height: 400px;
 background-color: #CF9EAC;
 color: #fff;
 display: flex;

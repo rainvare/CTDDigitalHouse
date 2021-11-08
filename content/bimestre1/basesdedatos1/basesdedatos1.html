@@ -5,152 +5,88 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Certified Tech Developer - Rainvare</title>
-  <link href="../basesdedatos1/styles/stylesdb.css" rel="stylesheet" type="text/css" />
+  <title>CTD - Bases de Datos I - Rainvare</title>
+  <link href="../../../styles/stylesdb.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-  <div id="page-wrapper">
-    <header id="header">
-      <div class="logo">
-        <img id="header-img" src="img/rainvare.png" alt="logo rainvare" />
+
+  <!--Menu-->
+  <header>
+    <img class="logo" src="../../../img/rainvare.png" alt="Logo" />
+    <nav class="menu" id="menu">
+      <ul>
+        <li><a href="../../../index.html#home" target="_blank">Home</a></li>
+        <li><a href="#sobrelamateria">Sobre la materia</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!--Home - Banner-->
+  <section class="banner" id="home">
+    <h1>CTD - Bases de datos I - Rainvare</h1>
+    <button><a href="#proyectos">Proyectos</a></button>
+  </section>
+
+  <!-- Frontend I-->
+  <main>
+    <section class="sobrelamateria" id="sobrelamateria">
+      <h2>Sobre la materia</h2>
+      <p>"Bases de Datos" - Esta es una materia enfocada en la enseñanza de un motor de base de datos relacionales; pues esa es la herramienta que permite implementar soluciones completas e integradas para la gestión de contenidos. La creación y el manejo de las bases de datos es indispensable en cualquier lenguaje de programación orientado al backend de los productos digitales</p>
+    </section>
+
+
+    <!--Proyectos por bimestre-->
+    <section class="proyectos" id="proyectos">
+      <h2>Proyectos de Bases de datos</h2>
+      <!--Bimestre 1-->
+      <div class="cards">
+
+        <h4>Tablas de datos</h4>
+        <p>
+          Se definen entidades y atributos, tres tablas de ejemplos.
+        </p>
+         <img src="./proyectosdb1/entidadesatributos.png" alt="tres tablas de entidades">
+         <br>
+
+        <h4>Entidades y atributos - Caso de una app de un Restaurante</h4>
+        <p>
+          Identificar entidades y atributos del caso.
+
+        </p>
+        <img src="./proyectosdb1/CasoAppRestaurante.png" alt="tablas de entidades y atributos caso restaurante">
+        <br>
+
+        <h4>Relaciones entre entidades - Caso biblioteca</h4>
+        <p>
+
+        </p>
+        <img src="./proyectosdb1/grupo4_biblioteca.png"
+          alt="Relaciones entre entidades caso Biblioteca">
+          <br>
+
+        <h4>Diagramas y relaciones con Workbench - Caso discográfica</h4>
+        <p>
+          Se identifican las entidades y se diagrama la base de datos para hacer ingenieria inversa, y crear una base de datos.
+        </p>
+        <img src="./proyectosdb1/discografica.png"
+          alt="hacer base de datos de discográfica">
+
       </div>
-
-      <nav id="nav-bar">
-        <ul>
-          <li><a class="nav-link" href="#home">Home</a></li>
-          <li><a class="nav-link" href="#sobremi">Sobre mi</a></li>
-          <li><a class="nav-link" href="#formacion">Formación</a></li>
-          <li><a class="nav-link" href="#proyectos">Proyectos</a></li>
-          <li><a class="nav-link" href="/index.html/#contact">Contacto</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <div class="container"></div>
-    <!---HOME-->
-    <section id="home">
-      <h2>BASES DE DATOS I</h2>
-      <button>
-        <a class="nav-link" href="proyectos">Proyectos por materia</a>
-      </button>
     </section>
-
-    <!--Contenido de la materia-->
-      <section id="formacion">
-        <div class="formacion">
-          <h2>Contenido</h2>
-          <p>
-            ncvklasjdfsklgv</p>
-        </div>
-      </section>
-
-      <!--PROYECTOS-->
-      <section id="proyectos">
-        
-       <!--Clases-->
-        <div class="bimestre">
-          <h4>Proyectos</h4>
-          <div>
-            <ul class="lista-materias">
-              <li>
-                <a class="materia-link" href="/bimestre1/frontend1/frontend1.html" target="_blank">Frontend 1</a>
-              </li>
-              <li>
-                <a class="materia-link" href="/bimestre1/progimperativa/progimperativa.html"
-                  target="_blank">Programación Imperativa</a>
-              </li>
-              <li>
-                <a class="materia-link" href="/bimestre1/introinformatica/introinformatica.html"
-                  target="_blank">Introducción a la Informática</a>
-              </li>
-              <li>
-                <a class="materia-link" href="/bimestre1/metodologia/metodologia.html" target="_blank">Metodologia de
-                  Trabajo</a>
-              </li>
-              <li>
-                <a class="materia-link" href="./bimestre1/basesdedatos1/basesdedatos1.html" target="_blank">Bases de
-                  datos</a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- <h4>Bimestre 2</h4>
-<div>
-<ul>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-
-</ul></div>
-<h4>Bimestre 3</h4>
-<div>
-<ul>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-
-</ul></div>
-<h4>Bimestre 4</h4>
-<div>
-<ul>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-
-</ul></div>
-<h4>Bimestre 5</h4>
-<div>
-<ul>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-
-</ul></div>
-<h4>Bimestre 6</h4>
-<div>
-<ul>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-
-</ul></div>
-<h4>Bimestre 7</h4>
-<div>
-<ul>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-
-</ul></div>
-<h4>Bimestre 8</h4>
-<div>
-<ul>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-
-</ul></div>
- -->
-        </div>
-    </div>
-    </section>
-
-    
-  </div>
-  </div>
+    <!--Footer-->
+    <footer class="contacto" id="contacto">
+      <h3>Rainvare - Tech Certified Tech Developer - Contacto</h3>
+      <br>
+      <ul>
+        <li>email: indirarequiz@gmail.com</li>
+        <li><a href="" alt="" target="_blank">Github</a></li>
+        <li><a href="" alt="" target="_blank">Instagram</a></li>
+        <li><a href="" alt="" target="_blank">Twitter</a></li>
+        <li><a href="" alt="" target="_blank">linkedIn</a></li>
+      </ul>
+    </footer>
 </body>
+
+</html>
