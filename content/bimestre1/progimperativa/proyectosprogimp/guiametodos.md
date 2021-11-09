@@ -2,7 +2,7 @@
 # Los métodos de Array en JavaScript.
 
 
-JavaScript nos proporciona una serie de funciones o metodos que ya estan predefinidas para el manejo de arrays.
+JavaScript nos proporciona una serie de funciones o metodos que ya están predefinidas para el manejo de arrays.
 
 Primero, ¿Qué son los Arrays?
 Estos son un conjunto de datos ordenados por posiciones (inician en posicion cero) y, todos los elementos que lo componen están asociados en una sola variable. 
