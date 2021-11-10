@@ -63,7 +63,7 @@ function menciona(texto, palabra){
 console.log(menciona(texto, palabra))
 
 //5
-/*eniendo como punto de partida la cadena de texto '¡Hola!, soy Carli', deberemos recortarla para poder obtener el nombre 'Carli' en una nueva variable llamada licenciada.
+/*Teniendo como punto de partida la cadena de texto '¡Hola!, soy Carli', deberemos recortarla para poder obtener el nombre 'Carli' en una nueva variable llamada licenciada.
 
 IMPORTANTE: Para la resolución tendremos que usar la función slice().*/
 
