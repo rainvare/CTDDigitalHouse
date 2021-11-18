@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Perrito adaptativo</title>
+        <link rel="stylesheet" href="./css/style_pruebas-modo-oscuro.css">
+    </head>
+
+    <body>
+        <div>
+            <h1>Para probar color "prefers-color-scheme"</h1>
+            <h2>con el inspector</h2>
+            <hr>
+                <ol>
+                    <li>Abrir el inspector <span>"Ctrl + Mayus + I"</span></li>
+                    <li>Buscar "<span>More tools</span>" en el menú de los 3 puntitos</li>
+                    <li>Buscar "<span>Rendering</span>"</li>
+                    <li>Scrollear hasta "<span>Emulate CSS media "prefers-color-scheme</span>" </li>
+                </ol>
+
+                <h3>Con eso podemos elegir: </h3>
+
+                <ul>
+                    <li>prefers-color-scheme : <span>ligth</span></li>
+                    <li>prefers-color-scheme : <span>dark</span></li>
+                </ul>
+        </div>
+        <picture>
+            <source media="(prefers-color-scheme: dark)" 
+                srcset="./img/perrito-blanco.jpg">
+            <img src="./img/perrito-negro.jpg" alt="">
+        </picture>
+    </body>
+</html>

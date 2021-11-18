@@ -1,0 +1,79 @@
+Ejemplo prrito adaptativo
+=========================
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Prueba mmedia prefers</title>
+        <link rel="stylesheet" href="./css/style_pruebas-modo-oscuro.css">
+    </head>
+
+    <body>
+        <div>
+            <h1>Hola mundo</h1>
+            <hr>
+            <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui reprehenderit maiores maxime numquam itaque suscipit beatae ullam quam, odio ipsa nulla delectus non excepturi. Iure quae ex quibusdam repellat, fugiat odit sequi nesciunt pariatur totam, doloribus, eveniet dicta voluptatibus a ipsa! Fuga suscipit doloremque molestias dignissimos incidunt rerum fugit sint?
+            </p>
+        </div>
+        <picture>
+            <source media="(prefers-color-scheme: dark)" srcset="./img/Schnauzer-miniatura-blanco1.jpg">
+            <img src="./img/Schnauzer-miniatura-negro1.jpg" alt="">
+        </picture>
+    </body>
+
+</html>
+
+CSS: style_pruebas-modo-oscuro.css
+----------------------------------
+
+:root {
+    --bg-page: #FFF;
+    --text-page: #000;
+}
+*{
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+}
+body{
+     color: var(--text-page);
+     background-color: var(--bg-page);
+     max-width: 90%;
+     margin: 20px auto;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     gap: 20px;
+}
+hr{
+    margin: 20px 0;
+    background-color: var(--text-page);
+}
+picture{
+    align-self: center;
+}
+picture img{
+     border: 2px solid var(--text-page);
+}
+
+@media(prefers-color-scheme: dark){
+    :root {
+        --bg-page: #000;
+        --text-page: #fff;
+    }
+}
+@media screen and (min-width: 950px) {
+    body{
+        max-width: 60%;
+        margin: 10vh auto;
+        flex-direction: row;
+        gap: 10vh;
+    }
+    picture{
+       align-self: flex-end;
+   }
+}
