@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+margin:0;
+padding:0;
+}
+
+body{
+width:1024px;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+background-color: #E5E5E5;
+}
+
+header{
+    position: absolute;
+    width: 1024px;
+    height: 120px;
+    left: 0px;
+    top: 0px;
+    background: #222222;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.logo{
+    width: 200px;
+    height:140px;
+    align-self: flex-start;
+}
+
+header ul{
+    display: flex;
+   
+}
+header li{
+    list-style: none;
+    margin-top: 50px;
+    padding: 5px;
+}
+header a{
+    color: #F3F3F3;
+ text-decoration: none;
+ text-align: center;
+
+}
+main{
+    width: 100%;
+    margin-top: 150px;
+display: flex;
+}
+.delivery{
+    border: 5px;
+    position: relative;
+    left: 10px;
+    bottom: 8px;
+    border-radius: 5px;
+    }
+     
+    h1{
+        color: #FC200C;
+        position: relative;
+       bottom:360px;
+       left: 20px;
+    }
+    
+    .comprando{
+        color: #fff;
+    }
+    
+    .podio{
+        height: 300px;
+        position: absolute;
+        width: 491px;
+        height: 350px;
+        left: 514px;
+        top: 135px;
+        background: #FFFFFF;
+        border-radius: 5px;
+        
+        }
+        .podio h2{
+            position: relative;
+            width: 171px;
+            height: 28px;
+            left: 150px;
+            top:8px;
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 28px;
+            color: #FC200C;
+        }
+        .podio h3{
+        position: absolute;
+        height: 23px;
+        top: 50px;
+        left: 30px;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 23px;
+        color: #222222;
+        }
+        .podio ol{
+        position: absolute;
+        width: 98px;
+        height: 19px;
+        left: 40px;
+        top: 150px;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 19px;
+        color: #222222;
+        }
+        
+        .podio img{
+        position: absolute;
+        width: 92px;
+        height: 150px;
+        left: 270px;
+        top: 140px;
+        border-radius: 5px;
+        }
+        
+        footer{
+            background-color: #222222;
+        display: flex;
+        justify-content: space-between;
+        }
+        footer ul{
+        list-style: none;
+        margin:30px;
+        }
+        footer a{
+            color: #E5E5E5;
+            text-decoration: none;
+        }
+        .logofooter{
+            width: 200px;
+        }
