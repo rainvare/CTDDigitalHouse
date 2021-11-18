@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0; 
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    /* height: 1024px; */
+    /* height: 100vh; */
+    /* height: 100%; */
+    position: relative;
+}
+
+.descuentos {
+    background-color: #1CD1B0;
+    height: 38px;
+    position: absolute;
+    width: 100%;
+}
+
+h2.descuentos {
+    display: block;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    padding: 10px 10px;
+    position: relative;
+}
+
+header{
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+}
+
+header h1{
+    background-color: #00669F;
+    box-shadow: 0px 10px 7px rgba(0, 0, 0, 0.25);
+    font-size: 40px;
+    font-weight: 400;
+    height: 101px;
+    padding: 28px;
+    width: 100%;
+}
+
+main {
+    /* C10A */
+    /* position: relative; */
+    /* text-align: center; */
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+
+main section.perfil {
+    border: 1px;
+    margin: 32px;
+    width: 300px;
+
+    /* C10A */
+    /* display: inline-block; */
+
+    /* C11S */
+    /* align-self: auto; */
+    
+    /* height: 193px; */
+
+    /* margin-top: 154px; */ 
+    /* El MARGIN-TOP no lo necesito si uso flex*/
+    /* position: absolute; */
+}
+
+section.perfil div.fondo {
+    position: relative;
+}
+
+section.perfil div.fondo div.reaccion img {
+    left: 15px;
+    position: absolute;
+    top: 20px;
+}
+
+
+section.perfil div.descripcion {
+    background-color: #F3F3F3;
+    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.25);
+    height: 336px;
+    padding: 15px;
+    position: relative;
+    width: inherit;
+    
+}
+
+section.perfil div.descripcion img {
+    border-radius: 50%;
+    left: 90px;
+    position: absolute;
+    top: -65px;
+    width: 120px;
+}
+
+section.perfil div.descripcion h3 {
+    font-size: 30px;
+    font-weight: 400;
+    margin-top: 60px;
+    text-align: center;
+}
+
+section.perfil div.descripcion p {
+    color: #333333;
+    font-size: 15px;
+    line-height: 18.75px;
+    padding: 10px;
+    width: 267px;
+}
+
+section.perfil div.descripcion button {
+    background-color: #00669F;
+    border: 1px solid transparent;
+    color: white;
+    margin: 25px 79px 10px 70px;
+    padding: 15px 35px;
+    width: 130px;
+}
+
+/* footer */
+
+footer {
+    bottom: 0;
+    background-color: #00669F;
+    color: white;
+    font-size: 16px;
+    height: 51px;
+    margin-top: 70px;
+    position: relative;
+    width: 100%;
+}
+
+footer p {
+    padding: 16px;
+}

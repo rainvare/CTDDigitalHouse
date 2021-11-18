@@ -1,0 +1,119 @@
+==================
+    Viewport
+==================
+Ejemplo:
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+
+Los parámetros que podemos usar en esta etiqueta son
+ATRIBUTO	        VALORES	                                                    DESCRIPCIÓN
+----------------------------------------------------------------------------------------------------------------------------------------------
+width	            Valor integral (en pixels) o constante device-width	        Define el ancho de la página.
+height	            Valor integral (en pixels) o constante device-height	    Define el alto de la página.
+Initial-scale	    Cualquier número real de 0.1 en adelante.	                La escala / zoom inicial del sitio Web.
+	                1 representa no escalable (1.0 para no tener zoom 
+                    o 2.5 para tener un zoom del 2,5 de aumento, por ejemplo).	
+User-scale	        “yes” / “no”	                                            Define los permisos para que el usuario pueda o no hacer zoom.
+Minimun-scale	    Cualquier número real de 0.1 en adelante.                   Define la escala / zoom mínimo que podemos hacer en la página.
+                    1 representa no escalable	
+Maximun-scale	    Cualquier número real de 0.1 en adelante.                   Define la escala / zoom máximo que podemos hacer en la página.
+                    1 representa no escalable	
+
+
+==================
+Ejemplos MQ en css
+==================
+
+@media screen and (max-width: 640px) {...}
+
+@media screen and (min-width: 1280px) {...} 
+
+@media screen and (min-width: 640px) and (max-width: 1280px) {...}
+
+@media (max-width: 460px) or (orientation: portrait){...}
+
+@media screen and not (orientation: landscape) {...}
+
+==========
+Parámetros 
+==========
+
+height          ->  altura de la ventana del navegador.
+width           ->  anchura de la ventana del navegador.
+device-width    ->  anchura de la resolución de pantalla.
+device-height   ->  altura de la resolución de pantalla.
+orientation     ->  dispositivo en vertical o en horizontal (portrait/landscape).
+aspect-ratio	->  si el dispositivo encaja con la proporción de aspecto indicada.
+
+Algunas parámetros admiten los valores “max” y “min”. Ej.:
+max-width       ->  La anchura será menor que la indicada.
+min-width       ->  La anchura será mayor que la indicada.
+
+También podemos detectar ciertas preferencias de usuario
+Tipo de preferencia	        Valores	                    Detecta si el usuario tiene preferencia por...
+---------------------------------------------------------------------------------------------------------
+prefers-color-scheme	    dark | light	            ...utilizar un esquema de colores oscuro o claro.
+prefers-reduced-motion	    reduce | no-preference	    ...evitar animaciones o transiciones.
+prefers-reduced-data	    reduce | no-preference	    ...evitar descargas de arhivos pesados.
+
+Existen otras características menos populares que en algunos casos límite pueden ser interesantes, 
+como por ejemplo scan, resolution, monochrome, grid, color-index, color, etc...
+
+Referencias: 
+https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries
+
+==============
+Tipo de medios	
+==============
+screen  ->	Monitores o pantallas de ordenador. Es el más común.
+print   ->	Documentos de medios impresos o pantallas de previsualización de impresión.
+speech  ->	Lectores de texto para invidentes (Antes aural, el cuál ya está obsoleto).
+all	    ->  Todos los dispositivos o medios. El que se utiliza por defecto.
+
+==================
+Operadores lógicos
+==================
+and     -> las dos condiciones deben cumplirse para que se apliquen los estilos.
+or      -> se pueden poner varias condiciones separadas por comas y en el momento que se cumpla cualquiera de ellas, se aplicarán los estilos.
+not     -> es una negación de una condición. Cuando esta condición no se cumpla, se aplicarán las media queries definidas.
+only    -> se aplican las reglas solo en el caso de que se cumpla.
+
+==================
+Otra manera en html
+===================
+
+<link rel="stylesheet" href="mobile.css" media="screen and (max-width: 640px)">
+
+<link rel="stylesheet" href="tablet.css" media="screen and (min-width: 640px) and (max-width: 1280px)">
+
+<link rel="stylesheet" href="desktop.css" media="screen and (min-width: 1280px)">
+
+NOTA: todos serán descargados al cargar la página, 
+    sólo que no serán aplicados al documento hasta que 
+    cumplan los requisitos indicados en el atributo media.
+
+También es posible usarlas en picture para cargar una imagen u otra según la condición. 
+En este caso solo se carga la imagen necesaria.
+
+<picture>
+    <source media="(max-width: 768px)" srcset="img/PizzaFalling.jpg">
+    <img src="img/PizzaFalling-2.jpg" alt="">
+</picture>
+
+<picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./img/Schnauzer-miniatura-blanco1.jpg">
+    <img src="./img/Schnauzer-miniatura-negro1.jpg" alt="">
+</picture>
+
+========================
+Las condicionales Suport
+========================
+@supports not (display: grid) and (display: flex) {...} 
+
+Analiza si el navegador del usuario soporta una característica concreta. 
+Se usa para checkear en navegadores antiguos y no funciona en EI.
+
+Para asegurarno compatibilidad normalmente usamos prefix
+- como extension en VSCode o 
+- https://projects.verou.me/prefixfree/
+
+
