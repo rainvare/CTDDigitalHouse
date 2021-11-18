@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#curriculum img{
+height: 200px;
+}
+
+header h1{
+    background-color: antiquewhite;
+    color:aqua;
+}
