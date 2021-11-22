@@ -1,0 +1,23 @@
+﻿Equipo 7
+
+
+                Isabela Acosta
+        Jacobo Arcila
+        Brenda Bueno
+        Sandra Sanchez
+        Indira Requiz
+        Carolina Porras
+Con toda la mesa de trabajo debatan sobre las siguientes preguntas y contesten en conjunto: 
+* ¿Por qué un lenguaje de programación sólo puede utilizarse en algunos sistemas operativos y en otros no?. 
+Existe código de bajo nivel y alto nivel. El de bajo nivel hay que compilarlo para un sistema operativo específico; ya que, puede depender de bibliotecas específicas de sistema operativo. Por otro lado, los lenguajes de alto nivel generalmente tienen una capa en su compilador o intérprete que permiten la compatibilidad entre  sistemas operativos. Un ejemplo es javascript con node (motor que coje javascript y permite que haya compatibilidad entre los diferentes sistemas
+
+
+* ¿Qué tipo de máquina virtual es virtualBox?. 
+Denominado como Hipervisor de tipo 2 o hipervisor alojado. VirtualBox es un software que se utiliza para virtualizar diferentes sistemas operativos. Se denomina alojado debido a que se ejecuta dentro de un sistema operativo de una máquina física.  
+
+
+
+
+* Si tengo más de una máquina virtual instalada, y una se rompe, ¿esto afecta a las demás? ¿por qué?
+Las máquinas virtuales de procesos se ejecutan en un mismo servidor, esto para ejecutar varias instancias de la misma aplicación de forma separada. De ese modo, si una de ellas falla, no afectará al funcionamiento del resto.
+* Subir este archivo a la mochila del viajero.

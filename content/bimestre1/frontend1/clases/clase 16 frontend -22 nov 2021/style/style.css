@@ -1,0 +1,380 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap");
+
+:root {
+  --color-primario: #00669f;
+  --color-secundario: #1cd1b0;
+  --color-fondo: #001d2d;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  /* height: 1024px; */
+  /* height: 100vh; */
+  /* height: 100%; */
+  position: relative;
+}
+
+.descuentos {
+  background-color: var(--color-secundario);
+  height: 38px;
+  position: absolute;
+  width: 100%;
+}
+
+h2.descuentos {
+  display: block;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18px;
+  padding: 10px 10px;
+  position: relative;
+}
+
+header {
+  top: 0px;
+  display: flex;
+  box-shadow: 0px 10px 7px rgba(0, 0, 0, 0.25);
+}
+
+header
+/* nav */ {
+  color: white;
+  position: sticky;
+  z-index: 10;
+}
+
+header h1 {
+  background-color: var(--color-primario);
+  font-size: 40px;
+  font-weight: 400;
+  height: 101px;
+  padding: 28px;
+  width: 100%;
+}
+
+header a {
+    background-color: var(--color-primario);
+    padding-top: 1rem;
+}
+
+header img {
+  background-color: var(--color-primario);
+  padding-left: 10px;
+}
+
+nav {
+  background-color: var(--color-fondo);
+  padding: 20px;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+nav ul li a {
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+  line-height: 19px;
+  padding: 20px;
+}
+
+a#botonMas {
+
+  width: 82px;
+  height: 82px;
+  display: block;
+  position: fixed;
+  top: 50vh;
+  right: 10px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+a#botonMas:hover {
+  filter: hue-rotate(50deg);
+}
+
+main {
+  /* C10A */
+  /* position: relative; */
+  /* text-align: center; */
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+main section.perfil {
+  border: 1px;
+  margin: 32px;
+  width: 300px;
+
+  /* C10A */
+  /* display: inline-block; */
+
+  /* C11S */
+  /* align-self: auto; */
+
+  /* height: 193px; */
+}
+
+section.perfil div.fondo {
+  position: relative;
+}
+
+section.perfil div.fondo div.reaccion img {
+  left: 15px;
+  position: absolute;
+  top: 20px;
+}
+
+section.perfil div.descripcion {
+  background-color: #f3f3f3;
+  box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.25);
+  height: 336px;
+  padding: 15px;
+  position: relative;
+  width: inherit;
+}
+
+section.perfil div.descripcion img {
+  border-radius: 50%;
+  left: 90px;
+  position: absolute;
+  top: -65px;
+  width: 120px;
+}
+
+section.perfil div.descripcion h3 {
+  font-size: 30px;
+  font-weight: 400;
+  margin-top: 60px;
+  text-align: center;
+}
+
+section.perfil div.descripcion p {
+  color: #333333;
+  font-size: 15px;
+  line-height: 18.75px;
+  padding: 10px;
+  width: 267px;
+}
+
+section.perfil div.descripcion button {
+  background-color: var(--color-primario);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  position: absolute;
+  color: white;
+  margin: -40px 0px 10px 70px;
+  padding: 15px 35px;
+  width: 130px;
+}
+/* FORMULARIO */
+
+section.formulario form {
+  position: relative;
+}
+
+section.formulario {
+  font-family: "Inter", sans-serif;
+  background-color: var(--color-primario);
+  border-radius: 50px;
+  box-shadow: 2px 3px 5px 1px rgba(0, 0, 0, 0.3);
+  height: 832px;
+  width: 954px;
+  margin-top: 10vh;
+}
+
+section.formulario > div.titulos {
+  text-align: center;
+  color: #fbfffd;
+  margin-bottom: 4vh;
+}
+
+section.formulario > div.titulos h2 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 72px;
+}
+
+section.formulario > div.titulos p {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 14px;
+}
+
+div.preguntas,
+div.preguntasLeft,
+div.preguntasRight {
+  display: flex;
+}
+
+div.preguntas {
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+div.preguntasLeft,
+div.preguntasRight {
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: flex-start;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+label {
+  color: white;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.preguntasLeft input,
+select {
+  width: 343px;
+  height: 63px;
+  border-radius: 15px;
+  border-color: transparent;
+}
+
+select{
+  padding-left: 15px;
+  color: grey;
+}
+
+textarea {
+  width: 343px;
+  height: 307px;
+  border-radius: 15px;
+  resize: none;
+}
+
+
+textarea:focus {
+  padding-right: 1rem;
+  padding-top: 1rem;
+  color: var(--color-primario);
+}
+
+::placeholder {
+  padding-left: .5rem;
+}
+
+#foto[type="file"] {
+  color: lightgray;
+}
+
+input[type="date"] {
+  color: grey;
+  font-size: 14px;
+  padding-left: 10px;
+}
+
+.radioYCheck ul {
+  display: block;
+  padding-bottom: 25px;
+}
+
+form > button {
+  position: absolute;
+  top: 603px;
+  left: 244px;
+  background-color: #1cd1b0;
+  width: 466px;
+  height: 87px;
+  border-radius: 24px;
+  border-color: transparent;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+form > button:hover {
+  background-color: #001d2d;
+  color: white;
+}
+
+
+/* footer */
+
+footer {
+  bottom: 0;
+  background-color: #00669f;
+  color: white;
+  font-size: 16px;
+  height: 51px;
+  margin-top: 70px;
+  position: relative;
+  width: 100%;
+}
+
+footer p {
+  padding: 16px;
+  text-align: center;
+}
+
+
+@media screen and (max-width: 768px){
+
+    a#botonMas {
+        filter: hue-rotate(50deg);
+    }
+
+    a#botonMas img{
+        width: 40px;
+        height: 40px;
+        position: fixed;
+        top: 10vh;
+        right: 5px;
+    }
+
+    section.formulario > div.titulos p {
+        line-height: 2rem;
+    }
+
+    section.formulario {
+        height: fit-content;
+    }
+
+    .formulario {
+      border: .5em solid #f3f3f3;
+    }
+
+    div.preguntasLeft,
+    div.preguntasRight {
+
+      align-items: center;
+      gap: 25px;
+    }
+
+    .preguntasLeft > label,
+    .preguntasRight > label {
+        font-weight: bold;
+    }
+
+    form > button {
+        position: relative;
+        top: auto;
+        left: 138px;
+        width: 40%;
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 10px auto;
+    }
+}

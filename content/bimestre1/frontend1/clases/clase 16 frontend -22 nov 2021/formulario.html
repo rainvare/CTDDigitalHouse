@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heroes</title>
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+
+<body>
+    <h2 class="descuentos">Descuentos 20%</h2>
+    <header>
+        <a href="index.html"><img src="./img/logoTienda.svg" alt=""></a>
+        <h1>Heroes</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="formulario.html">Contacto</a></li>
+            <li><a href="#">Registrarme</a></li>
+            <li><a href="#">Ingresar</a></li>
+        </ul>
+    </nav>
+
+    <a href="formulario.html" id="botonMas">
+        <img src="./img/buttonMas.svg" alt="">
+    </a>
+
+    <main>
+
+        <section class="formulario">
+
+            <div class="titulos">
+                <h2>Añadí tu super!</h2>
+                <p>Agregá tu personaje favorito completando las opciones</p>
+            </div>
+
+
+            <form action="/registro" method="POST" enctype="multipart/form-data">
+
+                <div class="preguntas">
+                    <div class="preguntasLeft">
+
+                        <!-- nombre -->
+                        <label for="nombre">*Nombre</label>
+                        <input type="text" name="nombre" id="nombre">
+
+                        <!-- fecha -->
+                        <label for="fecha">Fecha</label>
+                        <input type="date">
+
+                        <!-- descripcion -->
+                        <textarea name="descripcion" id="descripcion" placeholder="Descripcion" cols="30"
+                            rows="10"></textarea>
+                    </div>
+
+                    <div class="preguntasRight">
+
+                        <!-- desplegable especie -->
+                        <label for="especie">*Especie</label>
+                        <select name="especie" id="especie">
+                            <option value="" selected disabled>Especie</option>
+                            <option value="especie1">Especie 1</option>
+                            <option value="especie2">Especie 2</option>
+                            <option value="especie3">Especie 3</option>
+                            <option value="especie4">Especie 4</option>
+                        </select>
+
+                        <!-- agregar foto -->
+                        <label for="foto">Agregar foto</label>
+                        <input type="file" name="foto" id="foto" accept=".jpg, .png">
+
+                        <!-- poderes -->
+                        <label for="poderes">Poderes</label>
+                        <div class="radioYCheck">
+                            <ul>
+                                <li>
+                                    <input type="checkbox" name="poderes" id="poderes" value="Volar">
+                                    <label for="">Volar</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="poderes" id="poderes" value="Superinteligencia">
+                                    <label for="">Superinteligencia</label>
+                                </li>
+                                <li>
+
+                                    <input type="checkbox" name="poderes" id="poderes" value="Vista de rayo láser">
+                                    <label for="">Vista de Rayo Láser</label>
+
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="poderes" id="poderes" value="Billetera gorda">
+                                    <label for="">Billetera Gorda</label>
+
+                                </li>
+                            </ul>
+
+                            <hr>
+                        </div>
+
+                        <!-- tipo de personaje -->
+                        <label for="tipoPersonaje">Tipo de Personaje</label>
+                        <div class="radioYCheck">
+                            <ul>
+                                <li>
+                                    <input type="radio" name="tipoPersonaje" value="Héroe / Heroina">
+                                    <label for="tipoPersonaje">Héroe / Heroina</label>
+                                </li>
+                                <li>
+                                    <input type="radio" name="tipoPersonaje" value="Héroe / Heroina">
+                                    <label for="tipoPersonaje">Villano / Villana</label>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- boton -->
+                <button>Añadir</button>
+
+            </form>
+
+        </section>
+
+    </main>
+    <footer>
+        <p>Todos los derechos reservados a FRONT END 1</p>
+    </footer>
+</body>
+
+</html>
