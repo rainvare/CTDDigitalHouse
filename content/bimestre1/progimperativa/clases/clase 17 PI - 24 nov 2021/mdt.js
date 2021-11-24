@@ -6,7 +6,7 @@ console.log(pulgadasEnCentimetros(4));
 // ACTIVIDAD 2
 // Crear una función que recibe un string y lo convierte en una una URL. ej: “pepito” es devuelto como “http://www.pepito.com”
 let stringAURL = palabra => 'http://www.'+ palabra + '.com';
-console.log(stringAURL('camila'));
+console.log(stringAURL('indira'));
 //ACTIVIDAD 3
 // Crear una función que recibe un string y devuelve la misma frase, pero con admiración. 
 let palabra = frase => "¡"+ frase + "!";
