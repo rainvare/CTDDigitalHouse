@@ -165,13 +165,21 @@ modificarStock: function (titulo, stock) {
 ○	El método deberá recorrer el listado de libros y calcular el promedio de la propiedad precio.
 ○	El método deberá retornar un mensaje con el siguiente formato.
 ej:  “El precio promedio de cada libro es de: $1800.” */
-precioPromedio: function () {
+/* precioPromedio: function () {
 let promedio;
     for (let i = 0; i < this.libros.length; i++) {
       promedio = this.libros[i].precio / this.libros.length;
     }
     return `El precio promedio de cada libro es de: ${promedio}`;
-  }
+  } */
+  precioPromedio(){
+    let sumaPrecios=0;
+    let promedioPrecios=0;
+    for(i=0;i<this.libros.length;i++){
+      sumaPrecios+=this.libros[i].precio;
+    }
+    promedioPrecios=sumaPrecios/ this.libros.length
+    return  "El precio promedio de cada libro es de: $"+promedioPrecios ;
 
 };
 
