@@ -1,0 +1,21 @@
+Vamos a investigar y conocer todas nuestras direcciones ! .
+Apliquemos los conocimientos adquiridos, para conocer nuestras direcciones .
+Que direcciones necesitamos averiguar :
+● Dirección IP Pública 
+● Dirección IP Privada y su Máscara de subred
+● Dirección MAC
+
+*Los datos de la ip, máscara y mac se pueden conocer ejecutando el comando ipconfig 
+
+
+Vamos a investigar
+Actividad integradora
+Sigamos trabajando ! 
+Dadas nuestras direcciones IP y las máscaras de red, 
+
+¿La IP pública y privada de qué clase son ? 
+*La IP de mi compu privada y es clase C, pues empieza en 192.168 
+
+¿ Qué información puedo obtener de la dirección MAC? , vamos a acceder a 
+https://macvendors.com/ y verificar que marca de placa de red tenemos.
+La dirección MAC nos permite conocer al fabricante del la placa. En mi caso es: TP-LINK TECHNOLOGIES CO.,LTD.

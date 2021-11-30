@@ -1,0 +1,430 @@
+/* ====================================================== */
+/* ============ Selectores universales ================== */
+/* ====================================================== */
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box ;
+}
+
+/*saco estilo a todas las listas*/
+ol *, ul *{
+    list-style:none;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=Roboto+Mono:ital,wght@1,200&display=swap');
+
+
+
+/* ====================================================== */
+/* ============ Estilos elementos repetidos ============= */
+/* ====================================================== */
+body{
+    max-width: 1400px;
+    margin: 0 auto;
+}
+/*boton Get Started*/
+.boton {
+	box-shadow: 0p 4px 7px rgba(0, 0 0, 0.25);
+    background-color: #F3603C;
+	border-radius:50px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+    font-family:'Be Vietnam Pro', sans-serif;
+	font-size:13px;
+	padding: 15px 31px;
+	text-decoration:none;
+    width: 135px;
+}
+.boton:hover {
+	background-color:#F57A62;
+}
+.boton:active {
+	position:relative;
+	top:1px;
+}
+
+/* ~~~~~~~ Estilo de letras ~~~~~~~~ */
+/*problema del text Aboout us del nav para que no se deforme por tener dos palabras*/
+#textoAboutUs{
+    display: inline-block;
+    width: 59px;
+}
+
+
+
+
+
+
+/* ##################################################################### */
+/* ############################## Header ################################# */
+/* ##################################################################### */
+
+/* ~~~~~~~ Ubicación de elementos mobile ~~~~~~~~ */
+
+/*ubicamos elementos del header para mobile*/
+#cajaContenedoraNavMobile{
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 15px; 
+
+}
+
+/* ~~~~~~~ Ubicación de elementos pantalla grande ~~~~~~~~ */
+/*ubicación links del nav*/
+#navPantallaGrande nav ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.7rem;;
+} 
+/*indico que la caja que contienen los links del nav sea un elemento inline block*/
+#navPantallaGrande{
+    display: inline-block;
+}
+/*organizar los elementos del header*/
+#cajaContenedoraNavComputadora{
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 15px;
+}
+
+
+/* ##################################################################### */
+/* ############################## Main ################################# */
+/* ##################################################################### */
+
+#cajaContenedora{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 15px;
+}
+
+/* ====================================================== */
+/* ====================== Section1 ====================== */
+/* ====================================================== */
+
+/* ~~~~~~~~~ Ubicación de los elementos~~~~~~~ */
+/*dimensiono la caja contenedora*/
+#section1Arriba{
+    width: 95%;
+}
+/*imagen se ajusta al tamaño del contenedor*/
+#section1Arriba img{
+    max-width: 100%; 
+    height: auto; 
+}
+
+#section1Arriba article{
+    width: auto;
+}
+/*ubico elementos en vertical*/
+#section1Arriba article div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 80px;
+}
+/*espacio entre los diferentes elementos*/
+#section1Arriba article div p{
+    padding: 30px 0px;
+}
+
+
+
+/* ~~~~~~~~~ Esstilo de los elementos~~~~~~~ */
+h1{
+    font-size: 2.5rem;
+    text-align: center;
+    color: #323851;
+
+}
+#section1Arriba p{
+    text-align: justify;
+}
+/*el texto del boton se decentro por algún motivo*/
+#section1Arriba .boton{
+    text-align: center;
+}
+
+
+
+/* ====================================================== */
+/* ====================== Section2 ====================== */
+/* ====================================================== */
+/*Ubicación de los elementos*/
+#section2Medio{
+    width: 95%;
+}
+#cajaDiferencia{
+    text-align: center;
+    padding-bottom: 30px;
+}
+#cajaDiferencia > *{
+    padding: 15px 0px;
+}
+#cajaDiferencia h2{
+    font-size: 2.0rem;
+    color: #323851;
+}
+#cajaDescripcionesCompania ol li{
+    padding: 10px 0px 25px 0px;
+}
+#cajaDescripcionesCompania{
+    padding-bottom: 30px;
+}
+
+/* ~~~~~~~ Estilo caja descripcion compañia ~~~~~~~ */ 
+/*estilo de los botones numericos para mobile*/
+.botonListaMobile{
+    text-decoration:none;
+    display: inline-block;
+    background-color: #F3603C;
+	border-radius:50px;
+	color:#ffffff;
+    font-family:'Be Vietnam Pro', sans-serif;
+	font-size:13px;
+	padding: 10px 20px;
+    width: 70px;
+    text-align: center;
+}
+/*estilo de los botones numericos para computadora*/
+.numerosPantallaGrande{
+    background-color: #F3603C;
+    display: inline-block;
+    border-radius:50px;
+	color:#ffffff;
+    font-family:'Be Vietnam Pro', sans-serif;
+	font-size:13px;
+	padding: 10px 20px;
+    text-align: center;
+    font-weight: 600;
+}
+/*ubicamos el h3 al lado de los números*/
+#cajaDescripcionesCompania h3{
+    display:inline-flexbox;
+    font-size: 15px;
+    color: #323851;
+}
+/*color de fondo de los titulos*/
+h3{
+    background-color: rgba(245, 122, 98, 0.2);
+    border-radius: 50px;
+    min-width: 350px;
+}
+
+
+
+
+
+
+
+/* ====================================================== */
+/* ====================== Section3 ====================== */
+/* ====================================================== */
+/*ubicación de los elementos: defino el ancho de los testimonios para mobile*/
+#section3Medio{
+    text-align: center;
+    padding-bottom: 30px;
+}
+/*ubicación de los elementos: defino la ubicacion de los testimonios*/
+#contenedorTestimonios{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 70px;
+    padding: 30px 0px;
+}
+#section3Medio h2{
+    padding-bottom: 60px;
+    color: #323851;
+
+}
+/*ubicación de los elementos que salen de su caja*/
+#contenedorTestimonios article img{
+    position: relative;
+    bottom: 50px;
+}
+h5{
+    position: relative;
+    bottom: 25px;
+}
+/*estilo del fondo*/
+#contenedorTestimonios article{
+    background-color: #FAFAFA;
+}
+
+
+
+/* ====================================================== */
+/* ====================== Section4 ====================== */
+/* ====================================================== */
+
+
+#section4Medio{
+    position: relative;
+    background-color: #F3603C;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 224px;
+}
+#section4Medio .boton {
+    background-color: white;
+    color: #F3603C;
+}
+#section4Medio h2{
+    text-align: center;
+    color: white;
+}
+
+/* ##################################################################### */
+/* ############################ Footer ################################# */
+/* ##################################################################### */
+
+
+
+
+
+
+
+/* ##################################################################### */
+/* ############################## queries ############################## */
+/* ##################################################################### */
+
+/* ====================================================== */
+/* ================== queries en Mobile ================= */
+/* ====================================================== */
+@media (max-width: 375px){
+/*desaparece*/
+    .numerosPantallaGrande{
+        display: none;
+        }
+    /*aparece*/
+
+    /*aparece ocupando todo el ancho*/
+    .botonLista{
+        display:inline-block;
+    }
+}
+
+/* ====================================================== */
+/* ================ queries en Computadora ============== */
+/* ====================================================== */
+@media (min-width: 376px) and (max-width: 1440px){
+
+/* ~~~~~~~~~~ Aparecen y desaparecen ~~~~~~~~~~~ */
+
+/*aparece*/
+    #cajaContenedoraNavComputadora{
+        /* display: inline-block; */
+    }
+/*desaparece*/
+    .botonListaMobile{
+        display: none;
+    }
+
+
+/* ~~~~~~~~~~ Reubicacion de elementos ~~~~~~~~~~~ */   
+/*Section 1: ubicación de los elementos de la */
+    #section1Arriba article{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex: 0;
+    gap: 60px;
+}
+/*cambio el orden de los objetos*/ 
+    #section1Arriba img{
+    max-width: 400px;
+    order: 2;
+}
+
+    #section1Arriba article div{
+    align-items: flex-start;
+    max-width: 350px;
+    position: relative;
+    top: 40px;
+}
+
+    #section1Arriba article div p{
+    max-width: 200px;
+}
+
+    h1{
+    text-align: left;
+}
+
+
+/*Section 2: ubicación de los elementos de la */
+    #section2Medio{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+    #cajaDescripcionesCompania li{
+    padding-left: 60px;
+}
+/* ~~~~~~~~~~ Estilo de elementos ~~~~~~~~~~~ */
+/*estilo de la section 2 "What´s different about Manage"*/
+    #cajaDiferencia{
+        text-align: left;
+        max-width: 300px;
+        outline: red solid;
+    }
+
+    #cajaDescripcionesCompania{
+        max-width: 450px;
+    }
+    h3{
+        background-color: transparent;
+    }
+/*estilo de la section 3 "What they've said"*/
+    #section3Medio{
+        width: auto;
+    }
+    #section3Medio *{
+        flex-direction: row;
+    }
+    #contenedorTestimonios{
+        gap: 20px;
+    }
+/*ubicación de la section 4 banner naranja*/
+    #section4Medio{
+        flex-direction: row;
+        justify-content:space-between;
+        padding: 0px 15px;
+    }  
+} 
+
+/* ====================================================== */
+/* ========== querie detalle para el Header ============= */
+/* ====================================================== */
+
+@media (max-width: 700px){
+    #cajaContenedoraNavComputadora{
+        display: none;
+    }
+}
+
+@media (min-width: 700px){
+    #cajaContenedoraNavComputadora{
+        display:inline-flexbox;
+    }
+    #cajaContenedoraNavMobile{
+        display: none;
+    }
+}

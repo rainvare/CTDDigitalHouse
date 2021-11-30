@@ -1,0 +1,74 @@
+/*FORM FOOTER*/
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+form {
+    margin-top: 50px;
+}
+
+input {
+    height: 50px;
+    width: 300px;
+    padding: 00px 20px;
+    border-radius: 70px
+}
+
+form button {
+    padding: 11px 30px;
+
+}
+
+/*MENUS FOOTER*/
+.menu-footer{
+    display: flex;
+    justify-content: space-around;
+    margin: 50px;
+}
+
+.menu-footer li {
+    list-style: none;
+    color: white;
+    margin-top: 15px;
+    font-size: 17px;
+
+
+}
+
+.menu-footer a {
+    text-decoration: none;
+    color:white;
+}
+
+.menu-footer li:hover {
+    color: var(--color-primario-anaranjado);
+}
+
+.iconos {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.iconos img {
+    height: 35px;
+    margin: 0 15px;
+}
+
+
+.footer-logo {
+    display: flex;
+    justify-content: center;
+    margin-top: 90px;
+    margin-bottom: 90px;
+}
+
+/*DERECHOS DE AUTOR*/
+.derechos p{
+    width: 100%;
+    height: 50px;
+    color: white;
+}

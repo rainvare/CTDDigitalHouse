@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="./css/style_sincronica.css"> -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <h1>Pseudo-clases y pseudo-elementos en CSS </h1>
+    <hr>
+    <nav>
+        <ul>
+            <li><a >Listas</a></li>
+            <li><a href="#parrafos">Párrafos</a></li>
+            <li><a href="#formulario">Formulario</a></li>
+        </ul>
+    </nav>
+    <hr>
+    <section id="listas">
+        <h2 class="tooltip">Seguimos trabajando con listas <span class="tooltiptext">Otra vez sopa</span></h2>
+        <!-- <h3> Lista centrada </h3>
+        <div class="centrar-listas">
+            <ul>
+                <li>200g. gramos de harina 0000, </li>
+                <li>50g. de azúcar,</li>
+                <li>1 huevo,</li>
+                <li>100g. de manteca.</li>
+            </ul>
+        </div> -->
+        <h3>Lista rayada</h3>
+        <ul class="lista">
+            <li>200g. gramos de harina 0000, </li>
+            <li>50g. de azúcar,</li>
+            <li>1 huevo,</li>
+            <li>100g. de manteca.</li>
+        </ul>
+    </section>
+    <hr>
+    <section id="parrafos">
+        <h2>Mas Pseudo-clases</h2>
+        <div>
+            <p>Primer párrafo - impar</p>
+            <p>Segundo párrafo. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                ut
+                aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                officia
+                deserunt mollit anim id est laborum.</p>
+            <p>Tercer párrafo - impar</p>
+            <p>Cuarto párrafo, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                ut
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                ut
+                aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                officia
+                deserunt mollit anim id est laborum.</p>
+        </div>
+    </section>
+    <hr>
+    <section id="formulario">
+        <h2>Ahora un form</h2>
+        <form action="">
+            <fieldset>
+                <legend>Mi form de prueba</legend>
+                <!-- Opcion simple -->
+                <label for="nombre" class="required"> Nombre y apellido</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Juan Perez" minlength="3" required>
+                <label for="email" class="required">Email</label>
+                <input type="email" id="email" name="email" placeholder="alguien@mail.com" required>
+                <label for="tel">Tel</label>
+                <input type="tel" id="tel" name="tel" placeholder="123-901" disabled>
+
+                <!-- Opcion automática  -->
+                <!-- <div>
+                    <input type="text" id="nombre" name="nombre" placeholder="Juan Perez" required>
+                    <label for="nombre">Nombre y apellido</label>
+                </div>
+                <div>
+                    <input type="email" id="email" name="email" placeholder="alguien@mail.com" required>
+                    <label for="email">Email</label>
+                </div>
+                <div>
+                    <input type="tel" id="tel" name="tel" placeholder="123-901" disabled>
+                    <label for="tel">Tel</label>
+                </div> -->
+               
+                <input type="reset" value="Resetear">
+                <input type="submit" value="Enviar">
+                <!-- <button type="submit"></button> -->
+            </fieldset>
+        </form>
+    </section>
+    <div class="dialogo">
+        <p>Listo chau!</p>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Estilos -->
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <!--Íconos-->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <!--Fuentes-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam:wght@100;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+    <!--Título-->
+    <title>Frontend I - Landing page - Examen Práctico Final</title>
+  </head>
+
+  <body>
+    <header>
+      <!--LOGO-->
+      <div class="contenedordelogo">
+        <img src="img/logo.svg" alt="logo" />
+      </div>
+      <!--Menu-->
+
+      <div class="menu">
+        <!--Nav Mobile-->
+        <div class="hamburger-menu">
+          <img src="./img/icon-hamburger.svg" alt="imagen menu hamburguesa" />
+        </div>
+        <!--Nav desktop-->
+        <div class="menu-pc">
+          <nav class="nav">
+            <ul>
+              <li><a href="#">Home </a></li>
+              <li><a href="#">Price</a></li>
+              <li><a href="#">Products</a></li>
+              <li><a href="#">About Us</a></li>
+            </ul>
+          </nav>
+          <button type="button">Get Started</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!--BANNER-->
+      <section class="banner">
+        <img src="./img/illustration-intro.svg" alt="gráficos" />
+        <div class="texto-banner">
+          <h1>Bring everyone together to build better products</h1>
+          <p>
+            manage makes it simple for software teams to plan day-to-day tasks
+            while keeping the larger teams goals in view.
+          </p>
+        </div>
+        <div class="banner-button">
+          <button type="button">Get Started</button>
+        </div>
+      </section>
+
+      <!--CONTENIDO PRINCIPAL - DIFERENCIAS-->
+      <section class="contenido-principal">
+        <article class="diferencias">
+          <div class="texto-diferencias">
+            <h2>What's different about Manage?</h2>
+            <p>
+              Manage provides all the fumctionality your team needs, without the
+              complexity. Our software is tailor-made for modern digital
+              products teams.
+            </p>
+          </div>
+
+          <div class="items">
+            <div class="list-items">
+              <h3><span>01</span>Track Company-wide progress</h3>
+              <p>
+                See how your day-to-day task fits into the wider vision. Go from
+                tracking progress at the milestone level all the way done to the
+                smallest of details .Never lose sight of the bigger picture
+              </p>
+            </div>
+
+            <div class="list-items">
+              <h3><span>02</span>Advanced built-in reports</h3>
+              <p>
+                Set internal delivery estimates and track progress toward
+                company goals. Our customisable dashboard helps you build out
+                the reports you need to keep key stakeholders informed.
+              </p>
+            </div>
+
+            <div class="list-items">
+              <h3><span>03</span>Everything you need in one place</h3>
+              <p>
+                Stop jumping from one service to another to communicate, store
+                files, track task and share documents. Manage offers an
+                all-in-one team productivity solution.
+              </p>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!--TARJETAS DE OPINIONES-->
+
+      <section class="opiniones">
+        <h2>What they've said</h2>
+
+        <div clase="tarjetas">
+          <article class="tarjeta">
+            <img src="./img/avatar-anisha.png" alt="foto de anisha" />
+            <div class="comentario">
+              <h3>Anisha li</h3>
+              <p>
+                "Age has supercharged our teams's workflow.The mantain visibilty
+                on larger milestones at all times keeps everyone motivated."
+              </p>
+            </div>
+          </article>
+
+          <article class="tarjeta">
+            <img src="./img/avatar-ali.png" alt="foto de ali" />
+            <div class="comentario">
+              <h3>Ali Bravo</h3>
+              <p>
+                "we have been able to cancel so many other subscription since
+                using Manage. There is no more croos-channel confusion and
+                everyone is much more focused."
+              </p>
+            </div>
+          </article>
+
+          <article class="tarjeta">
+            <img src="./img/avatar-richard.png" alt="foto de ali" />
+            <div class="comentario">
+              <h3>Richard Watts</h3>
+              <p>
+                "Manage allows us to provide structure and provide keeps us
+                organized and focused. I can't stop recording them to everyone I
+                talk to!"
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <div class="tarjetas-button">
+          <button type="button">Get Started</button>
+        </div>
+      </section>
+
+      <!--SUBSCRIPCIONES-->
+      <section class="subscripciones">
+        <h1>Simplify how your team works today.</h1>
+        <div class="subscripcion-button">
+          <button type="button">Get Started</button>
+        </div>
+      </section>
+    </main>
+    <!--FOOTER-->
+    <footer>
+      <section class="contacto-menu">
+        <div class="form">
+          <form>
+            <label for="input"></label>
+            <input
+              type="text"
+              name="input"
+              placeholder="Updates in your inbox..."
+            />
+            <button type="submit">GO</button>
+          </form>
+        </div>
+
+        <div class="menu-footer">
+          <div class="menu-izquierdo">
+            <ul>
+              <li><a href="#">Home </a></li>
+              <li><a href="#">Price</a></li>
+              <li><a href="#">Products</a></li>
+              <li><a href="#">About Us</a></li>
+            </ul>
+          </div>
+          <div class="menu-derecho">
+            <ul>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Community</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="iconos">
+          <img src="./img/icon-facebook.svg" alt="facebook" />
+          <img src="./img/icon-youtube.svg" alt="youtube" />
+          <img src="./img/icon-twitter.svg" alt="twitter" />
+          <img src="./img/icon-pinterest.svg" alt="pinterest" />
+          <img src="./img/icon-instagram.svg" alt="instagram" />
+        </div>
+
+        <div class="footer-logo">
+          <img src="./img/logofooter.svg" />
+        </div>
+      </section>
+
+      <!--DERECHOS DE AUTOR-->
+      <section class="derechos">
+        <p>Rainvare 2021</p>
+      </section>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,542 @@
+@import url('https://fonts.google.com/specimen/Be+Vietnam');
+
+/*COLORES*/
+:root {
+    --color-primario-anaranjado: hsl(12, 88%, 59%);
+    --color-primario-azul: hsl(228, 39%, 23%);
+    --color-neutro-gris: hsl(227, 12%, 61%);
+    --color-neutro-azul: hsl(233, 12%, 13%);
+    --color-neutro-anaranjado: hsl(13, 100%, 96%);
+    --color-neutro-blanco: hsl(0, 0%, 98%);
+}
+
+/* Generales*/
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    font-family: 'Be Vietnam', sans-serif;
+    font-size: 16px;
+    color: var(--color-primario-azul);
+    text-align: center;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 35px;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 30px
+}
+
+h3 {
+    font-size: 16px;
+}
+
+p {
+    color: var(--color-neutro-gris);
+    font-weight: lighter;
+    line-height: 24px;
+}
+
+button {
+    padding: 15px 40px;
+    border-radius: 50px;
+    background-color: var(--color-primario-anaranjado);
+    color: white;
+    border: none;
+    font-size: 16px;
+    text-align: center;
+}
+
+button:hover {
+    opacity: 0.7;
+    cursor: pointer
+}
+
+li {
+    text-decoration: none;
+    list-style: none;
+}
+
+a {
+    text-decoration: none
+}
+
+/*HEADER*/
+header {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    margin-top: 40px;
+    height: 100px;
+    width: 100%;
+}
+
+/*LOGO*/
+.logo {
+    margin-top: 50px;
+    text-align: center;
+}
+
+/*BANNER*/
+.banner {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 10px;
+}
+
+/*CONTENIDO PRINCIPAL*/
+.contenido-principal {
+    margin: 160px 10px 60px 10px;
+}
+
+.items {
+    margin-top: 50px;
+    margin-left: 30px;
+}
+
+.items h3 {
+    background-color: var(--color-neutro-anaranjado);
+    padding: 9px 0;
+    text-align: left;
+}
+
+.items span {
+    padding: 9px 20px;
+    background-color: var(--color-primario-anaranjado);
+    border-radius: 50px;
+
+    color: white;
+}
+
+/*TARJETAS*/
+.opiniones {
+    display: flex;
+}
+
+.opiniones h2 {
+    margin-bottom: 100px;
+}
+
+.tarjeta {
+    background-color: var(--color-neutro-blanco);
+    margin: 30px 0 100px 0px;
+}
+
+.tarjeta img {
+    height: 100px;
+    position: relative;
+    top: -40px
+}
+
+.tarjeta p {
+    text-align: center;
+    padding: 20px;
+}
+
+/*SUBSCRICIONES*/
+.subscripciones {
+    width: 100%;
+    background-color: var(--color-primario-anaranjado);
+    color: var(--color-neutro-blanco);
+}
+
+.subscripciones h1 {
+    font-size: 34px;
+    padding: 50px 40px 10px 40px;
+}
+
+.subscripciones button {
+    margin-bottom: 20px;
+    color: var(--color-primario-anaranjado);
+    background-color: var(--color-neutro-blanco);
+}
+
+
+/*FOOTER*/
+footer {
+    background-color: var(--color-neutro-azul);
+    position: relative;
+    margin-top: 0px;
+}
+
+/*FORM FOOTER*/
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+form {
+    margin-top: 50px;
+}
+
+input {
+    height: 50px;
+    width: 150px;
+    padding: 00px 20px;
+    border-radius: 70px
+}
+
+form button {
+    padding: 11px 30px;
+
+}
+
+/*MENUS FOOTER*/
+.menu-footer{
+    display: flex;
+    margin: 50px;
+}
+
+.menu-footer li {
+    list-style: none;
+    color: white;
+    font-size: 17px;
+}
+
+.menu-footer a {
+    text-decoration: none;
+    color:white;
+}
+
+.menu-footer li:hover {
+    color: var(--color-primario-anaranjado);
+}
+
+
+/*DERECHOS DE AUTOR*/
+.derechos p{
+    color: white;
+}
+
+
+@media only screen and (min-width: 375px) {
+
+
+    /*HAMBURGER*/
+    .hamburger-menu {
+        float: right;
+        cursor: pointer;
+        height: 4px;
+        margin-top: 5px;
+        width: 30px;
+    }
+
+    /* MENU PC*/
+    .menu-pc {
+        display: none;
+    }
+
+    .menu-pc button {
+        display: none;
+    }
+
+    /*BANNER*/
+    .banner {
+        flex-direction: column;
+    }
+
+    .banner img {
+        height: 290px;
+        margin: 0 auto
+    }
+
+    /*CONTENIDO PRINCIPAL*/
+
+    .items h3 {
+        width: 100%;
+    }
+
+    .items p {
+        text-align: left;
+        margin-left: 10px
+    }
+
+    .items span {
+        text-align: left;
+        position: relative;
+        right: 10px
+    }
+
+    /*TARJETAS*/
+    .opiniones {
+        width: 100%;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+
+    /*SUBSCRICIONES*/
+    .subscripciones {
+        text-align: center;
+    }
+
+    /*MENUS FOOTER*/
+.menu-footer{
+    justify-content: space-around;
+}
+
+.menu-footer li {
+    margin-top: 15px;
+}
+
+.iconos {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.iconos img {
+    height: 35px;
+    margin: 0 15px;
+}
+
+
+.footer-logo {
+    display: flex;
+    justify-content: center;
+    margin-top: 90px;
+    margin-bottom: 90px;
+}
+
+
+}
+
+    @media only screen and (min-width: 1440px) {
+
+        /*HAMBURGER*/
+        .hamburger-menu {
+            display: none;
+        }
+
+        /*MENU PC*/
+        .menu-pc {
+            display: flex;
+            position: relative;
+            margin-top: -15px;
+            left: 40px;
+        }
+
+        .nav li {
+            display: inline-block;
+            padding: 10px;
+            cursor: pointer;
+
+        }
+
+        .nav li a {
+            text-decoration: none;
+            color: var(--color-primario-azul);
+        }
+
+        .nav li a:hover {
+            opacity: 0.7;
+            cursor: pointer;
+            color: var(var(--color-neutro-gris));
+        }
+
+        .menu-pc button {
+            display: block;
+            height: fit-content;
+            float: left;
+            margin-left: 250px
+        }
+
+        /*BANNER*/
+        .banner {
+            flex-direction: row-reverse;
+        }
+
+        .banner img {
+            position: relative;
+            height: 400px;
+            right: 0%;
+            left: 10%;
+            top: -85%;
+
+        }
+
+        .texto-banner {
+            position: relative;
+            width: 400px;
+            left: 10%;
+            text-align: left;
+        }
+
+        .texto-banner p {
+            text-align: left;
+        }
+
+        .banner button {
+            position: absolute;
+            float: left;
+            margin-left: 17em;
+            margin-top: 20em;
+        }
+
+        /*CONTENIDO PRINCIPAL*/
+
+        .contenido-principal {
+            width: 100%;
+            height: 600px;
+            display: flex;
+        }
+
+        .texto-diferencias {
+            position: absolute;
+            width: 400px;
+            right: 60%;
+        }
+
+        .texto-diferencias h2 {
+            padding-bottom: 20px;
+            text-align: left;
+        }
+
+        .texto-diferencias p {
+            text-align: left;
+        }
+
+        .items {
+            width: 500px;
+            position: absolute;
+            left: 50%;
+            margin-top: -5px;
+        }
+
+        .items h3 {
+            background: none;
+        }
+
+        /*TARJETAS*/
+        .opiniones * {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            margin: 0;
+        }
+
+        .tarjeta {
+            width: 40%;
+            height: 300px;
+        }
+
+        .comentario h3 {
+            position: relative;
+            top: 70px;
+            left: 25%;
+        }
+
+        .comentario p {
+            position: relative;
+            bottom: -100px;
+            left: -100px;
+        }
+
+
+        .tarjeta img {
+            position: relative;
+            left: 41.32%;
+            right: 41.32%;
+            top: -25%;
+            height: 130px;
+
+        }
+
+        .opiniones h2 {
+            width: 400px;
+            margin-bottom: 100px;
+            position: relative;
+            left: 642px;
+        }
+
+        .tarjetas-button {
+            width: 200px;
+            position: relative;
+            left: 630px;
+            margin: 50px;
+        }
+/*SUSCRIPCION*/
+.subscripciones{
+    margin-top: 50px;
+        display: flex;
+        justify-content: space-evenly;
+       text-align:  center;
+}
+.subscripciones button{
+    margin-top: 90px;
+}
+
+/*FOOTER*/
+footer{
+    width: 100%;
+}
+.contacto-menu{
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+}
+
+.menus li {
+    position: relative;
+    right: 50px;
+    margin-left: 50px
+}
+.menu-footer{
+    justify-content: space-around;
+}
+.iconos img {
+    position: relative;
+ top:200px;
+    right: 150px;
+}
+
+.footer_logo {
+    position: relative;
+    left: 80px;
+}
+
+.footer_bottom p {
+    font-weight: 400;
+    font-size: 14px;
+    float: right;
+    top: 0;
+    margin-right: 40px
+}
+
+form {
+    margin-right: 40px;
+}
+
+input {
+    height: 50px;
+    width: 200px;
+    padding: 00px 20px;
+    border-radius: 70px
+}
+
+.icons img {
+    height: 26px;
+    margin: 0 5px
+}
+
+.derechos{
+    position: absolute;
+margin-top: -150px;
+right: 20%;
+}
+
+
+    }
+
+

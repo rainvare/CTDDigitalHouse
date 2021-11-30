@@ -1,0 +1,11 @@
+Grupo1:Máquina virtual
+Grupo2: Terminal
+Grupo3: Redes
+Grupo4:Internet avanzado(protocolos)
+Grupo5: Internet inicial
+Grupo6: Memorias
+Grupo7: Internet intermedio
+Grupo8: Estructura de la computadora
+Grupo9: Git y Github
+Grupo10: Sistemas operativos
+Grupo11:Lenguajes
