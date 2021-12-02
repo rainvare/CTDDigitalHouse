@@ -170,7 +170,6 @@ let miOtroAuto = new Auto('Chevrolet', 'Corvette');
 
 > Accedemos a las propiedades y metodos a traves de `dot notation`
 
-[ejercicios clase 13]('./clase_13/clase.js);
 
 # JSON
 
@@ -689,11 +688,10 @@ let esMultiplo = (a, b) => {
     return resto == 0; // Si el resto es 0, es múltiplo
 };
 ```
-> ver mas ejemplos en ppt: Funciones Arrow
+
 
 # CALLBACKS
 
-> Ver video clase 16: Callbacks
 
 - Es una funcion que se pasa como parametro de otra funcion
 - La funcion que recibe el parametro es la encargada de ejecutar la funcion recibida por parametro, cuando la necesite
@@ -710,5 +708,5 @@ Cuando se pasa la funcion callback dentro de `funcionPadre` no se debe ejecutar,
 
 ![cb-ej1](./img/cb-ej1.png)
 
-> ver ppt clase 16: Callbacks
+
 
