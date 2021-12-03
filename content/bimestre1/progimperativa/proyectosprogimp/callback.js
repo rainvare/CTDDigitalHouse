@@ -65,14 +65,6 @@ Dejamos unas funciones para comprender y probar con el ejemplo:
   
 let largoString = url => url.length;
 
-function procesar(url, operacion) {
-    resultado = [];
-    for (let i = 0; i < url.length; i++) {
-        resultado.push(operacion(url[i]));
-    }
-    return resultado;
-}
-
 function agregarHttp(url) {
     return 'http://' + url;
 }
