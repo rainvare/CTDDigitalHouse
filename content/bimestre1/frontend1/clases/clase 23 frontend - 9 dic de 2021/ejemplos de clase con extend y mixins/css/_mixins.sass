@@ -1,0 +1,12 @@
+//Formas de declarar aun mixin
+
+=my_border-radius($radio)
+    border-radius: $radio
+    border-style: solid
+    border-width: 1px
+    border-color: #000
+
+@mixin theme($color-back: blue,$color-sombra: red,$color-font: #fff)
+  background: radial-gradient($color-sombra, $color-back)
+  color: $color-font
+  // border: 2px solid $color-font

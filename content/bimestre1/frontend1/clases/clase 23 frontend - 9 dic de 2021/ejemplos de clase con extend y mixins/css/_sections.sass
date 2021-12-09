@@ -1,0 +1,59 @@
+section
+    article
+        padding: 1.5em
+        background: #fff
+        margin-bottom: 1.5em
+        box-shadow: 5px 5px 2px #000
+        h2
+            color: $color-secondary  
+        //mensajes sin extend 
+        // .message
+        //     border: 2px solid #ccc
+        //     padding: 10px
+        //     margin: 10px
+        //     color: #333
+        // .success
+        //     border: 2px solid #ccc
+        //     padding: 10px
+        //     margin: 10px
+        //     color: #333
+        //     border-color: green
+        // .error
+        //     border: 2px solid #ccc
+        //     padding: 10px
+        //     margin: 10px
+        //     color: #333
+        //     border-color: red
+        // .warning
+        //     border: 2px solid #ccc
+        //     padding: 10px
+        //     margin: 10px
+        //     color: #333
+        //     border-color: yellow
+        // otra manera
+        // .mensaje
+        //     border: 2px solid #ccc
+        //     padding: 10px
+        //     margin: 10px
+        //     color: #333
+        // .success
+        //     border-color: green
+        // .error
+        //     border-color: red
+        // .warning
+        //     border-color: yellow
+
+
+
+        // mensajes con extend
+        .message
+            @extend %message-shared
+        .success
+            @extend %message-shared
+            border-color: green
+        .error
+            @extend %message-shared
+            border-color: red
+        .warning
+            @extend %message-shared
+            border-color: yellow

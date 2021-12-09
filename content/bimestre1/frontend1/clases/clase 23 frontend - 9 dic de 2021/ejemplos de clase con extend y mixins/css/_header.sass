@@ -1,0 +1,27 @@
+header
+    margin-bottom: 3em
+    nav
+        //Estilos del nav
+        ul
+            display: flex
+            list-style: none
+            a
+                padding: 1.5em
+                // color: #fff
+                // background: $color-primary
+                @include theme($color-primary,$color-sombra-off,$color-background)
+                text-decoration: none
+                margin-right: 1.5em
+                // bordes sin mixin
+                // border-radius: 5%
+                // border-style: solid
+                // border-width: 1px
+                // border-color: #000
+
+                //una manera de llamar a mixin
+                +my_border-radius(5%)
+                transition: color 1s ease
+                &:hover
+                    //otra manera de llamar a mixin
+                    @include theme($color-primary,$color-sombra-on,$color-secondary)
+               
