@@ -38,7 +38,7 @@ let objeto = {
 
 ```
 let mi pais = {
-    nombre: 'Vanezuela',
+    nombre: 'Venezuela',
     poblacion: 28435943,
     capital: 'Caracas',
 };
@@ -77,7 +77,7 @@ Para ejecutar un método de un objeto usamos la notación `objeto.metodo()`. Los
 
 ```
 let mi pais = {
-    nombre: 'Vanezuela',
+    nombre: 'Venezuela',
     poblacion: 28435943,
     capital: 'Caracas',
     decirNacionalidad: function (){
@@ -103,7 +103,7 @@ mejorando nuestro codigo:
 
 ```
 let mi pais = {
-    nombre: 'Vanezuela',
+    nombre: 'Venezuela',
     poblacion: 28435943,
     capital: 'Caracas',
     decirNacionalidad: function (){
