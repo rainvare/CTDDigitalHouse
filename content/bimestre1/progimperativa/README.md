@@ -81,7 +81,7 @@ let mi pais = {
     poblacion: 28435943,
     capital: 'Caracas',
     decirNacionalidad: function (){
-        return 'Yo naci en Vanezuela';
+        return 'Yo naci en Venezuela';
     },
 };
 ```
