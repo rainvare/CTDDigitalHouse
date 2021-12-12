@@ -5,7 +5,7 @@ En JavaScript, un objeto literal es una entidad independiente con propiedades. A
 
 El concepto de objetos puede compararse con entidades de la vida real. Por ejemplo, un país representaría un objeto literal con ciertas propiedades: su nombre, cierta cantidad de habitantes, su capital, etc. Del mismo modo, los objetos literales en JavaScript pueden tener propiedades que definan sus características.
 
-Imaginemos entonces que queremos crear el modelo de un país en JavaScript. Mirá este video para aprender cómo hacerlo a través de un objeto literal:
+Imaginemos entonces que queremos crear el modelo de un país en JavaScript. 
 
 ## **`Objetos literales`**
 
@@ -38,9 +38,9 @@ let objeto = {
 
 ```
 let mi pais = {
-    nombre: 'Colombia',
-    poblacion: 2334535,
-    capital: 'Bogota',
+    nombre: 'Vanezuela',
+    poblacion: 28435943,
+    capital: 'Caracas',
 };
 ```
 ## `Propiedades`
@@ -57,8 +57,8 @@ Debe hacer referencia al objeto literal al que queremos acceder, poner el punto 
 
 ```
 let curso = {
-    cantidadAlumnos : 32,
-    docentes : ['Nacho','Javier'],
+    cantidadAlumnos : 25,
+    docentes : ['Perez','Pedro'],
     horario : 'de 11 a 20',
 }
 
@@ -77,11 +77,11 @@ Para ejecutar un método de un objeto usamos la notación `objeto.metodo()`. Los
 
 ```
 let mi pais = {
-    nombre: 'Colombia',
-    poblacion: 2334535,
-    capital: 'Bogota',
+    nombre: 'Vanezuela',
+    poblacion: 28435943,
+    capital: 'Caracas',
     decirNacionalidad: function (){
-        return 'Yo naci en Colombia';
+        return 'Yo naci en Vanezuela';
     },
 };
 ```
@@ -103,9 +103,9 @@ mejorando nuestro codigo:
 
 ```
 let mi pais = {
-    nombre: 'Colombia',
-    poblacion: 2334535,
-    capital: 'Bogota',
+    nombre: 'Vanezuela',
+    poblacion: 28435943,
+    capital: 'Caracas',
     decirNacionalidad: function (){
         return 'Yo naci en ' + this.nombre;
     },
@@ -115,8 +115,8 @@ let mi pais = {
 
 ```
 let curso = {
-    cantidadAlumnos : 32,
-    docentes : ['Nacho','Javier'],
+   cantidadAlumnos : 25,
+    docentes : ['Perez','Pedro'],
     horario : 'de 11 a 20',
     notificaciones : function(){
         return 'El horario de cursada es de' + this.horario;
