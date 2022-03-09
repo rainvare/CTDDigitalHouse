@@ -1,0 +1,26 @@
+*{
+    font-family: sans-serif;
+}
+.card{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid rgb(172, 172, 172);
+    background-color: rgb(216, 216, 216);
+    border-radius: 20px;
+    margin: 50px auto;
+    padding: 20px;
+}
+.col-1{
+    width: 30%;
+}
+.col-2{
+    width: 70%;
+    padding: 25px;
+}
+.titulo-feo{
+    color: rgb(255, 0, 0);
+    font-family: serif;
+    background-color: yellow;
+}

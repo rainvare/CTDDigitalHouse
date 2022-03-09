@@ -1,0 +1,42 @@
+// 1 piedra
+// 2 papel
+// 3 tijera
+
+let scoring = {
+    "player": 0,
+    "machine": 0
+}
+
+let game = {
+    "1": {
+        "1": "draw",
+        "2": "machine",
+        "3": "player"
+    },
+    "2": {
+        "2": "draw",
+        "3": "machine",
+        "1": "player"
+    },
+    "3": {
+        "3": "draw",
+        "1": "machine",
+        "2": "player"
+    }
+}
+
+while((scoring.player + scoring.machine) <= 2){
+    let playerAnswer = prompt("elegi algo");
+    let random = Math.floor(Math.random()*3+1);
+Let result = game[playerAnswer][random]
+
+    if( result != 'draw') {
+        scoring[result]++;
+    }
+
+    alert(`Resultado parcial: \n jugador: ${scoring.player}, maquina: ${scoring.machine}`);
+}
+
+let winner = scoring.player > scoring.machine? 'gana jugador' : 'gana maquina';
+
+alert(winner);
