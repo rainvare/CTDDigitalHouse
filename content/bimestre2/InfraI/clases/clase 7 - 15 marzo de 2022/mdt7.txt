@@ -1,0 +1,47 @@
+# $nombre = "Juan"
+
+# foreach ($nombre in $(Get-Content -Path .\lista-nombres.txt)) {
+
+#     Write-Output "El nombre es $nombre"
+#     $gender = Invoke-RestMethod -Method Get -Uri https://api.genderize.io/?name=$nombre | Select-Object -ExpandProperty Gender
+#     $country = Invoke-RestMethod -Method Get -Uri https://api.nationalize.io/?name=$nombre | Select-Object -ExpandProperty Country | Select-Object -First 1 -Property country_id
+#     Write-Output "El género de $nombre es: $gender"
+#     Write-Output "El país de $nombre es: $($country.country_id)"
+
+#     if ($nombre -eq "Juan") {
+
+#         Write-Output "Encontre a $nombre"
+#     }
+#     else {
+#         $otrosNombres++
+#     }
+# }
+
+# Write-Output $otrosNombres
+
+$countA = 0
+$countL = 0
+$countAL = 0
+
+foreach ($nombre in $(Get-Content -Path .\lista-nombres.txt)) {
+
+    if ($nombre -Like 'A' -and $countA -le 4) {
+        Write-Output $nombre
+        ++$countA
+        Write-Output "Contador A: $countA"
+    }
+
+    elseif ($nombre -Like 'L' -and $countL -le 4){
+        Write-Output $nombre
+        ++$countL
+        Write-Output "Contador L: $countL"
+    } 
+
+    elseif (($nombre -NotLike 'A') -and $nombre -ne 'L' -and $countAL -le 4) {
+        Write-Output $nombre
+        ++$countAL
+        Write-Output  "Contador AL: $countAL"
+    }
+
+
+}
