@@ -1,0 +1,25 @@
+.contenedor{
+    display: flex;
+    justify-content: space-around;
+    width: auto;
+}
+
+.tarjeta{
+    border: 2px solid grey;
+    border-radius: 20px;
+    overflow: hidden;
+    max-width: 30%;
+}
+
+.imagen{
+    width: 150px;
+}
+
+.parrafos{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 0.16rem solid grey;
+    width: auto;
+    height: 3rem;
+}

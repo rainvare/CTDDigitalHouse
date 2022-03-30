@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding:0;
+  list-style-type: none;
+  scroll-behavior: smooth;
+  font-family: "Raleway", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+/*-----Header-----*/
+header {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #14232B;
+  color: white;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+.logo img {
+  gap:5px;
+}
+.logo h1 {
+  padding: 5px;
+}
+
+nav {
+  padding:0;
+}
+nav ul {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap ;
+}
+nav ul a {
+  color: white;
+  margin: 8px;
+  border: 2.5px solid #C4C4C4;
+  background-color: #1A89A1;
+  border-radius: 8px;
+}
+nav ul a li {
+  padding: 10px;
+  font-weight: 700;
+  font-size: 18px;
+}
+nav ul a:hover {
+  background-color: #CAEBF2;
+}
+
+
+/*-----Main-----*/
+main {
+  display: flex;
+}
+main .general {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+}
+.sec1 {
+  display: flex;
+  align-items:center;
+  justify-content:flex-start;
+  color: #14232B;
+  background-color: #DCD4F4;
+  margin: 30px 10px;
+  padding: 10px 30px;
+}
+.noticiaNacional{
+  background-color: #CAEBF2;
+  color: #14232B;
+}
+.general section img{
+  height: 120px;
+  margin-right: 35px;
+}
+
+footer {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 200px;
+  background-color: #1A89A1;
+  color: white;
+}
+

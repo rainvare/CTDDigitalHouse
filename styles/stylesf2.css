@@ -87,7 +87,7 @@ header img{
     height: 620px;
     margin: 0;
     color: white;
-    background: url("../img/bannerhome.png");
+    background: url("../img/bannerhomefrontend1.png");
     background-attachment: scroll;
     background-size: cover;
     background-position: center;
@@ -109,79 +109,44 @@ header img{
     color: #fff;
 }
 
-/*Section Sobre Mí*/
+/*Section Sobre la materia*/
 
-.sobremi{
+.sobrelamateria{
     background-color: #9088e0;
     color: #fff;
     width: 100%;
+    height: 500px;
 }
-.sobremi h2{ 
+.sobrelamateria h2{ 
 text-align: center;
 padding: 30px;
 }
-.sobremi button{
+.sobrelamateria button{
     margin: 0 auto;
     display: block;
     color: #fff;
     padding: 0px;
     background-color: #CF9EAC;
 }
-
-/*CTD*/
-
-.ctd{
-    color: #9088e0;
-}
-.ctd h2{
-    margin-top: 40px;
-    text-align: center;
-    padding: 30px;
-}
-.ctd a{
-    color: #CF9EAC;
-}
-.ctd a:hover{
-    color: #4CE5D0;
-}
-.ctd button{
-    margin: 0 auto;
-    display: block;
-    background-color:#9088e0;
-    padding: 10px;
-}
-
-/*Materias*/
-.materias{
-    background-color: #4CE5D0;
-    margin-top: 40px;
-}
-.materias h2{
-   color: #fff;
-text-align:  center;
-padding: 30px;
-}
-.materias img{
-    display: block;
-    margin: 0 auto;
-}
-
 /*Proyectos*/
 .proyectos h2{
     color: #9088e0;
     text-align: center;
     padding: 30px;
 }
-.cards{
+ 
+.cards .bimestre .lista-proyectos{
   padding: 1.5em;
     margin: 0 auto;
     max-width: 1280px;
-    display: grid;
+ display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-gap: 1em;
+    grid-gap: 1em; 
 }
-.bimestre h4{
+.bimestre h3{
 color: #CF9EAC;
+font-size: 2rem ;
+    padding: 10px;
 }
 .bimestre a{
  color: #9088e0;
@@ -189,16 +154,19 @@ color: #CF9EAC;
 .bimestre a:hover{
     color: #CF9EAC;
 }
-.porver{
-    color: beige;
+
+.lista-proyectos li img{
+  width: 100%;
+  height: 50%;
+
 }
-.lista-proyectos img{
-    width: 30%;
-}
+
+
 
 /*Footer*/
 
 .contacto{
+    width: 100%;
 background-color: #CF9EAC;
 color: #fff;
 display: flex;
