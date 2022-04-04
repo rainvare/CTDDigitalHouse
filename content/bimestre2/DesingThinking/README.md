@@ -1,7 +1,7 @@
 ## Índice
 
 1. Introducción a design thinking
-- [C1- El disenio es el pensamiento convertido en herramienta](#c1)
+- [C1- El diseño es el pensamiento convertido en herramienta](#c1)
     - [Donde estamos](#c1a)
     - [Bienvenida](#c1b)
     - [Componentes esenciales](#c1z)
@@ -19,7 +19,7 @@
 4. Cierre y aprendizajes
 
 
-# C1 - El disenio es el pensamiento convertido en herramienta <a id='c1'></a>
+# C1 - El diseño es el pensamiento convertido en herramienta <a id='c1'></a>
     
 “El diseño es el pensamiento convertido en herramienta”
 En esta primera clase, encontrarás la bienvenida a la materia y el recorrido por los módulos. Además conocerás a los profesores y también los pilares de esta metodología basada en el diseño centrado en las personas.
