@@ -293,8 +293,7 @@ Cabe aclarar que, debido a que MySQL utiliza directorios y archivos para almacen
 - Windows: No distingue entre mayúsculas y minúsculas.
 - Algunas versiones de Unix y Linux: Si distinguen entre mayúsculas y minúsculas. (Case Sensitive)
 
-> Ver actividad caso UBER y actividad Playground
-> ver actividad Playground 2
+
 
 ## C5 - Datos
 

@@ -1,4 +1,28 @@
-<link rel="stylesheet" type="text/css" media="all" href="./styles.css" />
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+t {
+font-size: 50px;
+color: #006d77;
+font-family: 'Roboto Mono', monospace;
+letter-spacing: 5px;
+}
+h1 {
+color: #f2cc8f
+}
+h2 {
+color: #e07a5f;
+}
+h3 {
+color: #cd9777
+}
+r {
+color: #03045e;
+background-color: #90e0ef;
+}
+</style>
+
+
+---
 
 <t>Front End II</t>
 
@@ -49,7 +73,83 @@
     - [Plantillas de texto / template literals](#c5b)
     - [Modificando estilos](#c5c)
     - [Modificando clases](#c5d)
+- [C6 - Trabajando con nodos](#c6)
+    - [Nodos en HTML](#c6a)
+        - [Creación de nodos en el DOM](#c6a1)
+        - [Métodos del objeto document](#c6a2)
+        - [Sintaxis para crear un nodo elemento](#c6a3)
+        - [Sintaxis para crear un nodo de texto](#c6a4)
+        - [Sintaxis para adherir un elemento hijo al DOM](#c6a5)
+    - [Elementos y atributos dinamicos](#c6b)
+        - [Atributos dinamicos](#c6b1)
+3. Web reactiva
+- [C7 - Catch-up + Intro a eventos](#c7)
+- [C8 - Que son los eventos?](#c8)
+    - [¿Qué son los eventos?](#c8a)
+        - [Carga de archivo js](#c8a1)
+        - [on](#c8a2)
+        - [preventDefault()](#c8a3)
+        - [Eventos mas usados](#c8a4)
+        - [preventDefault()](#c8a5)
+        - [AddEventListener()](#c8a)
+    - [Eventos de mouse](#c8b)
+        - [Ejemplo varios eventos en simultaneo](#c81)
+    - [Eventos del teclado](#c8c)
+    - [Invocando funciones](#c8d)
+        - [Tipos de funciones](#c8d1)
+        - [Scope](#c8d2)
+        - [Arrow functions](#c8d3)
+        - [Funciones como parametros](#c8d4)
+        - [Callbacks](#c8d5)
+    - [Palabras reservadas: var - let - const](#c8e)
+- [C9 - Enlazando conceptos](#c9)
+    - [Notas clase 9](#c9s)
+        - [setTimeOut()](#c9s1)
+        - [setInterval()](#c9s2)
+- [C10 - Primer entregable](#c10)
+- [C11 - Formularios I](#c11)
+    - [Estructura de un formulario: Inputs > Select > Textarea](#c11a)
+    - [Almacenar datos](#c11b)
+    - [Normalizando datos: Metodos de strings](#c11c)
+    - [Quiz](#c11d)
+- [C12 - Repaso](#c12)
 
+4. Validación del lado del cliente
+
+- [C13 - Formularios II](#c13)
+    - [Evento de formularios](#c13a)
+    - [Quiz](#c13b)
+    - [Validaciones](#c13c)
+    - [Live coding : Validaciones](#c13d)
+    - [Objeto `location`](#c13e)
+    - [Quiz](#c13f)
+- [C14 - Json y Storage](#c14)
+    - [Objeto literal vs Json](#c14a)
+    - [Metodos JSON](#c14b)
+    - [Objetos: LocalStorage y SessionStorage](#c14c)
+    - [Quiz!](#c14d)
+- [C15 -  Proyecto integrador](#c15)
+
+5. Asincronismo y APIs
+- [C16 - Introducción a Asincronismo](#c16)
+    - [Introducción a HTTP > Request - Response](#c16a)
+    - [Protocolo http > URI](#c16b)
+    - [Como viaja la información](#c16c)
+    - [Metodos http](#c16d)
+    - [Códigos de estado HTTP](#c16e)
+    - [Quiz](#c16f)
+- [C17 - APIs I](#c17)
+    - [Endpoint](#c17a)
+    - [Rest](#c17b)
+    - [AJAX](#c17c)
+    - [AJAX Fetch - GET](#c17d)
+    - [Try, Catch y Finally](#c17e)
+- [C18 - APIs II](#c18)
+    - [AJAX Fetch - POST](#c18a)
+    - [Postman](#c18b)
+- [C19 - To-Do app: docs](#c19)
+
+6. implementación practica, animaciones y librerías
 
 # C1 - Introducción <a id='c1'></a>
 
@@ -557,7 +657,7 @@ necesitamos un objeto sobre el cual iterar por ejemplo _persona_
 
 ```javascript
 let persona = {
-    nombre: "Liliana Ospina",
+    nombre: "Valentina Réquiz",
     edad: 30,
     profesion: "Programadora",
 };
@@ -580,7 +680,7 @@ también nos servira para iterar sobre cadenas de texto
 La sintaxis es parecida a la de `for in`
 
 ```javascript
-let series = ["Friends", "Game of thrones", "Breaking Bad"];
+let series = ["Squid Game", "Foundation", "The Orville"];
 
 for (let unaSerie of series) {
     console.log(unaSerie);
@@ -1230,7 +1330,7 @@ En este caso, si en mi div con clase nombre estuviera escrito “Leo”, la prop
 Si queremos modificar el texto de una etiqueta HTML, vamos a utilizar esta propiedad de la siguiente manera:
 
 ```js
-document.querySelector("div.nombre").innerText = "Maria";
+document.querySelector("div.nombre").innerText = "Luca";
 ```
 
 Si utilizamos la propiedad de esta forma, todo el texto que teníamos en el div con clase nombre se va a cambiar por el string “Maria”.
@@ -1240,13 +1340,13 @@ Si utilizamos la propiedad de esta forma, todo el texto que teníamos en el div 
 Si queremos agregar contenido al texto de una etiqueta HTML, vamos a utilizar esta propiedad de la siguiente manera:
 
 ```js
-document.querySelector("div.nombre").innerText += "Messi";
+document.querySelector("div.nombre").innerText += "Arango";
 ```
 
 En este caso, lo que sucedería es similar a lo que sucede con el otro selector, pero el texto se incluiría dentro de la etiqueta div, quedando:
 
 ```html
-<div class="“nombre”">Leo Messi</div>
+<div class="“nombre”">Juan Arango</div>
 ```
 
 ### Propiedad Style
@@ -1280,9 +1380,9 @@ titulo.style.backgroundColor = "#dddddd";
 ### 📜 Ejemplos!
 
 ```js
-const nombre= 'Mauro';
+const nombre= 'Juan';
 const miTemplate = `Mi nombre es ${nombre}`;
-console.log(miTemplate) //Mi nombre es mauro
+console.log(miTemplate) //Mi nombre es Juan
 ```
 ```js
 const miTemplate =`2 * 3 es ${ 2 * 3 }`;
@@ -1470,4 +1570,2729 @@ items.forEach( item =>{
 });
 ```
 
-> ### [📌Actividad: Cambiar tema](./Actividades/C5-cambiar-tema.md)
+> ### [📌Actividad: Cambiar tema] pasar tema a oscuro
+
+# C6 - Trabajando con nodos <a id='c6'></a>
+
+## Nodos en HTML <a id='c6a'></a>
+
+Los nodos son elementos o etiquetas del HTML que en conjunto forman un “árbol de nodos” al que llamamos DOM (Document Object Model).
+
+Entonces, en JavaScript, el nodo objeto principal es el document, y dentro de él, se clasifican estos otros:
+
+-   Todas las etiquetas del HTML que son nodos de elementos.
+-   Los nodos de atributos de los elementos.
+-   Los nodos de texto.
+-   Los nodos de comentarios.
+
+Cada nodo del árbol es un objeto, es decir, que contienen una colección de propiedades.
+Del esqueleto de nodos que representa la estructura base de una web tenemos como ejemplo:
+
+```html
+<html>
+    <head>
+        <meta />
+    </head>
+    <body>
+        <header>
+            <!-- comentario  -->
+            <h1 class=""></h1>
+            <nav></nav>
+        </header>
+        <footer>
+            <p></p>
+            <a href=""> </a>
+        </footer>
+    </body>
+</html>
+```
+
+El nodo de tipo elemento puede tener nodos secundarios anidados —uno dentro de otro— y generar así un objeto NodeList que representa una lista de nodos padre/hijos —también de tipo elemento, texto o comentarios—. Puede ser estática, no cambia, o dinámica cuando el contenido se actualiza automáticamente al cambiar la página web de forma dinámica.
+Ahora bien, veamos los métodos que nos permitirán crear nodos.
+
+## Creación de nodos en el DOM <a id='c6a1'></a>
+
+> Ver PDF: Nodos en HTML.pdf
+
+<!-- inicio resumen pdf -->
+
+Para crear nodos en el HTML con JavaScript yluego insertarlos en el DOM, necesitaremos utilizar métodos específicos.
+
+## Métodos del objeto document <a id='c6a2'></a>
+
+| Métodos            |                                                                                                                                                                                                                   |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `createElement()`  | Crea un nodo de tipo elemento según el nombre de la etiqueta de HTML que le indiquemos.                                                                                                                           |
+| `createTextNode()` | Crea un nodo de texto explicitado entre comillas. No se visualiza hasta asignarlo a un elemento existente del DOM.                                                                                                |
+| `appendChild()`    | Adhiere dentro del DOM un elemento hijo a un elemento padre. Si el elemento padre ya existía en el documento, cambia su posición hacia el otro elemento padre indicado. Si no existe, lo creamos con el método 1. |
+
+## Sintaxis para crear un nodo elemento <a id='c6a3'></a>
+
+![ej](./img/c6a3.png)
+
+## Sintaxis para crear un nodo de texto <a id='c6a4'></a>
+
+![ej](./img/c6a4.png)
+
+## Sintaxis para adherir un elemento hijo al DOM <a id='c6a5'></a>
+
+![ej](./img/c6a5.png)
+
+**Ejemplo**
+
+```js
+var botonVerMas = document.createElement("button");
+var botonTexto = document.createTextNode("Ver más");
+
+botonVerMas.appendchild(botonTexto);
+document.body.appendChild(botonVerMas);
+```
+
+Resultado en el DOM
+
+```html
+<body>
+    <button>Ver más</button>
+</body>
+```
+
+**Analisis**
+
+Almacenamos en una variable “botonVerMas” la creación de un botón.
+
+```js
+var botonVerMas = document.createElement("button");
+```
+
+Almacenamos en la variable “botonTexto” la creación de un nodo de texto que dice “Ver más”.
+
+```js
+var botonTexto = document.createTextNode("Ver más");
+```
+
+Adherimos a nuestro botón el nodo de texto creado anteriormente accediendo con su variable. Y luego, adherimos el botón al body del documento.
+
+```js
+botonVerMas.appendchild(botonTexto);
+document.body.appendChild(botonVerMas);
+```
+
+<!-- fin resumen pdf -->
+
+![Quiz](./img/c6a5a.png)
+
+### 📜 Ejemplo en clase!
+
+```js
+const nombre = prompt("Ingrese su nombre");
+const apellido = prompt("Ingrese su apellido");
+
+const nodoSpan = document.querySelector('#nombre');
+
+nodoSpan.innerHTML = `<strong>${nombre}</strong>`;
+
+//creamos el nodo que vamos a insertar en el html
+const parrafoNuevo = document.createElement('p');
+//armamos un nodo de texto basado la variable apellido
+const texto = document.createTextNode(`Su apellido es ${apellido}`);
+//al parrafo le agregamos el nodo de texto
+parrafoNuevo.appendChild(texto);
+
+const contenedor = document.querySelector('.contenedor');
+
+//insertamos el nodo ya completo en el HTML
+contenedor.appendChild(parrafoNuevo);
+```
+
+## Elementos y atributos dinamicos <a id='c6b'></a>
+
+Empecemos por pensar únicamente en HTML, un atributo es un modificador de un elemento. Es una palabra especial que nos permite controlar un determinado comportamiento en nuestra etiqueta.
+
+Por ejemplo, en la etiqueta `a` tenemos un atributo fundamental que es el `href`, el cual indica la url a la que se apunta con en enlace.
+
+![ej](./img/c6b.png)
+
+> Es importante recordar que las etiquetas soportan cierto tipo de atributos, no todos pueden ser utilizados en cada elemento.
+
+Obviamente tenemos muchos más ejemplos de atributos, algunos ejemplos son:
+
+Etiqueta `<img>`
+
+-   alt
+-   src
+-   width
+
+Etiqueta `<a>`
+
+-   href
+-   target
+
+Etiqueta `<meta>`
+
+-   charset
+-   name
+
+Entonces, ¿qué es lo dinámico en todo esto?
+
+De lo que vimos hasta ahora, nada. ? Lo dinámico está en manipular completamente los posibles atributos desde nuestro código JavaScript. En el HTML los agregamos de manera estática, pero ahora desde JS podemos leerlos, agregar nuevos o eliminarlos gracias a distintos métodos que veremos a continuación.
+
+<!-- inicio resumen pdf -->
+
+## Atributos dinamicos <a id='c6b1'></a>
+
+Sabemos que todos los elementos de HTML pueden tener atributos, lo importante es identificar **cuáles son, qué información adicional nosbrindan y qué valores admiten.**
+
+![ej](./img/c6b1.png)
+
+**Atencion**
+Los atributos usualmente están formados en pares de clave:valor. Debemos tener en cuenta que existen excepciones, no siempre por cada clave tendremos un solo valor
+
+![ej](./img/c6b1a.png)
+
+> Para pensar, ¿qué atributo que ya conocemos suele recibir varios valores?Recordemos en la clase en vivo compartir nuestros hallazgo
+
+**Ejemplo**
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <title>Hello world</title>
+    </head>
+    <body>
+        <p>Esta es nuestra portada 👇</p>
+        <img src="imagen_portada.jpg" id="portada" />
+    </body>
+</html>
+```
+
+### `hasAttribute()`
+
+Este método nos sirve para consultar si el elemento posee o no un determinado atributo. Funciona de la siguiente manera:
+
+-   **Recibe** un atributo.
+-   **Retorna** `true` si el atributo existe, de lo contrario `false`
+
+```js
+//Seleccionamos un elemento del HTML
+let elemento = document.querySelector("#portada");
+//Consultamos si tiene un atributo src
+elemento.hasAttribute("src"); // true
+```
+
+### `getAttribute()`
+
+Este método nos permite obtener el valor de un determinado atributo. Funciona de la siguiente manera:
+
+-   **Recibe** el nombre un atributo.
+-   **Retorna** el valor si existe, de lo contrario nos devuelve una texto vacío ("").
+
+```js
+//Seleccionamos un elemento del HTML
+let elemento = document.querySelector("#portada");
+
+//Pedimos el valor del atributo
+elemento.getAttribute("src"); // imagen_portada.jpg
+```
+
+### `removeAttribute()`
+
+Este método borra por completo el atributo y sus valores del elemento. Si no lo encuentra, no hace nada. Funciona de la siguiente manera:
+
+-   **Recibe** el nombre un atributo.
+-   En cualquier caso, **no retorna ningún valor**
+
+```js
+//Seleccionamos un elemento del HTML
+let elemento = document.querySelector("#portada");
+
+//Pedimos el valor del atributo
+elemento.removeAttribute("src");
+```
+
+> Este caso repercute en el HTML ya que una imagen sin src se muestra como rota.
+
+### `setAttribute()`
+
+Este método nos permite agregar un atributo con su respectivo valor al elemento seleccionado. Funciona de la siguiente manera:
+
+-   Recibe el nombre del atributo y un valor para el mismo.
+-   En cualquier caso, no retorna ningún valor
+
+```js
+//Seleccionamos un elemento del HTML
+let elemento = document.querySelector("#portada");
+
+//Pedimos el valor del atributo
+elemento.setAttribute("src", "imagen_portada.jpg");
+```
+
+<!-- fin resumen pdf -->
+
+> Ver PDF: Práctica atributos dinámicos.zip
+
+<!-- HACER practica -->
+
+### 📜 Ejemplo en clase!
+
+```js
+let imagenes = [];
+
+const nodosImg = document.querySelectorAll('.imagen')
+
+solicitarInfo();
+renderizarInfo();
+
+function solicitarInfo() {
+    //solicitamos urls para rellenar nuestro array
+    for(let i=0; i<nodosImg.length; i++){
+        const imagen = prompt("Ingrese la url de una imagen");
+        imagenes.push(imagen);
+    }
+}
+
+function renderizarInfo() {
+    //rellenar los atributos SRC de las imagenes
+    for(let i=0; i<imagenes.length; i++){
+        nodosImg[i].setAttribute('src', imagenes[i]);
+        nodosImg[i].setAttribute('title', imagenes[i]);
+    }
+}
+```
+
+> ### [📌Actividad: Practica atributos](./Actividades/C6-practica-atributos.md)
+
+# C7 - Catch-up + Intro a eventos <a id='c7'></a>
+
+En este módulo nos enfocaremos en captar distintos sucesos interesantes que se producen por parte del navegador o el usuario. Justamente, producto de algún evento que se dispara en el sitio, podremos realizar alguna reacción al respecto.
+
+# C8 - Que son los eventos? <a id='c8'></a>
+
+Un evento es una acción que transcurre en el navegador o que es ejecutada por el usuario.
+
+## ¿Qué son los eventos? <a id='c8a'></a>
+
+Bien, podemos decir que un evento es algo que pasa en el documento HTML y que comúnmente es ejecutado por parte de la persona que usa nuestro aplicativo. Pongamos algunos ejemplos:
+
+-   La persona hizo clic en un botón de la interfaz.
+-   La persona ingresó un texto en el input del formulario.
+-   La persona presionó exactamente la tecla "J".
+
+Como podemos ver, un evento es esa acción que se desencadena cuando la persona ejecuta una acción determinada. Aunque vale la pena aclarar que no solamente la persona puede desencadenar una acción, también lo puede hacer de igual manera la ventana (window) que carga el documento HTML.
+
+Pero para ver esto en más detalle vayamos al video y centrémonos en estos conceptos.
+
+> Ver video: Que son los eventos
+
+<!--  resumen video -->
+
+-   Hay que tener en cuenta el elemento que Javaescript va a estar observando; primero hay que capturar el elemento
+-   Ver cual es el evento que puede suceder en el; decir a que evento javscript va a estar prestando atencion
+-   Que queremos que suceda cuando el evento se verifique; que queremos que suceda cuando ese evento suceda
+
+Javascript nos da nos estrategias para encarar los eventos
+
+1. `.on`+ una accion
+   **Ejemplos** `onload`, `onclick`, `ondblclick` acompa;ados de una funcion que definira que queremos que suceda cuando el evento se verifica
+2. `addEventListener()` que recibira 2 parametros; el primero, el nombre del evento sin la palabra on y el segundo un callback donde se encontrara el codigo de lo que quiero que se ejecute cuando el evento suceda
+
+Cuando necesitamos trabajar con el evento ams en detalle, la funcion recibe un parametro `e` en cualquiera de las dos estrategias, cuando usamos el elemento `.this` se esta haciendo referencia al elemento puntual donde ocurre el evento
+
+## Carga de archivo js <a id='c8a1'></a>
+
+Linkear el script abajo de `<link rel="stylesheet" href="style.css">
+
+```html
+<link rel="stylesheet" href="style.css" />
+<script src="./index.js"></script>
+```
+
+y queremos que el archivo `index.js` se ejecute despues que se cargue toda la pagina crearemos el siguiente evento
+
+## Eventos `on`
+
+### Evento `onload`
+
+Este evento permite que todo el script se ejecute cuando se haya cargado por completo el objeto document dentro del objeto window
+
+```
+window.onload = function () {
+    console.log("el documento está listo");
+};
+```
+
+> Si uso onload, solo puedo hacer un evento onload, de lo contrario, pisara el primer onload que se haga
+>
+> Se suele escribir el código JavaScript dentro de esta función para prevenir errores que pueden ocurrir si el documento no está totalmente cargado al momento de la ejecución del script.
+
+### Evento `onclick`
+
+Este evento nos permite ejecutar una acción cuando se haga clic sobre el elemento al cual le estamos aplicando la propiedad.
+
+```
+btn.onclick = function () {
+    console.log("hiciste clic!");
+};
+```
+
+#### Eventos mas usados <a id='c8a4'></a>
+
+| Evento      | Descripcion                                                     |
+| ----------- | --------------------------------------------------------------- |
+| onclick     | Cuando el usuario hace clic.                                    |
+| ondblclick  | Cuando el usuario hace doble clic.                              |
+| onmouseover | Cuando el mouse se mueve sobre el elemento                      |
+| onmousemove | Cuando se mueve el mouse.                                       |
+| onscroll    | Cuando se hace scroll.                                          |
+| onkeydown   | Cuando se aprieta una tecla.                                    |
+| onload      | Cuando se carga la página onsubmitCuando se envía un formulario. |
+
+Para obtener más información, podemos visitar la documentación oficial haciendo clic en el siguiente link:
+
+<https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events>
+
+### 📜 Ejemplo en clase!
+
+```html
+<div class="theme">
+    <button onclick="cambiarTema()">Cambiar tema 🌛</button>
+</div>
+```
+Cuando le da click al boton ejecuta la funcion `cambairTema()`
+```js
+function cambiarTema() {
+    document.body.classList.toggle('dark);
+}
+```
+```css
+.dark {
+    background-color: rgg(219,219,219);
+}
+```
+
+> ### [📌Actividad: Cambio tema dinamico](./Actividades/C7-cambio-tema-dinamico.md)
+
+> ### [📌Actividad: Renderizado dinamico de tarjetas](./Actividades/.md)
+
+
+### Método `preventDefault()` <a id='c8a3'></a>
+
+Nos permite evitar que se ejecute el evento predeterminado —o nativo— del elemento al que se lo estemos aplicando.Podemos usarlo, por ejemplo, para prevenir que una etiqueta “a” se comporte de manera nativa y que haga otra acción
+
+Evita cualquier comportamiento nativo en un elemento HTML
+**Ejemplo** Si estamos definiendo un hipervínculo, podemos evitar que nos redirija a algun lugar, o que un formulario frene en algun momento el envio de la informacion
+
+> Siempre tenemos que tener seleccionado el elemento al que le queremos aplicar el preventDefault() mediante los selectores
+
+```
+let hipervinculo = document.querySelector("a");
+
+hipervinculo.addEventListener("click", function (event) {
+    console.log("hiciste click");
+    event.preventDefault();
+});
+```
+
+![img](./img/c8a3.png)
+
+### Eventos con `AddEventListener()` <a id='c8a3'></a>
+
+con AddEventListener
+
+```js
+window.addEventListener("load", function () {});
+```
+
+> Con AddEventListener, se harán todos los eventos en simultaneo, no se pisan. Permite tener muchas mas reacciones a algo
+
+### 📜 Ejemplo!
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="./index.js"></script>
+        <title>Ejemplo Eventos</title>
+    </head>
+    <body>
+        <div>
+            <button class="home-button">Hola</button>
+            <button class="about">Conoce mas de nosotros!</button>
+        </div>
+    </body>
+</html>
+```
+
+```js
+window.addEventListener("load", () => {
+    let homeButton = document.querySelector(".home-button");
+    homeButton.addEventListener("click", () => {
+        alert("Tocaste el boton!");
+    });
+
+    let aboutButton = document.querySelector(".about");
+    aboutButton.addEventListener("click", (e) => {
+        //Cancela el comportamiento por defecto de la etiqueta html, este caso el boton de about
+        e.preventDefault();
+        //Nos dice donde sucedio el evento
+        console.log(this);
+        alert("Quisiste saber sobre un evento!");
+    });
+});
+```
+
+> Ver pdf: ¿Qué son los eventos .pdf
+
+## Eventos de mouse <a id='c8b'></a>
+
+> Ver video: Eventos del mouse
+> Ver pdf: Eventos de Mouse.pdf
+
+### Eventos `click`
+
+```js
+window.addEventListener("load", () => {
+    let homeButton = document.querySelector(".home-button");
+    homeButton.addEventListener("click", () => {
+        //podemos hacerlo con prompt o if etc...
+        hommeButton.style.color = "red";
+    });
+});
+```
+
+### Evento `dblclick`
+
+```js
+window.addEventListener("load", () => {
+    let homeButton = document.querySelector(".home-button");
+    homeButton.addEventListener("dblclick", () => {
+        //podemos hacerlo con prompt o if etc...
+        hommeButton.style.color = "red";
+    });
+});
+```
+
+### Evento `mouseover`
+
+```js
+window.addEventListener("load", () => {
+    let homeButton = document.querySelector(".home-button");
+    homeButton.addEventListener("mouseover", () => {
+        //podemos hacerlo con prompt
+        hommeButton.style.color = "red";
+    });
+});
+```
+
+### 📜 Ejemplo!
+
+```js
+let texto = document.querySelector(".text");
+texto.onmouseover = function () {
+    console.log("pasaste el mouse");
+};
+```
+
+También podríamos hacer:
+
+```js
+texto.addEventListener("mouseover", function () {
+    console.log("pasaste el mouse");
+});
+```
+
+### Evento `mouseout`
+
+```js
+window.addEventListener("load", () => {
+    let homeButton = document.querySelector(".home-button");
+    homeButton.addEventListener("mouseout", () => {
+        //podemos hacerlo con prompt
+        hommeButton.style.color = "red";
+    });
+});
+```
+
+### 📜 Ejemplo!
+
+
+```js
+let texto = document.querySelector(".text");
+texto.onmouseout = function () {
+    console.log("quitaste el mouse");
+};
+```
+
+También podríamos hacer:
+
+```js
+texto.addEventListener("mouseout", function () {
+    console.log("quitaste el mouse");
+});
+```
+
+### 📜 Ejemplo! Eventos en simultaneo <a id='c81'></a>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="./index.js"></script>
+        <title>Ejemplo Eventos</title>
+    </head>
+    <body>
+        <div>
+            <button class="w3">a</button>
+            <button class="w3">b</button>
+            <button class="w3">c</button>
+            <button class="w3">d</button>
+        </div>
+    </body>
+</html>
+```
+
+```js
+window.addEventListener("load", () => {
+    //Selecciono todos los botones, nos da una lista
+    let botones = document.querySelectorAll(".w3");
+
+    //for para recorrer cada boton
+    for (let i = 0; i < botones.length; i++) {
+        //a cada uno de los botones le voy a generar un evento
+        botones[i].addEventListener("click", () => {
+            //para que el mismo boton donde se hizo click cambie de color
+            //this hace referencia al lugar donde se hizo click
+            this.style.color = "red";
+        });
+    }
+});
+```
+
+## Eventos del teclado <a id='c8c'></a>
+
+> Ver video: Eventos del teclado.mp4
+>
+> Ver pdf: Eventos del teclado.pdf
+
+Útiles para validar lo que un usuario ingresa en los campos de un formulario
+
+### Evento `keydown`
+
+Se dispara al presionar una tecla
+Este evento es lanzado cuando una tecla es presionada (hacia abajo). A diferencia del evento keypress, keydown es lanzado para las teclas que producen un carácter y también para las que no lo producen.
+
+```js
+let miInput = document.querySelector("#miInput");
+
+miInput.onkeydown = function (event) {
+    alert("Se presionó la tecla: " + event.key);
+};
+```
+
+### Evento `keyup`
+
+Se dispara al soltar la tecla que estamos presionando
+
+```js
+let miInput = document.querySelector("#miInput");
+
+miInput.onkeyup = function (event) {
+    alert("Se soltó la tecla: " + event.key);
+};
+```
+
+### Evento `keypress`
+
+Se activa al finalizar el recorrido de presion y liberacion de la tecla
+
+> Para saber que tecla estamos presionando hay que revisar el evento en si, con el parametro e en el callback: `charCode`, `keyCode`, `key`
+
+No se hace lo mismo según la tecla que se presenta, para saber mas información tenemos que mandarle el parametro e para revisar el evento.
+
+Con la propiedad `key` podremos saber que letra se presiono
+
+```js
+e.key;
+```
+
+```js
+let miInput = document.querySelector("#miInput");
+
+miInput.onkeypress = function (event) {
+    alert("Se presionó la tecla: " + event.key);
+};
+```
+
+### 📜 Ejemplo!
+
+
+```js
+window.addEventListener("load", () => {
+    window.addEventListener("keypress", () => {
+        //podemos determinar algo depende la situacion
+        if (e.key == "Enter") {
+            alert("Ey! Que tocas enter?");
+        }
+    });
+});
+```
+
+>### 📝 Quiz! <a id='c'></a>
+>
+>**¿Cuál de todas las propiedades de un evento de teclado es la que almacena el valor de la tecla presionada?**
+> key
+> 
+>**Cuál de las siguientes opciones es la correcta para reemplazar los “?????” en la siguiente línea de código, teniendo en cuenta que queremos enviar un alert cuando se libere la tecla después de haber sido presionada:**
+>   ```js
+>    elemento.????? = function(){
+>    alert(“¡se liberó la tecla!”)
+>    }
+>    ```
+> onkeyup
+
+
+## Invocando funciones <a id='c8d'></a>
+
+> #### 📑
+> pdf: Invocando funciones
+
+JavaScript cuenta con estructuras denominadas funciones, estas no son más que fragmentos de código, los cuales no se ejecutan hasta que, en algún momento, lo ‘’invoquemos’’ o llamemos mediante un nombre o identificador.
+
+
+[link fuera de lugar](https://view.genial.ly/60c352166df6b60db1b9d034)
+
+## Tipos de funciones <a id='c8d1'></a>
+
+✅ Funciones Declaradas
+
+✅ Funciones Expresadas
+
+✅ Callbacks
+
+✅ Closures
+
+![img](./img/c8d1.jpg)
+
+Como hemos visto anteriormente, frente a un evento, nuestro código reacciona invocando una función, la que contendrá la acción que deseamos ejecutar en respuesta a dicho evento. En esta oportunidad, presentaremos algunos conceptos útiles relacionados con el uso de funciones.
+
+## Scope <a id='c8d2'></a>
+
+El scope es el contexto actual de ejecución. Ese contexto se refiere al “ámbito de vida” de las variables. Las mismas que “nacen” en un determinado bloque, “mueren” en ese bloque.
+
+```js
+function funcionDeEjemplo() {
+    const x = "declarada dentro de la función"; // x solo se puede utilizar en funcionDeEjemplo
+    console.log("Funcion interna");
+    console.log(x);
+}
+console.log(x); // error
+```
+> ### 💡
+> Si queremos llamar a una variable desde afuera de su bloque, esta no va a existir.
+
+También entra en juego la jerarquía de los bloques, esto quiere decir que los scopes secundarios tienen acceso a los ámbitos primarios, pero no al revés.
+
+### 📜 Ejemplo!
+
+```js
+function funcionPrimaria() {
+    const variablePrimaria = "Me encuentro en el bloque superior";
+
+    function funcionSecundaria() {
+        const variableSecundaria = "Soy del bloque inferior";
+
+        console.log("Dentro: " + variablePrimaria);
+        console.log("Dentro: " + variableSecundaria);
+    }
+    funcionSecundaria();
+
+    console.log("Fuera: " + variablePrimaria);
+    console.log("Fuera: " + variableSecundaria); // error
+}
+funcionPrimaria();
+```
+
+> Lo que observamos es que desde dentro —es decir, el bloque inferior— podemos llamar a las variables superiores. Pero en el caso inverso no es posible, ya que no se detecta como definida, es inexistente en ese scope.
+
+## Arrow functions <a id='c8d3'></a>
+
+Existe otra forma de declarar una función mediante la notación de 'arrow function':
+
+```js
+let sumar = (a, b) => {
+    let valor = a + b;
+    return valor;
+};
+```
+
+Esta forma es usual en algunos códigos. Su funcionamiento no varía, pero sí permite hacer notaciones más cortas, como la siguiente:
+
+```js
+let sumar = (a, b) => a + b;
+```
+
+Algunas particularidades acerca de esta notación:
+
+-   Esta notación debe ser utilizada con una variable cuyo nombre será el nombre de la función.
+-   Si luego de utilizar '=>', no se abren llaves, lo siguiente será devuelto como si se tratara de un return, pero la función no puede tener más de una línea.
+-   Esta notación es utilizada mayormente cuando pasamos como parámetro una función, pero ahora vamos a eso.
+
+## Funciones como parámetros <a id='c8d4'></a>
+
+JavaScript nos permite utilizar una función como parámetro de otra, esto es de gran utilidad para nuestro código:
+
+```js
+function ejecutor(func) {
+    // código de la función
+    func();
+    // código de la función
+}
+
+function sumar(a, b) {
+    return a + b;
+}
+
+ejecutor(sumar(1, 2));
+```
+
+En el ejemplo, se puede ver que tenemos una función "ejecutor". Esta función realiza todo su algoritmo y, cuando lo necesita, ejecuta la función “func” pasada como parámetro. En el ejemplo, dicho parámetro corresponde a la función "sumar" que es pasada como argumento de la función "ejecutor" al momento de invocarla.
+
+Se suele decir en estos casos que la función "ejecutor" es la responsable de ejecutar la función "sumar" (o cualquier otra que le pasemos como argumento al momento de invocar dicha función).
+
+## Callbacks <a id='c8d5'></a>
+
+El callback es el nombre que se le suele dar a funciones que son utilizadas como parámetros de otra función. Veamos otros ejemplos:
+
+```js
+miFuncion("este es un parámetro aleatorio", (a, b) => {
+    return a + b;
+});
+```
+
+En este ejemplo nuestro callback es la función `(a,b) => { return a + b }`. Este mismo ejemplo podría ser escrito, como vimos antes, de la siguiente manera:
+
+```js
+// Opción 1
+miFuncion("este es un parámetro aleatorio", (a, b) => a + b);
+
+// Opción 2
+miFuncion("este es un parámetro aleatorio", function (a, b) {
+    return a + b;
+});
+
+// Opción 3
+miFuncion("este es un parámetro aleatorio", (a, b) => {
+    return a + b;
+});
+```
+
+> Estas 3 formas son exactamente iguales en comportamiento, siendo la última la más utilizada.
+
+## Palabras reservadas <a id='c8e'></a>
+
+A partir de ES6 utilizamos las siguientes palabras reservadas para declarar nuestras variables.
+
+### var
+
+El scope es su contexto de ejecución (en otras palabras, la variable vive dentro de la función en la cual es declarada). El scope de una variable declarada fuera de una función es global.
+
+### let
+
+Gracias a esta se introduce el scope de bloque. Las variables asignadas con `let` solo son accesibles dentro de su bloque. Recordemos que el bloque es aquella porción de código que se encuentra definida entre llaves `({})`, por ejemplo, dentro de un bloque if:
+
+```js
+let color = "rojo";
+if (color === "rojo") {
+    let colorElegido = color; // Esta variable vive dentro del bloque if
+    console.log("El color elegido es" + " " + colorElegido); // El color elegido es rojo
+} else {
+    console.log(colorElegido); // Esto devolvería un error, ya que colorElegido no vive dentro del bloque else.
+}
+```
+
+Las variables declaradas fuera de un bloque de código tienen un scope global.
+
+### const
+
+Su comportamiento es igual que el de let, salvo por la diferencia de que no se puede reasignar su valor. Su correcto uso minimiza el estado de mutación.
+
+## Conclusiones
+
+Viendo todas estas funcionalidades y comportamientos que nos dan las palabras reservadas, podemos inferir la siguiente conclusión.
+
+> Lo ideal al momento de declarar una variable es utilizar siempre la palabra reservada `const`, salvo que en algún momento necesitemos reasignar su valor. En esos casos, podemos implementar la palabra reservada let.
+> Prácticamente no deberíamos utilizar la palabra `var` en nuestro código, sin embargo, si en algún momento nos vemos en la necesidad de utilizar dicha palabra reservada para que nuestro código funcione, entonces, quizás debamos pensar en refactorizar nuestro código para evitar tener que recurrir al uso de var.
+
+> ### [📌Actividad: Contador](./Actividades/C8-contador.md)
+
+> ### [📌Actividad: Noticias Renderizadas](./Actividades/C8-noticias-renderizadas.md)
+
+# C9 - Enlazando conceptos <a id='c9'></a>
+
+> ### [📌Actividad: Cronometro](./Actividades/C9-cronometro.md)
+
+
+## Notas clase 9 <a id='c9s'></a>
+
+**normalize.css** saca todos los estilos que tenga el html por defecto en el navegador
+
+Agregando `defer` al script en html, esto hara hacer una carga diferida del script, esto dejara poner el script en el head sin que se afecte la carga del documento html
+blindando el documento para que todo funcione mejor
+
+```html
+<script src="" defer></script>
+```
+
+## `setTimeOut()` <a id='c9s1'></a>
+
+Es un método de `window` que nos permite ejecutar un codigo despues de un determinado tiempo
+
+```js
+setTimeout(() => {
+    alert("hola");
+}, 3000);
+```
+
+## `setInterval()` <a id='c9s2'></a>
+
+Ejecuta un codigo por un determinado lapso de tiempo continuamente
+
+Este codigo hara que cada 2 segundos se ejecute por consola `hola`
+
+```js
+setInterval(() => {
+    console.log("hola");
+}, 2000);
+```
+
+### 📜 Ejemplo!
+
+Esto pone el background de color rojo al mismo tiempo.
+
+```js
+setTimeout(function(){
+    document.body.style.background="red";
+}, 3000);
+
+setTimeout(function(){
+    valor.style.background="red";
+}, 6000);
+
+console.log("Hello");
+```
+
+# C10 - Primer entregable <a id='c10'></a>
+
+> Ver pdf: Criterios de evaluacion
+
+# C11 - Formularios I <a id='c11'></a>
+
+> #### 🎬
+>
+> Video: Formularios
+
+Los formularios web son uno de los principales puntos de interacción entre un usuario y un sitio web o aplicación, ya que permiten a los usuarios la introducción de datos, que generalmente se envían a un servidor web para su procesamiento y almacenamiento.
+
+Antes de conocer cómo obtener los datos de los forms, vamos a revisar algunas posibilidades de optimizar el funcionamiento de un formulario.
+
+✅ Pensar de que manera vamos a almacenar la información
+
+✅ Implementar mecanismos necesarios para dar el formato antes de almacenar la información
+
+## Estructura de un formulario <a id='c11a'></a>
+
+[Link: Ejercicio estructura de un formulario](https://view.genial.ly/60cb53b9936d580d00fa91e4)
+
+> #### 📑
+>
+> pdf: Elementos de formularios
+
+### Inputs
+
+Los input son los elementos más comunes para ingresar datos.
+
+Estos están definidos por:
+
+✅ La etiqueta llamada de la misma manera `input` y
+
+✅ Mediante el atributo `type` definimos el formato de entrada del campo.
+
+✅ Para los casos de `radio` y `checkbox` son importantes los campos de `name` y de `value`, ya que con esto van a definir al grupo al que pertenecen y el valor que se entrega en caso de ser seleccionado respectivamente.
+
+#### 📜 Ejemplo!
+
+```html
+// input de texto
+<input type="text">
+
+// input que solo admite números
+<input type="number">
+
+// input para campos de email
+<input type="email">
+
+// input de fecha
+<input type="date">
+
+// grupo de opciones de selección única
+<input type="radio" name="miOpcion" value="1">
+<input type="radio" name="miOpcion"value="2">
+<input type="radio" name="miOpcion"value="3">
+
+// grupo de opciones de selección múltiple
+<input type="checkbox" name="miOpcion"value="1">
+<input type="checkbox" name="miOpcion"value="2">
+<input type="checkbox" name="miOpcion"value="3">
+```
+
+### Select
+
+✅ Son los campos que permiten seleccionar entre una lista desplegable de opciones.
+
+✅ También es importante el atributo `value` para definir dar valor a nuestra opción
+
+✅ No se validan con `.value`
+
+#### 📜 Ejemplo!
+
+```js
+<select>
+    <option value="opcion1"> nombre de la opción 0</option>
+    <option value="opcion1"> nombre de la opción 1</option>
+    <option value="opcion1"> nombre de la opción 2</option>
+</select>
+```
+
+### Textarea
+
+Se utilizan en caso de que se necesite ingresar una gran cantidad de texto.Generalmente se pueden ver utilizados para tener campos de comentario, mensajes, entre otros
+
+```html
+<textarea><textarea>
+```
+
+#### Limitar el tamaño de caracteres de un textarea
+
+El valor por defecto de los eventos en JavaScript es true. Si cambiamos esto por false, estaríamos evitando que el evento se produzca, por lo tanto, si lo hacemos con onkeypress, la tecla presionada no se transforma en ningún carácter dentro del textarea.
+
+De la siguiente manera se comprueba si se ha llegado al máximo número de caracteres permitido y en caso afirmativo se evita el comportamiento habitual del evento y, por lo tanto, los caracteres adicionales no se añaden al textarea:
+
+```js
+function limita(maximoCaracteres) {
+    var elemento = document.getElementById("texto");
+    if (elemento.value.length >= maximoCaracteres) {
+        return false;
+    } else {
+        return true;
+    }
+}
+```
+
+> #### 📑
+>
+> pdf: Obteniendo datos de un form
+
+## Etiquetas de un form en HTML
+
+![img](./img/c11b1.png)
+
+Conozcamos más propiedades en este link:
+
+<https://developer.mozilla.org/es/docs/Web/HTML/Attributes>
+
+## Almacenar datos <a id='c11b'></a>
+
+### Atributo `value = ""`
+
+Acá va la información que se enviará si el usuario selecciona este radio-button
+
+![img](./img/c11b2.png)
+
+### Propiedad `checked`
+
+[opcional]Preselecciona la opción.
+
+✅ Esta devuelve `true`, si fue seleccionado,
+
+✅ `false`, si no lo está.
+
+### input `type = "text"` y `type = "number"`
+
+Existen muchas formas que podemos implementar en el código para obtener datos.
+
+Vamos a ver unos ejemplos:
+
+```html
+<input type="text" id="nombre" value="OpcionA" /> <input type="number" id="numero" value="OpcionB" />
+```
+
+```js
+var nombre = document.getElementById("nombre").value;
+console.log(nombre); // OpcionA
+var numero = document.getElementById("numero").value;
+console.log(numero); // OpcionB
+```
+
+### input `type = "radio"`
+
+✅ Tenemos que saber cuál de todos los input de tipo radio se ha seleccionado con la propiedad `checked`.
+
+En el HTML
+
+```html
+<label for="">¿Acepta términos y condiciones?</label> <input type="radio" name="pregunta" value="si" /> Si <input type="radio" name="pregunta" value="no" /> No
+```
+
+1. Seleccionamos los elementos que tengan el mismo `name` para recorrerlos mediante un ciclo `forEach`.
+
+2. Luego, por cada elemento, mostramos por consola los valores de cada uno y si fue seleccionado.
+
+En js
+
+```js
+var elementos = document.getElementsByName("pregunta");
+elementos.forEach(function (elemento) {
+    console.log(`Elementos: ${elemento.value}`);
+    console.log(`Seleccionado: ${elemento.checked}`);
+});
+// Elemento: si Seleccionado: true
+// Elemento: no Seleccionado: false
+```
+
+### input `type = "checkbox"`
+
+En este caso comprobamos cada checkbox de forma independiente al resto. Los checkbox admiten más de una selección
+
+```html
+<input type="checkbox" id="privacidad" value="privacidad" /> He leído la política de privacidad
+```
+
+✅ Seleccionamos los elementos que tengan el mismo `name` para recorrerlos mediante un ciclo `for` y
+
+✅ Ejecutamos que muestre por consola la lista de los valores de cada uno y si fue seleccionado:
+
+✅ Seleccionamos cada elemento por su Id y mostramos si fue seleccionado con `checked`
+
+```js
+var privacidad = document.getElementById("privacidad");
+console.log(`Elementos: ${privacidad.value}`);
+console.log(`Seleccionado: ${privacidad.checked}`);
+
+// Elementos: privacidad
+// Seleccionado: false
+```
+
+### Método `.preventDefault()`
+
+**Evitar enviar un formulario dos veces**
+
+Cuando se pulsa sobre el botón de envío de un formulario, se produce el evento click y por lo tanto, se ejecuta el envío de información de este; instrucción que por defecto sucede en todos los formularios.
+
+Lo que deberíamos tener en cuenta a la hora de validar desde el cliente es que no debemos mandar esa información hasta haber certificado el contenido de dicho formulario: campos obligatorios, formato de mail correcto (hola@digitalhouse.com), etcétera.
+
+Lo que necesitamos a través de JavaScript, y antes de ir a la propia validación, es frenar el envío de datos. Esto lo podemos lograr con el método `preventDefault()`.
+
+Veamos cómo y dónde aplicarlo:
+
+✅ Necesitamos capturar el formulario (getElement, querySelector) para luego poner un evento de escucha en el mismo (addEventListener).
+
+✅ En el primer parámetro de este listener, vamos a poner `submit`, que justamente es el evento que se ejecuta al enviar un formulario.
+
+✅ En el segundo parámetro —y como siempre— pondremos un callback. La diferencia es que ahora, este recibirá un parámetro que hará referencia al objeto `event`. Por eso, una buena idea sería llamarlo event, ev, o simplemente e.
+
+✅ Por último, y ya dentro de las llaves del callback, utilizaremos el event antes mencionado y accederemos al método `preventDefault()`.
+
+El código resultante sería el siguiente:
+
+```js
+let formulario = document.querySelector("form");
+formulario.addEventListener("submit", function (event) {
+    event.preventDefault();
+});
+```
+
+## Normalizando datos: metodos de strings <a id='c11c'></a>
+
+Cuando hablamos de **validar un dato** lo que hacemos es establecer una serie de reglas que debe cumplir el mismo para ser correcto. En cambio, el proceso de **normalizar** es organizar los datos de manera tal que respeten el formato deseado para ser enviados o posiblemente almacenados en una base de datos. 
+
+
+> Ver pdf: Metodos de strings
+
+La normalización de datos no es otra cosa que una serie de procesos, reglas o mecanismos que se utilizan para dar un formato común a los datos recolectados en una aplicación, independientemente de quién sea la persona que lo haya ingresado o la manera en lo que lo haya hecho.
+
+Dicho proceso, puede incluir desde instrucciones que se brindan al usuario cuando se le pide que complete un determinado campo (por ejemplo: “Ingresá tu número de teléfono sin el 15”), hasta validaciones y manipulación de los datos recolectados, las que pueden realizarse tanto del lado del cliente como del servidor.
+
+> ### 💡
+> El proceso de normalizar es organizar los datos de manera tal que respeten el formato deseado para ser enviados o posiblemente almacenados en una base de datos. 
+
+Y, entonces, ¿qué métodos podemos utilizar para manipular estos datos?
+
+### 📜 Ejemplo!
+
+Imaginemos que tenemos un `input` solicitando a la persona que introduzca sus películas favoritas, separadas por punto y coma.
+
+![img](./img/c11c2.png)
+
+Al capturar el input correspondiente, obtendremos el siguiente resultado:
+
+```js
+const peliculasFavoritas = document.querySelector("#input-peliculas");
+console.log(peliculasFavoritas);
+//"Harry Potter;Mi Villano Favorito;Avatar
+```
+
+Ahora bien, supongamos que para poder almacenar dicha información en nuestra base de datos, es necesario que “normalicemos” la misma, convirtiéndola en un array de películas.
+
+### método `split()`.
+
+Este método nos permite dividir los caracteres de un string sobre la base del criterio que deseemos, obteniendo como resultado un array que contiene cada uno de los substrings generados.
+Entonces, volviendo a nuestro array de películas,podríamos utilizar split para normalizar la información recolectada:
+
+```js
+const peliculasNormalizadas = peliculasFavoritas.split(";");
+console.log(peliculasNormalizadas);
+//['Harry Potter','Mi Villano Favorito','Avatar']
+```
+
+Ahora la informacion se encuentra normalizada y lista para ser almacenada.
+
+### Método `.toLowerCase()`
+
+Permite convertir el texto a minuscula
+
+![img](./img/c11b.png)
+
+### Método `.toUpperCase()`
+
+Permite convertir el texto a mayuscula
+
+![img](./img/c11c.png)
+
+### Método `.concat()`
+
+Permite concatenar 2 o mas strings en un unico valor
+
+![img](./img/c11d.png)
+
+### Método `.trim()`
+
+Permite eliminar los espacios en blanco que se encuentran en al final de un string
+
+![img](./img/c11e.png)
+
+### Método `.replace()` y `.replaceAll()`
+
+Permite cambiar o reemplazar caracteres por otros
+
+![img](./img/c11f.png)
+
+
+>### 📝 Quiz! <a id='c11d'></a>
+>
+>**¿Qué método nos ayudaría si el usuario ingresa espacios de más al final de su nombre?**
+> Método trim
+> 
+>**¿Qué hace el método split?**
+> Separa un string por sus caracteres o varios strings en valores de array.
+> 
+>**Con el método concat, podemos incorporar un array dentro de otro.**
+> FALSO. concat crea un nuevo conjunto de valores de las 2 variables existentes. Por lo que en total, quedan 3 variables. 
+> 
+>**¿Qué resultado se espera de este código?** 
+>    ```js
+>    const p = 'El veloz zorro rojo saltó sobre el perro dormido';
+>    console.log(p.replace('perro', 'mono'));
+>    ```
+> const p = 'El veloz zorro rojo saltó sobre el mono dormido'.
+>
+> **Si un usuario ingresa su nombre en mayúsculas, ¿qué podríamos hacer al respecto?**
+> Método toLowerCase
+
+## Notas clase 11
+
+Formas de acceder/captar a un formulario:
+
+```js
+// 1.
+const formulario = document.querySelector('form');
+// 2.
+const form = document.forms[0];
+```
+
+Formas de captar el `name` de un input
+
+```js
+//1.
+document.querySelectorAll('[name=hobbies]');
+//2.
+document.getElementsByName('nacionalidad');
+//3.
+document.querySelectorAll('#listado-hobbies input');
+```
+
+La propiedad `checked` la usamos para verificar si un box del form esta checkeado y si hacemos `console.log` nos devuelve un booleano.
+
+
+> ### [📌Actividad: Formulario](./Actividades/C11-formulario.md)
+
+> ### 💡
+> **Normalizacion**: Reglas y procesos que permiten unificar el formato de los datos en forma independiente a como el usuario los haya ingresado
+> Ej: un correo ingresado con MAYUS, lo pasamos a MINUS.
+
+**Normalizacion formulario**
+
+```js
+//1. Captamos el formulario
+const formulario = document.querySelector('form');
+
+// 4. Obtenemos la información de los nodos con el ID
+const nombre = document.querySelector('#nombre');
+const contrasenia = document.querySelector('#pass');
+const telefono =  document.querySelector('#tel');
+const hobbies =  document.querySelectorAll('#listado-hobbies input');
+const nacionalidades = document.getElementsByName('nacionalidad');
+
+//2. Prevenimos el envio del formulario por defecto y cuando de submit vamos a controlar todo lo que pasa
+formulario.addEventListener('submit', function (event) {
+    // 3. frenar el envío por defecto, para poder revisar todo antes.
+    event.preventDefault();
+    // 5. Captamos la información
+    console.log(nombre.value);
+    console.log(contrasenia.value);
+    console.log(telefono.value);
+
+    // 6. Vemos los nodos seleccionados con la propiedad `checked` y pusheamos a la lista
+    let lista = [];
+    hobbies.forEach( hobbie => {
+        if(hobbie.checked){
+            console.log(hobbie.id);
+            lista.push(hobbie.id);
+        }
+    });
+    // 7. Usamos checked para verificar cual fue la opcion del radio elegida y guardamos el dato en pais. 
+    let pais;
+    nacionalidades.forEach( radio =>{
+        if(radio.checked){
+            console.log(radio.id);
+            pais = radio.id;
+        }
+    });
+    //9. Mandamos los datos para verlos normalizados.
+    console.log(normalizar(nombre.value, contrasenia.value, telefono.value, lista, pais));
+    
+});
+
+//8. Creara un objeto con los datos normalizados.
+function normalizar(nom, pass, tel, listadoHobbies, nacionalidad) {
+    const datos = {
+        //10. Pone en mayúscula la primera letra, con slice recorta el resto y lo pone en minúscula
+        name: nom[0].toUpperCase() + nom.slice(1).toLowerCase(),
+        password: pass,
+        phone: tel,
+        hobbies: listadoHobbies,
+        nationality: nacionalidad
+    }
+    return datos;
+}
+```
+
+# C12 - 
+
+> ### [📌Actividad: Formulario II: Normalización](./Actividades/C12-formulario-2.md)
+
+# C13 - Formularios II <a id='c13'></a>
+
+> ### 💡
+> Cuando hablamos de validar un dato lo que hacemos es establecer una serie de reglas que debe cumplir el mismo para ser correcto. En cambio, el proceso de normalizar es organizar los datos de manera tal que respeten el formato deseado para ser enviados o posiblemente almacenados en una base de datos. Pasemos a practicar ambos casos. 
+
+> #### 🎬
+> Video: Eventos de formulario
+
+## Evento de formularios <a id='c13a'></a>
+
+### Evento `focus`
+
+Sucede cuando el usuario ingresa con el cursor dentro de un campo input
+
+### Evento `blur`
+
+Sucede cuando el cursor abandona el campo donde se encuentra.
+Como cuando un ususario termina de completar un campo
+
+### Evento `change`
+
+Permite identificar que el valor de un campo, cambio. Este se puede aplicar sobre cualquier campo del formulario, inclusive sobre el formulario completo
+Detecta un cambio en el html de ese campo
+
+### Evento `submit`
+
+Sucede cuando se le da click a un input o boton de tipo submit
+
+> ### 💡
+> Usar el preventDefault en la primer linea para evitar que evie el formulario antes
+
+### Combinacion `this.value`
+
+Retorna la informacion dentro del campo que estamos analizando
+
+![img](./img/c12a.png)
+
+
+***
+<!-- En nuestra carrera profesional como desarrolladores, nos encontraremos con muchas situaciones en las que será necesario obtener y manipular datos que provienen de formularios. Por ello, y ahora que ya vimos los métodos que nos permiten obtener los datos de un formulario, es momento de que veamos de qué manera podemos utilizar los mismos en una aplicación real.
+
+En esta instancia, te proponemos una actividad mediante la cual partiremos de un formulario en el cual las personas completarán ciertos datos para poder registrarse en nuestra aplicación. El objetivo principal del ejercicio es poder aplicar los conocimientos que adquirimos hasta aquí, para obtener los datos ingresados por la persona, realizar algunas validaciones básicas sobre la información obtenida y almacenar los mismos en un objeto que contenga dicha información.
+
+El punto de partida, es un repositorio de Github que se encuentra en este link. Allí, encontraremos la consigna, archivos y todo lo necesario para poder realizar la actividad. Para comenzar, podemos realizar un fork del repositorio para almacenarlo en nuestra cuenta de Github o simplemente descargarlo como un archivo .zip para trabajarlo localmente en la computadora. ¡Manos a la obra! -->
+
+>### 📝 Quiz! <a id='c13b'></a>
+>
+>**El evento blur sirve para...**
+> detectar que el usuario quitó el cursor de un input del formulario.
+> 
+>**El evento focus sirve para...**
+> detectar que el usuario situó el cursor en un input del formulario.
+> 
+>**El evento change sirve para...**
+> detectar cambios en el valor de un input.
+
+## Validaciones <a id='c13c'></a>
+
+> #### 🎬
+> Video: Validaciones
+
+> #### 📑
+> pdf: Validación del lado del cliente
+
+
+✅ Capturo el formulario, hay 2 formas:
+
+```js
+let formulario = document.querySelector("form.reservation");
+```
+
+```js
+let formulario = document.forms["reservation"];
+```
+
+✅ Cuando se envia el formulario se ejecuta el evento `submit` entonces lo esucchamos
+
+```js
+formulario.addEventListener("submit", function(event){});
+```
+o
+```js
+formulario.onsubmit= (event) => {};
+```
+
+✅ Validamos cada campo; Podemos obtener nuestro input con querySelector para que finalmente preguntemos si el valor campo está vacío
+
+```js
+event.preventDefault();
+let campoNombre = document.querySelector("input.nombre");
+if(campoNombre.value==""){
+    alert("El campo nombre no debe estar vacío");
+};
+```
+
+✅ Almacenamos los errores: Creamos un array para acumular estos errores y cambiar nuestra lógica. Es decir, si el array no está vacío, entonces, prevenimos el envío del formulario, caso contrario, el formulario se enviará
+
+```js
+let errores= [];
+let campoNombre = document.querySelector("input.nombre");
+if(campoNombre.value==""){
+    errores.push("El campo nombre está vacío");
+}
+if(errores.length>0){
+    event.preventDefault();
+}
+```
+
+✅ Mostramos los errores
+
+En el HTML:
+
+```html
+<section class="errores">   
+    <ul>
+        ...   
+    </ul>
+</section>
+```
+
+En Js:
+
+```js
+if(errores.length>0){
+    event.preventDefault();
+    let ulErrores = document.querySelector(".errores ul");
+    errores.forEach(error=> {
+        ulErrores.innerHTML+=`<li>${error}</li>`
+    });
+}
+```
+
+### 📜 Ejemplo! Live coding : Validaciones <a id='c13d'></a>
+
+
+Validaciones con `alert`
+```js
+window.addEventListener('load', ()=>{
+    //Capturo el formulario
+    let formulario = document.querySelector('form.reservation');
+    //Quiero definir un evento en el momento en que se envíe el formulario
+    formulario.addEventListener('submit', (e)=>{
+        //prevenimos que se envíe el formulario antes de las validaciones
+        e.preventDefault();
+
+        //obtenemos cada uno de los campos y verificamos que si el campo no tiene lo que espero:error
+        let campoNombre = document.querySelector('input.name');
+        //Vemos el contenido del campo
+        if(campoNombre.value == ""){
+            alert('campo nombre debe estar completo')
+        } else if(campoNombre.value.length < 3){
+            alert('campo nombre debe tener al menos 3 caracteres')
+        }
+
+        let campoMensaje = document.querySelector('input.message');
+        //Vemos el contenido del campo
+        if(campoMensaje.value == ""){
+            alert('campo mensaje debe estar completo')
+        }
+
+        let campoFecha = document.querySelector('input.date');
+        //Vemos el contenido del campo
+        if(campoFecha.value == ""){
+            alert('campo fecha debe estar completo')
+        }
+        
+        let campoPersonas = document.querySelector('input.people');
+        //ver como se valida..
+    })
+})
+```
+
+Validaciones con un `array` de errores
+
+```js
+window.addEventListener('load', ()=>{
+    let formulario = document.querySelector('form.reservation');
+    formulario.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        // creamos un array para mostrar los errores en una lista en un div>ul>lixerror
+        let errores = [];
+        //se va a pushear cada error, al array.
+        let campoNombre = document.querySelector('input.name');
+        if(campoNombre.value == ""){
+            errores.push('campo nombre debe estar completo')
+        } else if(campoNombre.value.length < 3){
+            errores.push('campo nombre debe tener al menos 3 caracteres')
+        }
+
+        let campoMensaje = document.querySelector('input.message');
+        if(campoMensaje.value == ""){
+            errores.push('campo mensaje debe estar completo')
+        }
+
+        let campoFecha = document.querySelector('input.date');
+         if(campoFecha.value == ""){
+            errores.push('campo fecha debe estar completo')
+        }
+        
+        let campoPersonas = document.querySelector('input.people');
+        //ver como se valida..
+        
+        //Si el array esta vacío no hay errores, entonces is no hay errores se envía
+        if(errores.length>0){
+            e.preventDefault();
+            //Busca seccion de errores
+            let ulErrores = document.querySelector('div.errores ul');
+            
+            for (let i = 0; i< errores.length; i++) {
+                ulErrores.innerHTML += `<li>${errores[i]}</li>`
+            }
+        }
+    })
+})
+```
+
+## validación "on time"
+
+Antes de enviar datos al servidor, es importante asegurarse de que la información suministrada por parte de la persona visitante sea la que justamente estamos esperando recibir para posteriormente procesar.
+
+Sirve para:
+
+✅ Procurar una limpieza de los datos
+
+✅ Ayuda a garantizar una excelente user experience. 
+
+Porque resulta realmente molesto que cuando tenemos un error en el front end, sea necesario enviar la información al servidor para que este la verifique y nos haga ver el error cometido, ¿no?
+
+Los procesos de validación no son para nada triviales, por el contrario, son una parte fundamental de nuestro proceso como desarrolladores. Además, vale la pena aclarar que nunca está de más sumar capas de validación a nuestro sistema. 
+
+> ### 💡
+>
+> ✅ Simularemos el proceso de login de una persona dentro de nuestra aplicación, utilizando los conceptos que vimos hasta el momento. 
+
+<!--
+ Imaginemos, por ejemplo, que queremos iniciar sesión en una aplicación. Para ello, ingresamos nuestro email y contraseña y, seguidamente, damos clic en el botón Iniciar sesión. En ese momento, nuestra aplicación realiza un pedido al servidor, quién deberá validar que los datos ingresados sean correctos —es decir, que exista un usuario con esas credenciales registradas en la base de datos—. Si los datos son correctos, podremos loguearnos; caso contrario, el servidor nos devolverá un mensaje de error. -->
+
+## Objeto `location` <a id='c13e'></a>
+
+> #### 📑
+> pdf: Objeto location
+
+> #### 🎬
+> Video: Objeto location
+
+Trae consigo un par de propiedades y métodos que nos van a permitir recopilar información que viaje en la barra de direcciones. 
+
+✅ Permite operar con la URL donde estamos
+
+### Atributo `href`
+
+✅ Devuelve toda nuestra url
+
+![img](./img/c14.png)
+
+### Método `reload()`
+
+Permite recargar nuestra pagina desde el front
+
+
+### Atributo `search`
+
+Devuelve la query string entera, la usamos instanciandola como un objeto con `URLSearchParams`
+
+#### Query string
+
+Cuando hacemos un pedido por `GET` o por medio de un hipervinculo, los datos viajan por `query string`
+
+✅ Se agrega al final de nuestra URL despues del signo de pregunta `?`
+
+✅ Contiene todos los parametros que solicitamos con nuestro pedido
+
+```js
+let query = newURLSearchParams(location.search);
+if(query.has('search_query')){
+    let search = query.get('search_query');
+    console.log(search)
+};
+```
+
+#### 📜 Ejemplo!
+Buscamos Rosalia en el buscador de youtube
+
+```
+https://www.youtube.com/results?search_query=rosalia
+```
+
+Al enviar el formulario, nuestra url cambia y se crea esa query string con el dato que estamos buscando
+
+## Interfaz `URLSearchParams`
+
+✅ Sirve para instanciar un objeto de nuestra query string
+
+✅ Con esto, se accede a metodos mas practicos para manipular el query string
+
+Para instanciarlo:
+
+```js
+let query = new URLSearchParams(location.search);
+```
+
+![img](./img/c14a.png)
+
+### Método `.has()`
+
+Revisa si se encuentra un determinado parametro en la query string y devuelve un booleano
+
+```js
+query.has('search_query'); //true
+```
+
+### Método `.get()`
+
+Nos devuelve el valor del parametro buscado.
+
+```js
+query.get('search_query'); //Rosalia
+```
+![img](./img/c14b.png)
+
+
+>### 📝 Quiz! <a id='c13f'></a>
+>
+>**Si utilizáramos el atributo href de location sobre la URL: https://www.youtube.com/results?search_query=peaky+blinders, ¿qué obtendríamos??**
+> https://www.youtube.com/results?search_query=peaky+blinders
+> 
+>**¿Qué método del objeto location permite recargar el sitio??**
+> location.reload()
+> 
+>**Si utilizáramos el atributo location.search de la URL: https://www.youtube.com/results?search_query=peaky+blinders, ¿qué obtendríamos?**
+> search_query=peaky+blinders
+> 
+>**Si estamos en la URL: https://www.youtube.com/results?search_query=peaky+blinders, y teniendo en cuenta el código: "let query = new URLSearchParams(location.search)", ¿qué devolvería si implementáramos el método query.get(search_query)?**
+> peaky+blinders        
+> 
+
+> #### 📑
+> zip: ejercicio-formulario-timeout-main
+
+> ### [📌Actividad: Formulario - validaciones](./Actividades/C13-formulario-3.md)
+
+
+# C14 - Json y Storage <a id='c14'></a>
+
+JSON es un formato de texto sencillo para el intercambio de datos. 
+
+Su implementación deviene de la notación de objetos de JavaScript. 
+
+✅ Está compuesto por clave valor
+
+✅ Las propiedades van siempre entre comillas dobles. Esto último es un requisito esencial para su correcto funcionamiento.
+
+```json
+{
+    "nombre": "JSON",
+    "significado": "Javascript Object Notation",
+    "lenguajeDeProgramacion": false,
+    "tiposDeDatosDisponibles": [ "numbers", "strings", "booleans", "null", "arrays", "objects" ]
+}
+```
+
+**¿En qué momento es útil?**
+
+Cuando trabajamos con mucha cantidad de información, es necesario organizarla en nuestro proyecto de tal manera que todos los datos se almacenen en un archivo separado del archivo donde tenemos el código de nuestro programa. 
+
+>### 👍
+> Así, si necesitamos actualizar o modificar datos, podremos recurrir directamente al archivo JSON.
+
+✅ Para poder recurrir a esta información, debemos utilizar ciertos métodos para leer esos datos. 
+
+> #### 📑
+> pdf: Métodos de JSON
+
+## Objeto literal vs Json <a id='c14a'></a>
+
+Objeto literal | JSON
+------- | -------
+Admite comillas simples y dobles | Las claves van entre comillas 
+Las claves del objeto van sin comillas | Sólo se pueden usar comillas dobles | 
+Podemos escribir métodos sin problemas | No admite métodos, sólo propiedades y valores
+Se recomienda poner una coma en la última propiedad | No podemos poner una coma en el último elemento
+
+> ### 💡
+>  Debemos saber interpretar y parsear esa información para poder trabajarla como lo hacemos con los objetos literales.
+
+## Metodos JSON <a id='c14b'></a>
+
+Tenemos dos procesos que nos facilitan esto:
+
+✅ `JSON.parse()` = JSON → JS
+
+✅ `JSON.stringify()` = JS → JSON
+
+## Método `JSON.parse()`
+
+Analiza una cadena de texto JSON, la cual recibe por parámetro. Retorna un objeto de JS que se corresponde con el texto parseado
+
+✅ Recibe JSON por parámetro
+
+✅ Devuelve JS
+
+```js
+JSON.parse('{}');              // {}
+JSON.parse('true');            // true
+JSON.parse('"hola!"');           // "hola!"
+```
+
+## Método `JSON.stringify()`
+
+Recibe un objeto o valor de JavaScript y lo convierte. Retorna una cadena de texto con el formato correspondiente a la notación JSON
+
+✅ Recibe JavaScript por parámetro.
+
+✅ Devuelve JSON.
+
+Para practicar el parseo de un JSON, utilicemos el siguiente repositorio y resolvamos la consigna que se encuentra en los comentarios de JS.
+
+<https://github.com/mates-code/practicando-JSON>
+
+> #### 📑
+> zip: practicando-JSON-main 
+
+## Objetos: LocalStorage y SessionStorage <a id='c14c'></a>
+
+Para poner un ejemplo, pensemos por un momento en un sistema de e-commerce, más exactamente en su carrito de compras. Seguramente, muchas veces hemos agregado productos a un carrito y repentinamente salimos de la página, para simplemente volver instantes después y darnos cuenta que las cosas que agregamos al carrito siguen ahí, intactas. Eso es posible gracias al almacenamiento local del navegador. Esta funcionalidad mejora la experiencia de usuario, sin tener que saturar el servidor de peticiones que nos sabemos si se van a concretar del lado del cliente. Con esto en mente, veamos cómo implementar estos conceptos que ya son algo familiares, pero esta vez desde el lado del front end. 
+
+Uno de los usos más frecuentes de dicha técnica consiste en almacenar información relativa a la sesión de una persona dentro de determinada aplicación. De esta manera, por ejemplo, podemos mantener iniciada la sesión por más de que la persona cierre el navegador, evitando que deba realizar el login correspondiente cada vez que visita nuestra aplicación. 
+
+> #### 🎬
+> Video: LocalStorage y SessionStorage
+
+> #### 📑
+> pdf: Session storage y local storage
+
+Ls funcion de ambos es almacenar informacion en el navegador.
+
+✅ Esta informacion se puede recuperar en cualquier pagina del sitio
+
+✅ Se guarda la informacion por usuario
+
+✅ Usan los mismos metodos
+
+✅ Solo podemos almacenar datos en formato string
+
+### Objeto `localStorage`
+
+Permite almacenarlas por tiempo indeterminado; Los datos almacenados en localStorage no tienen fecha de expiración
+
+
+```js
+localStorage.setItem('key', 'value');
+```
+```js
+localStorage.getItem('key');
+```
+```js
+localStorage.removeItem('key');
+```
+
+### Objeto `sessionStorage`
+
+Nos permitirá guardar información en sesión. Es decir que si usamos esta opción y cerramos el navegador, la información acá almacenada se perderá
+
+```js
+sessionStorage.setItem('key', 'value');
+```
+```js
+sessionStorage.getItem('key');
+```
+```js
+sessionStorage.removeItem('key');
+```
+
+### Metodos `setItem()`
+
+✅ Crea nuevos atributos y asigna valores para ellos
+
+✅ El primer parametro: sera la clave que querramos guardar y el segundo sera el valor que esta clave lleve
+
+```js
+sessionStorage.setItem('nombre','Indira');
+```
+
+### Metodos `getItem()`
+
+Nos va a devolver el valor de la clave que le pasemos
+```js
+//Aqui le estamos pidiendo que nos de el valor que posee la clave nombre
+sessionStorage,getItem('nombre'); //Indira
+```
+
+### Método `removeItem()`
+
+Recibe un solo parametro, la llave.
+
+✅ Busca la clave correspondiente y la elimina
+
+```js
+sessionStorage.removeItem('nombre');
+```
+
+### Método `clear()`
+
+Borra todo el contenido que hayamos almacenado en storage
+
+```js
+sessionStorage.clear();
+```
+
+### 📜 Ejemplo!
+
+![img](./img/c14c.png)
+
+> ### 💡
+> Si trabajamos con arrays y/u objetos literales tenemos que pasarlos a string para poder ser almacenados en session o local storage.
+>```js
+>sessionStorage.setItem("nombreUsuario",JSON.stringify())
+>```
+
+> ### 💡
+> Para pasar de JSON a objeto javascript usamos `JSON.parse()`
+
+
+> ### 💡
+> Si queremos guardar los datos en localStorage y sessionStorage y estamos trabajando con arrays u objetos debemos usar los metodos de JSON.stringify para poder guardar la informacion
+
+>### 📝 Quiz! <a id='c14d'></a>
+>
+>**¿Cuál es la diferencia entre sessionStorage y localStorage?**
+>localStorage permite almacenar información por tiempo indeterminado y sessionStorage, no.
+> 
+>**El método .setitem() de localStorage, ¿qué nos permite realizar?**
+> Agregar valores asociados a una key en localStorage.
+> 
+>**El método .removeitem() de sessionStorage, ¿qué nos permite realizar?**
+> Remover valores asociados a una key en el sessionStorage.
+>¡Perfecto! Recuerda siempre que el método es el mismo tanto para localStorage como para sessionStorage. En este caso lograste identificar la responsabilidad de remover los valores asociados al sessionStorage.
+> 
+>**El método .clear() de localStorage, ¿qué nos permite realizar?**
+> Borrar todo el contenido de localStorage.
+> ¡Muy bien! Este método es muy útil para programar la opción de cerrar sesión en nuestros proyectos.
+>
+>**¿Cuál de las siguientes es una de las características de sessionStorage?**
+> Los datos se borran al cerrar la ventana del navegador.
+>
+> En storage se puede guardar un objeto valido o un `null`
+>
+
+<!-- 
+
+¡Muy bien! Si llegamos hasta acá quiere decir que ya aprendimos:
+
+    Eventos de un formulario, el cual nos sirve para captar una acción del usuario ante la cual puede realizarse algún proceso.
+    El Objeto Location y sus propiedades; para conseguir parámetros de una URL y generar redirecciones.
+    Validaciones, imprescindibles para un buen UX y para evitar posibles errores en los datos que ingresa el usuario.
+    El formato JSON, el cual se compone de clave-valor, y sus metodos para el intercambio de datos.
+    A utilizar el localStorage y el sessionStorage para almacenar información de usuarios en el lado del cliente.
+
+¡Felicitaciones!, anotá las dudas que te hayan quedado pendientes para revisarlas con el profe. ¡Nos vemos!
+ -->
+
+> #### 📑
+> zip: ejercicio-login-storage-main 
+
+> ### [📌Actividad: Buscador](./Actividades/C14-buscador.md)
+
+![img](./img/c14d.png)
+
+![img](./img/c14e.png)
+
+
+# C15 -  Proyecto integrador <a id='c15'></a>
+
+> ### [📌Actividad: Guardar comentarios](./Actividades/C15-guardar-comentarios.md)
+
+> ### [📌Actividad: Proyecto integrador To Do App](./Actividades/c15-proyecto-integrador-to-do-app.md)
+
+> ### [📌Actividad: To Do I](./Actividades/C15-todo-do-I.md)
+
+# C16 - Introducción a Asincronismo <a id='c16'></a>
+
+## Concepto de asincronismo
+
+Gracias al asincronismo generamos un código más funcional, rápido y eficiente, sin necesidad de recargar la página para actualizar la información. JavaScript es un lenguaje de programación asíncrono porque es capaz de ejecutar un hilo de tareas o peticiones en las cuales, si la respuesta demora, el hilo de ejecución de JavaScript continuará con las demás tareas que hay en el código. 
+
+### Concurrencia y paralelismo
+
+Existen 2 tipos de asincronismo:
+
+- Concurrencia: cuando las tareas pueden comenzar, ejecutarse y completarse en períodos de tiempo superpuestos, en donde al menos dos hilos están progresando.
+
+- Paralelismo: cuando dos o más tareas se ejecutan exactamente al mismo tiempo.
+
+La diferencia entre la concurrencia y el paralelismo está en que, en el primer caso, no implica que las tareas terminen de ejecutarse al mismo tiempo literalmente como sí ocurre en el segundo caso. Además, decimos que JavaScript es un lenguaje no-bloqueante porque las tareas no se quedan bloqueadas esperando a que finalicen evitando proseguir con el resto de tareas.
+
+Además, decimos que Javascript es un lenguaje no-bloqueante porque las tareas no se quedan bloqueadas esperando a que finalicen evitando proseguir con el resto de tareas. 
+
+## Sincronismo/asincronismo
+
+[Link: tareas sinconas vs asincronas](https://view.genial.ly/60ddcde1acd3a70d5261b118)
+
+![img](./img/c16b.png)
+
+## Introducción a HTTP <a id='c16a'></a>
+
+> #### 🎬
+> Video: Introducción a HTTP
+
+> #### 📑
+> pdf: Introducción a HTTP
+
+> ### 💡
+> **Protocolo:** Reglamentos o instrucciones que se fijan por tradición o por convenio
+
+### Request - Response
+
+Dentro de esta estructura de comunicación, hablamos de `request` cada vez que el **cliente** le solicita un recurso al servidor y de `response` cada vez que el **servidor** le devuelve una respuesta al cliente.
+
+![img](./img/c16a.png)
+
+En versiones anteriores, los mensajes HTTP eran textos planos. 
+
+En HTTP/2, los mensajes están estructurados en un nuevo formato, lo que contribuye a una mayor legibilidad y debugging más eficiente.
+
+> ### 💡
+> HTTPS es un protocolo mejorado de HTTP. Usando este protocolo, el servidor codifica la sesión con un certificado digital
+
+> #### 🎬
+> Video: Request y Response
+
+## Formacion de una peticion y respuesta
+
+![img](./img/c16i.png)
+
+### Request
+
+Tienen:
+
+✅ Linea de inicio
+
+![img](./img/c16j.png)
+
+> ### 💡
+> Debe elegirse solo un verbo o nombre
+
+![img](./img/c16k.png)
+
+✅ Cabeceras
+
+Son opcionales, aportan informacion adicional, no diferencia mayus de minus
+
+![img](./img/c16l.png)
+
+✅ Un cuerpo
+
+No todas las peticiones llevan uno, las peticiones que reclaman datos, normalmente no necesitan ningún cuerpo
+
+![img](./img/c16m.png)
+
+### Response
+
+✅ Linea de inicio
+
+![img](./img/c16n.png)
+
+
+✅ Cabeceras y ✅ Un cuerpo
+
+Son opcionales
+
+![img](./img/c16n.png)
+
+
+## Protocolo http <a id='c16b'></a>
+
+Hyper Text Transfer Protocol, o en castellano: protocolo de transferencia de hipertexto, gestiona las transacciones web entre clientes y servidores.
+ 
+Gestiona la comunicación entre dos máquinas conectadas a una red, en donde una pide por un contenido específico y la otra se encarga de responder a dicha solicitud.
+
+<!-- 
+- ¿Será que el tipo de petición al servidor es el mismo cuando publicamos una foto en nuestra cuenta de Instagram que cuando queremos ver una foto de otra cuenta que no es nuestra?
+
+- Cuando iniciamos sesión en nuestro correo electrónico, ¿nuestra contraseña está protegida desde que sale de nuestra computadora hasta que llega al servidor?
+
+- Cuando queremos editar solo nuestro nombre en el perfil de LinkedIn, ¿la información que no modificamos se mantiene o se sobrescribe nuevamente por más que sea la misma?
+
+- ¿Cuál será la diferencia entre ocultar alguna foto de nuestro perfil de Facebook y borrarla? -->
+
+✅ Nos permite navegar hacia sitios web a traves de direcciones www y enlaces
+
+✅ El protocolo HTTP permite la transferencia de información en la web a través de direcciones web, técnicamente llamadas URI.
+
+
+### URI 
+
+Una URI (identificador de recursos uniformes) 
+Es un bloque de texto que se escribe en la barra de direcciones de un navegador web y está compuesto por dos partes: la URL y la URN.
+
+`www` conocida como dirección web y técnicamente conocida como URI
+
+- `URL`: Indica donde se encuentra el recurso que deseamos obtener y siempre comienza con un protocolo
+- `URN`: Es el nombre exacto del recurso, el nombre del dominio 
+
+![img](./img/c16c.png)
+
+#### Componentes de una URI
+
+![img](./img/c16e.png)
+
+## Como viaja la informacion <a id='c16c'></a>
+
+La información viaja a través de los headers o cabeceras, que son porciones de texto conteniendo la información requerida por el cliente o el servidor.
+
+![img](./img/c16f.png)
+
+Además de las cabeceras, tenemos el body o cuerpo del mensaje, que es donde estará la información en sí del pedido o su respuesta. 
+
+### 📜 Ejemplo!
+
+- En el caso del pedido, puede ser el contenido de un formulario. 
+- En el caso de una respuesta, puede ser el código de la página que solicitamos.
+
+![img](./img/c16g.png)
+
+
+## Metodos http <a id='c16d'></a>
+
+El protocolo HTTP define métodos de petición. 
+
+Cada método representa una acción y, si bien comparten algunas características, implementan funcionalidades diferentes entre sí. 
+
+✅ Se usan para indicar la accion que se desea realizar con un recurso determinado 
+
+Los métodos más utilizados por este protocolo son:
+
+![img](./img/c16d.png)
+
+### Método `GET`
+
+Se utiliza para pedirle información al servidor de un recurso específico. Cada vez que escribimos una dirección en el navegador o accedemos a un enlace, estamos utilizando el método GET. En caso de querer enviar información al servidor usando este método, la misma viajará a través de la URL.
+
+### Método `POST`
+
+Se utiliza para enviar datos al servidor. Este método es más seguro que GET, ya que la información no viaja a través de la URL.
+
+### Método `PUT`
+
+Es muy parecido a POST. Se usa para reemplazar toda la información actual de un recurso presente en el servidor
+
+### Método `PATCH`
+
+Similar a PUT. Es utilizado para aplicar modificaciones parciales a un recurso en el servidor
+
+### Método `DELETE`
+
+Borra un recurso presente en el servidor. Cuando eliminamos un posteo en Facebook, por ejemplo, estamos utilizando este método.
+
+> ### 💡
+> PUT y PATCH suelen ser lo mismo. Elegir entre uno y otro va a depender del contexto y lo que queramos implementar en nuestra aplicación. Al editar un posteo o un perfil estaremos usando alguno de estos dos métodos
+
+En resumen, tenemos 5 métodos y cada uno de ellos tiene un propósito.
+
+![img](./img/c16h.png)
+
+## Códigos de estado HTTP <a id='c16e'></a>
+
+Cada vez que <r>el servidor</r> recibe una petición o request, este <r>emite un código de estado que indica, de forma abreviada, el estado de la respuesta HTTP</r>. 
+
+El código tiene tres dígitos. 
+
+El primero representa uno de los 5 tipos de respuesta posibles:
+
+✅ 1 _ _  Respuestas informativas
+
+✅ 2 _ _  Respuestas exitosas
+
+✅ 3 _ _  Redirecciones
+
+✅ 4 _ _  Errores del cliente
+
+✅ 5 _ _  Errores de servidor
+
+Algunos de los códigos más usados son:
+
+- `200`: OK → La petición se realizó con éxito.
+- `301`: Moved Permanently → El recurso se ha movido.
+- `302`: Found → El recurso fue encontrado.
+- `304`: Not Modified → El recurso no cambió, se cargará desde el caché.
+- `400`: Bad Request → El pedido está mal.
+- `401`: Unauthorized → No estás autorizado, seguramente debas autenticarte.
+- `403`: Forbidden → El pedido está prohibido y no debería repetirse.
+- `404`: Not Found → El recurso no fue encontrado.
+- `500`: Internal Server Error → Hubo un error en el servidor.
+- `503`: Service Unavailable → El servicio solicitado no está disponible.
+- `550`: Permission denied → Permiso denegado
+
+>### 📝 Quiz! <a id='c16f'></a>
+>
+>**HTTP es**
+> un protocolo de transferencia
+> 
+>**HTTP nos permite...**
+> transferir información en la web.
+> 
+>**Utilizando el método GET podemos...**
+> podemos enviar información al servidor y también recibirla.
+> 
+>**El método POST es más seguro que el método GET cuando se trata de enviar información al servidor.**
+> Verdadero
+> 
+> **En HTTP, cuando hablamos de request nos referimos al...**
+> Cliente
+>
+> **En HTTP, cuando hablamos de response nos referimos al...**
+> Servidor
+>
+> **¿Cuáles de los siguientes métodos son los más utilizados por HTTP?**
+> get, patch, update, put , delete
+>
+
+
+
+> ### [📌Actividad: Simulacion asincronia](./Actividades/.md)
+
+# C17 - APIs I
+
+Es una interfaz que permite la comunicación entre 2 aplicaciones. 
+
+Si tuviéramos que simplificar un poco esta definición y llevarlo a algo más simple, imaginemos que es un sitio que en vez de responder algo visual, como HTML con CSS, nos responde información. ¿Y de qué nos serviría esto? Bueno, los usuarios probablemente no van a ingresar a este tipo de sitios, pero sí una aplicación que necesite abastecerse de información particular. 
+
+Por ejemplo, una aplicación que necesite un listado completo de todos los países del mundo podría consumir una API que le otorgue esa información.
+
+> #### 🎬
+> Video: Introducción a APIs
+
+> ### 💡
+> La url de las APIs se llaman endpoint
+
+### Endpoint <a id='c17a'></a>
+
+Es un punto de conexión donde necesitamos apuntar para obtener la informacion que queremos; <r>es la url para acceder a informacion en la api</r>
+
+<r>A esas URL las llamamos `endpoints`</r>, es decir, el servidor expone a los clientes un conjunto de endpoints para que este pueda acceder. A esa interfaz uniforme, o sea, al conjunto de endpoints, le llamamos API.
+
+Un endpoint está ligado al recurso que solicitamos, dicho recurso debe tener solamente un identificador lógico, y este proveer acceso a toda la información relacionada. 
+
+> ### 💡
+> Un endpoint es un recurso que usa el servidor y accedemos a él a través de la URL. 
+
+### 📜 Ejemplo!
+
+El servidor nos expone la URL /productos/listar. Dicho endpoint estará ligado al recurso que nos devuelva el listado de los productos solicitados.
+
+![img](./img/c17d.png)
+
+## Rest <a id='c17b'></a>
+
+> #### 🎬
+> Video: Rest
+
+> #### 📑
+> pdf: Rest
+
+REST son las siglas de Representational State Transfer
+
+Un sistema REST es un tipo de arquitectura de servicios que proporciona estándares o protocolo que le permita a todos los sistemas que se comunican con él entender en qué forma lo tienen que hacer y bajo qué estructura deberán enviar sus peticiones para que sean atendidas.
+
+REST es una arquitectura del tipo cliente-servidor porque debe permitir que tanto la aplicación del cliente como la aplicación del servidor se desarrollen o escalen sin interferir una con la otra. Es decir, <r>permite integrar con cualquier otra plataforma y tecnología tanto el cliente como el servidor</r>
+
+> ### 💡
+> Rest define como se tiene que estructurar una api segun esa arquitectura
+
+### Características de la arquitectura REST
+
+**Separar la aplicación web en 2**
+1. La interfaz de usuario en una aplicación, **Ej:** Interfaz web pedidos a domicilio
+2. Tener todo lo que la aplicación provee como servicio que la interfaz consume, **Ej:** lógica de negocio, la que registra los pagos
+
+- Ubicación de los recursos
+una sola ubicación para lo recursos. **Ej:** `/canciones`
+
+**Stateless o "Sin estado"**
+
+El servidor no almacena las peticiones que haga el cliente; cada solicitud es nueva e independiente.
+
+REST propone que todas las interacciones entre el cliente y el servidor deben ser tratadas como nuevas y de forma absolutamente independiente sin guardar estado. Por lo tanto, si quisiéramos —por ejemplo— que el servidor distinga entre usuarios logueados o invitados, debemos mandar toda la información de autenticación necesaria en cada petición que le hagamos a dicho servidor.
+
+> ### 💡
+> Esto permite desarrollar aplicaciones más confiables, performantes y escalables.
+
+**Cacheable**
+
+Si se consulta habitualmente y no ha sufrido modificaciones, el cliente podria recordar esa respuesta, para no realizar ese pedido constante y eliminándole esa carga al servidor. Para que esto suceda el servidor debe responder con un encabezado `max-age`, cuyo valor es la cantidad de segundos que tiene ese recurso, una vez expirado el cliente debe volver a pedir el recurso
+
+En REST, el cacheo de datos es una herramienta muy importante, que se implementa del lado del cliente, para mejorar la performance y reducir la demanda al servidor.
+
+> ### 💡
+> Poniendo cachés en el cliente, nos ahorramos realizar peticiones al servidor
+
+### Principios de una arquitectura REST
+
+✅ Debe ser una arquitectura cliente-servidor.
+
+✅ Tiene que ser sin estado, es decir, no hay necesidad de que los servicios guarden las sesiones de los usuarios (cada petición al servidor tiene que ser independiente de las demás).
+
+✅ Debe soportar un sistema de cachés.
+
+✅ Debe proveer una interfaz uniforme, para que la información se transfiera de forma estandarizada.
+
+✅ Tiene que ser un sistema por capas invisible para el cliente
+
+### 📜 Ejemplo!
+
+Desarrollamos una API que ofrece informacion de música queremos que sea una API REST
+
+✅ Todos los datos a loa que querramos acceder estarán agrupados con nombres que serán sustantivos, cada uno de ellos los llamaremso recursos. Puede ser un documento, una imagen, una coleccion y en cualquier formato.
+
+![img](./img/c17a.png)
+
+## Recursos uniformes 
+
+Desde el lado del servidor, una arquitectura REST expone a los clientes a una interfaz uniforme.
+
+● Todos los recursos del servidor tienen un nombre en forma de URL o hipervínculo.
+
+● Toda la información se intercambia a través del protocolo HTTP.
+
+En REST se aconseja un identificador de recursos para cada dato, una representacion del recurso consiste de datos y metadatos que describen al mismo y los enlaces que se pueden utilizar para consultar recursos relacionados 
+Estos recursos son accesibles al cliente a traves de url, los clientes y servidores intercambian esas representaciones de recursos.
+
+> ### 💡
+> el recurso del servidor se refleja en una URL. 
+
+## Formatos de envío de datos
+
+Cuando el servidor envía una solicitud, este transfiere una representación del estado del recurso requerido a quien lo haya solicitado. 
+Dicha información se entrega por medio de HTTP en uno de estos formatos: JSON (JavaScript Object Notation), RAW, XLT o texto sin formato, URL-encoded.
+JSON es el más popular.
+
+Los recursos se comparten en distintos formatos: 
+
+### JSON
+
+Debe agregarse a los `headers` un encabezado que indique el tipo de contenido 
+
+![img](./img/c17b.png)
+
+Cuando queramos enviar datos en formato JSON debemos agregar un encabezado en los headers que diga:
+
+```js
+"Content-Type": "application/json"
+```
+```json
+{
+   "id":1,
+   "title": "..."
+}
+```
+### RAW
+
+Se utiliza para mandar datos con texto sin ningún formato en particular. Pero no es usualmente utilizada
+
+### TEXT
+
+Se utiliza para enviar datos que no sean en formato JSON, como archivos HTML y CSS.
+
+### URL-encoded
+
+Indica que se nos van a enviar datos codificados en forma de URL. Por lo tanto, nos envía algo muy similar a un query string.
+Un dato enviado mediante este método se vería de la siguiente manera:
+
+```
+email%3Dcosme%40fulanito.fox%26password%3Dverysecret
+```
+
+### Metodo `HEAD`
+
+Esun metodo HTTP que en API REST se utiliza con el fin exclusivo de conocer la ultima fecha de modificacion del recurso, en vez de pedirlo por GET lo pedimos por `HEAD` 
+
+> ### 💡
+> Para ver las metodos: <https://restfulapi.net/>
+
+## AJAX <a id='c17c'></a>
+
+AJAX (Asynchronous JavaScript and XML) es un conjunto de tecnologías que se utilizan para crear aplicaciones web asíncronas. 
+
+✅ Esto las vuelve más rápidas y con mejor respuesta a las acciones del usuario. 
+
+![img](./img/c16.png)
+
+
+1. Se produce un evento en una página web (se carga la página, se hace clic en un botón)
+2. JavaScript crea un objeto `XMLHttpRequest`
+3. El objeto `XMLHttpRequest` envía una solicitud a un servidor web
+4. El servidor procesa la solicitud.
+5. El servidor envía una respuesta a la página web.
+6. La respuesta es leída por JavaScript.
+7. JavaScript realiza la acción adecuada (como la actualización de la página)
+
+### 📜 Ejemplos prácticos de AJAX!
+
+#### Autocompletado de Google
+
+Esta te ayuda a completar tus palabras clave mientras las escribes. Las palabras clave cambian en tiempo real, sin embargo, la página como tal no cambia.
+
+#### Votación o sorteo
+
+En este se calculan resultados en tiempo real y se muestran los indicadores actualizado
+
+#### Chat de atención al cliente
+
+El usuario puede explorar la página al mismo tiempo y que el chat queda abierto sin que se recargue la web con cada nuevo mensaje
+
+#### Notificaciones en redes sociales
+
+Tanto Twitter, Facebook e Instagram, entre otras aplicaciones, reciben actualizaciones constantemente y llegan a ti como mensajes o contenido del inicio que podría interesarte
+
+Para conocer métodos y propiedades del objeto:
+
+<https://www.w3schools.com/xml/ajax_xmlhttprequest_create.asp> 
+
+## AJAX Fetch <a id='c17d'></a>
+
+Las solicitudes asincrónicas son un pilar fundamental del desarrollo con JavaScript, sobre todo cuando nos encontramos del lado del front end. Con ellas podremos hacer peticiones a distintas APIs y consumir los datos que estas nos proveen de forma dinámica y sin poner en riesgo la carga del resto de nuestra funcionalidad.
+
+En la actualidad, JavaScript nos provee las funcionalidades de Fetch las cuales son de gran utilidad, ya que nos permiten, de una manera sencilla y rápida, establecer una comunicación con un servidor a través de los distintos endpoints que nos provea su API.
+
+![img](./img/c17k.png)
+
+> #### 🎬
+> Video: AJAX Fetch - Get
+
+> #### 📑
+> pdf: AJAX Fetch - Get
+
+Fetch es una función nativa que nos permite hacer pedidos a una API desde nuestro front-end.
+
+### Metodo `fetch()`
+
+Es una funcion que nos permite comunicarnos con APIs, podemos generar pedidos mediante el metodo `GET` o enviar pedidos mediante el metodo `POST`
+Recibe como primer parámetro la URL del endpoint al cual estamos haciendo el llamado asincrónico. 
+<r>Al no saber cuándo se completa la petición, el servidor devuelve una promesa.</r>
+
+## AJAX Fetch - GET
+
+Al usar el metodo por `GET` recibe un solo parametro, esta sera la url que queremos consultar y luego 2 callbacks, el primero que decodifica el json de respuesta y el segundo con el que usaremos la informacion final
+
+```js
+fetch("https://restcountries.eu/rest/v2/")
+```
+![img](./img/c17g.png)
+
+### Metodo `.then()`
+
+El método then() retorna una Promesa. Recibe dos argumentos: funciones callback  para los casos de éxito y fallo de Promise.
+Soluciona el primer pedido asincrono.
+
+### Metodo `.catch()`
+
+Permite manipular los errores como querramos.
+
+**Resolvemos la promesa**
+
+El primer `then` será el encargado de recibir un `callback` y retornará la respuesta 
+de ese llamado asincrónico en formato `JSON`.
+
+```js
+fetch("https://restcountries.eu/rest/v2/")
+.then(function(response){
+   return response.json();
+})
+```
+**Obtenemos los datos**
+
+Una vez que la respuesta de nuestro pedido está en formato `JSON`, a través de otra promesa, podemos hacer con nuestra respuesta lo que queramos
+
+```js
+fetch("https://restcountries.eu/rest/v2/")
+.then(function(response){
+   return response.json();
+})
+.then(function(data){
+   console.log(data)
+})
+```
+**Atrapamos los errores**
+
+En el caso de haber algún error, el `catch()` se encargará de atraparlo y luego lo imprimirá por consola.
+
+```js
+fetch("https://restcountries.eu/rest/v2/")
+.then(function(response){
+   return response.json();
+})
+.then(function(data){
+   console.log(data)
+})
+.catch(function(error){
+   console.error(error)
+})
+```
+
+![img](./img/c17e.png)
+
+
+> ### 💡
+> Para saber más podemos acceder a la documentación oficial de Fetch haciendo clic en el siguiente link
+> <https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Using_Fetch>
+
+## Notas clase
+
+Si lo pongo en una linea el `return` esta implicito
+
+```js
+.then( res => {console.log(res));
+```
+
+> ### [📌Actividad: Dog API](./Actividades/C17-dog-api.md)
+
+
+## Try, Catch y Finally <a id='c17e'></a>
+
+> #### 📑
+> pdf: TRY - CATCH
+
+**Manejo de errores**
+
+Los errores que se producen en un programa pueden ocurrir debido a nuestros descuidos, una entrada inesperada del usuario, una respuesta errónea del servidor, entre otras razones. 
+Por lo general, un script es interrumpido y se detiene cuando esto sucede. Pero podemos evitarlo con try...catch que nos permite “atrapar” errores para que el script pueda funcionar igualmente.
+
+- La declaración `try` permite probar un bloque de código en busca de errores.
+- La declaración `catch` permite manejar el error.
+- La declaración `throw` permite crear errores personalizados.
+- La declaración `finally` permite ejecutar código, después de intentar y capturar, independientemente del resultado.
+
+![img](./img/c17f.png)
+
+**Sintaxis**
+
+```js
+try {
+    //Block of code to try
+}
+catch(err) {
+    //Block of code to handle errors
+}
+finally {
+    //Block of code to be executed regardless of the try / catch result
+}
+```
+
+### 📜 Ejemplo!
+
+
+```js
+function myFunction() {
+    let message, x;
+    message = document.getElementById("intro");
+    message.innerHTML = "";
+    x = document.getElementById("demo").value;
+    //Ejecutamos un try con condicionales arrojando(throw) un mensaje:
+    try { 
+        if(x == "") throw "Contenido vacio";
+        if(isNaN(x)) throw "No es un numero";
+        x = Number(x);
+        if(x > 10) throw "Numero demasiado alto";
+        if(x < 5) throw "Numero demasiado bajo";
+    }
+    //Ejecutamos un catch para manejar el error mostrandolo en el navegador
+    catch(err) { 
+        message.innerHTML = "Error: " + err + ".";
+    }
+    //Ejecutamos la accion que termina con la funcion para devolver el valor requerido
+    finally { 
+        document.getElementById("demo").value = "";
+    }
+}
+```
+
+Tengamos en cuenta que un error puede provenir de valores diferentes:
+
+Nombre de error | Descripción
+------- | -------
+RangeError | Se ha producido un número "fuera de rango".
+ReferenceError | Ha ocurrido una referencia ilegal.
+Error de sintaxis | Ha ocurrido un error de sintaxis.
+Error de teclado | Ha ocurrido un error de tipo.
+URIError | Se ha producido un error en encodeURI().
+
+# C18 - APIs II <a id='c18'></a>
+
+## AJAX Fetch - POST <a id='c18a'></a>
+
+![img](./img/c18d.png)
+
+
+> #### 🎬
+> Video: Ajax fetch - POST
+
+Al enviar peticiones por `POST`, fetch tiene un segundo parametro opcional.
+
+Como enviamos datos por POST debemos configurar un objeto literal con los datos necesarios para que la API entienda nuestra peticion, lo que debemos definir en este objeto literal es:
+
+1. Definir el metodo `method` que utilizaremos, en este caso: `POST`
+2. El segundo, es el mas importante, el `body` y este tendra el contenido del envio y siempre debera estar en formato `JSON` para esto solemos usar `.stringify(data)`, en este caso data era un objeto literal. 
+3. El ultimo atributo es el `headers` o cabeceras, donde por ej podemos definir el tipo de contenido que enviaremos para que pueda ser interpretado por el servidor que reciba la respuesta 
+
+![img](./img/c18a.png)
+
+En el codigo podemos orderar el envio de la informacion asi:
+
+
+1. Armar la informacion que vamos a enviar que sera un objeto literal, donde el esquema de los datos va a depender de la API
+![img](./img/c17h.png)
+
+2. Despues se arman las settings donde especificamos el metodo, body y headers 
+![img](./img/c17i.png)
+
+3. Por ultimo llamamos a fetch, solo que como segundo parametro, despues de la url, le mandamos las settings que hicimos en el 2do paso.
+![img](./img/c17j.png)
+
+## Postman <a id='c18b'></a>
+
+Permite testear una API.
+
+1. creamos coleccion
+2. Addrequest = Pedir un recurso
+3. Poner url en barra, seleccionar GET como metodo de peticion
+4. presionar send
+
+![img](./img/c18e.png)
+
+![img](./img/c18f.png)
+
+![img](./img/c18g.png)
+
+![img](./img/c18h.png)
+
+
+> #### 🎬
+> Video: Postman
+
+[Navegacion interactiva en POSTMAN](https://view.genial.ly/6035581287d9bb0d28955205)
+
+### 📜 Ejemplo con `GET`
+
+![img](./img/c18b.png)
+
+### 📜 Ejemplo con `POST`
+
+![img](./img/c18c.png)
+
+> ### [📌Actividad: API practica](./Actividades/C18-api-practica.md)
+
+## [Solved] Actividad mesa:
+
+![img](./img/c18i.png)
+
+### 📜 Ejemplo DELETE postman: APP To Do
+
+![img](./img/c21a.png)
+
+### 📜 Ejemplo PUT en APP To Do
+
+![img](./img/c22a.png)
+
+
+# C19 - To-Do app: docs <a id='c19'></a>
+
+> #### 📑
+> pdf: Presentando la API de TODOs
+>
+> Autenticacion
+> CRUD de tareas
+
+> ### [📌Actividad: Proyecto integrador To Do App](./Actividades/c15-proyecto-integrador-to-do-app.md)
+
+# C20 - To-Do App: Workflow
+
+> #### 📑
+> pdf: Arquitectura to-do App
+
+Pensemos cada uno de estos recursos que encontramos en el directorio
+raíz:
+
+● `assets` → acá nos vamos a encontrar con los recursos gráficos que vamos a estar implementando en nuestra interfaz.
+
+● `scripts` → este directorio almacena toda la lógica de nuestro proyecto, es donde residen todos los scripts correspondientes al comportamiento de las páginas con las que están asociados.
+
+● `styles` → sin mucho para aclarar, todos los estilos de nuestra interfaz separados según su aplicación en todo o partes específicas de proyecto.
+
+● `index.html` → aquí definimos nuestro “entry point”, nuestro punto de partida.
+Como sabemos los servidores de manera estándar interpretan al index como la página principal de nuestro sitio. En este caso definimos a lo que sería el “login” como nuestra página principal, la que queremos que se renderize cuando un
+usuario accede por primera vez.
+
+● `mis-tareas.html` → esta es nuestra página dedicada a la vista privada de cada usuario que tiene un perfil y comienza a generar tareas en la aplicación.
+
+● `signup.html` → como su nombre en inglés lo indica esta es nuestra página de
+registro para aquellos usuarios que quieren crear un perfil por primera vez y
+así acceder a nuestro servicio.
+
+A grandes rasgos, esa es la estructura definida para este proyecto, para este caso puntual. Es importante entender esto, ya que no siempre se va a repetir esta arquitectura en todo proyecto de frontend, pero sí podemos decir que intentamos seguir las buenas prácticas como buenos desarrolladores que queremos ser.
+
+## Buenas practicas
+
+> #### 📑
+> pdf: Buenas practicas
+
+# C21 - Auth 
+
+Una aplicación web moderna, necesita contar con diferentes tipos de información. En algunos casos, dicha información es pública y puede ser compartida con cualquier persona que acceda a nuestra aplicación. Pero, en otros casos, dicha información se encuentra reservada exclusivamente para una persona o un grupo de personas determinado.
+
+Pensemos, por ejemplo, en la página web de un banco cualquiera. Si accedemos a su página principal, seguramente podremos visualizar cierta información institucional de dicha entidad, así como un listado de los servicios que la misma presta a sus clientes. Esta información, generalmente, es pública y puede ser visualizada por cualquier persona que ingrese al sitio web, independientemente de que dicha persona sea cliente del banco o no.
+
+Ahora bien, ¿qué pasaría si yo quiero visualizar el saldo de la caja de ahorros que tengo abierta en ese banco?; ¿puedo acceder a esa información directamente desde la página principal del banco, o es necesario realizar algún paso adicional?.
+
+Como es de imaginarse, la respuesta a esta pregunta es no. En efecto, para poder consultar el saldo de tu caja de ahorro, en general hace falta que se cumplan un par de requisitos: a) que seas cliente del banco, desde luego; b) que cuentes con un nombre de usuario y contraseña (o token de seguridad), que te permita acceder al Home Banking de la entidad; y c) que cuentes con un paquete que incluya una caja de ahorros.
+
+A esta altura, puede que te preguntes de qué manera este ejemplo se relaciona con el desarrollo de aplicaciones web. Para responder dicha pregunta, debemos introducir los conceptos de Autenticación y Autorización.
+
+La autenticación, como su nombre lo indica, implica verificar la identidad de la persona que accede a una aplicación determinada mediante el uso de sus credenciales. En otras palabras, la autenticación se enfoca en determinar que la persona es quien dice ser. Volviendo al ejemplo anterior, cuando ingresamos el nombre de usuario y contraseña para acceder al Home Banking, estamos autenticándonos. Si los datos ingresados son correctos, podremos acceder; caso contrario, la página nos impedirá el acceso, puesto que no puede verificar que realmente seamos la persona que decimos ser.
+
+Ahora bien, supongamos que nos hemos autenticado correctamente dentro del Home Banking. Una vez allí, deseamos acceder al extracto de nuestra caja de ahorros. Como vimos anteriormente, para poder realizar dicha acción es necesario (además de autenticarnos con nuestras credenciales), contar con un paquete que incluya una caja de ahorros.
+
+Entonces, si contamos con dicho paquete, seguramente encontraremos un botón o link que nos permitirá acceder al extracto. Caso contrario, no podremos acceder a ese recurso ya que no estamos autorizados para ello.
+
+Como podemos ver en el ejemplo anterior, en este caso ya no estamos hablando de verificar si la persona es quien dice ser (ya que nos hemos logueado satisfactoriamente), sino que lo que aquí se esta validando es si la misma se encuentra habilitada para acceder a determinado recurso. Este concepto, se refiere a lo que conocemos como Autorización.
+
+La autorización, entonces, se ocupa de determinar que tipo de acciones puede realizar la persona dentro de la aplicación, validando el acceso a los distintos tipos de recursos disponibles en dicha aplicación.
+
+Si bien ambos conceptos (autenticación y autorización) se enfocan en diferentes momentos y situaciones, generalmente se complementan para generar un sistema de roles y permisos con el objetivo de brindar un adecuado sistema de seguridad para nuestra aplicación. Comprender y aplicar ambos conceptos en forma conjunta, nos permitirá crear aplicaciones web robustas y de calidad.
+
+## JWT - JSON Web Tokens
+
+> #### 📑
+> pdf: jwt
+
+Anteriormente, vimos los conceptos de autenticación y autorización, y de qué manera los mismos se complementan para brindarnos un nivel de seguridad adecuado para nuestra aplicación web.
+
+En esta oportunidad, nos centraremos en una de las herramientas más utilizadas al momento de manejar procesos de autorización de usuarios: JSON Web Tokens (JWT).
+
+**¿Qué es un JWT?**
+
+Bueno, en pocas palabras, es un estándar abierto de codificación, utilizado para transmitir información de manera segura entre dos partes. La manera en la que dicha información se transmite es a través de un objeto JSON (seguro recuerdas que vimos como el formato JSON se utilizaba para compartir información entre cliente y servidor), y su particularidad es que lainformación transmitida puede ser verificada ya que el JWT se encuentre firmado digitalmente.
+Ahora bien, ¿cómo se compone un JWT?. Básicamente, la estructura más simple de un JWTconsta de tres partes: Header, Payload y Signature
+
+Ejemplo:
+
+xxxxx.yyyyy.zzzzz
+
+Veamos rápidamente cada una de dichas partes:
+
+## Header
+
+Esta parte, contiene la información respecto del tipo de token (JWT), y el algoritmo de encriptación utilizado. Su estructura es la siguiente:
+
+```
+{
+"alg": "HS256",
+"typ": "JWT"
+}
+```
+
+## Payload 
+
+Es la parte más relevante desde el punto de vista de la autorización, ya que
+aquí se encontrará la información del usuario pudiendo incluir, por ejemplo, el rol que dicho usuario tiene dentro de la aplicación:
+
+```
+{
+"sub": "1234567890",
+"name": "John Doe",
+"admin": true
+}
+```
+
+## Firma: 
+
+Es la parte que garantiza la autenticidad de la información incluida en el JWT,
+permitiendo su verificación.
+Hasta aquí, vimos cómo se compone un JWT. Ahora, es momento de preguntarnos de qué manera podemos utilizar el mismo dentro del proceso de autorización que vimos
+anteriormente.
+En líneas generales, cuando una persona inicia sesión en una aplicación determinada, el servidor verifica las credenciales ingresadas (nombre de usuario y contraseña). Si los mismos son correctos, el servidor autentica al usuario dentro de la aplicación, y envía un JWT como respuesta a la petición.
+Dicho JWT, es entonces almacenado del lado del cliente, y enviado al servidor en cada nueva petición que se realice para acceder a un determinado servicio dentro de la aplicación. Ya que, como vimos más arriba, el token contiene la información del usuario (por ejemplo, su rol), el servidor puede acceder a dicha información al recibir la petición, y validar con ello si el usuario se encuentra autorizado a realizarla. Si esto es así, el servidor procesará el pedido y enviará la respuesta correspondiente. Caso contrario, se devolverá un error indicado que la persona no se encuentra autorizada.
+En resumen, JWT es una herramienta de gran utilidad para la comunicación entre cliente y servidor, ya que nos permite compartir información del usuario de manera segura y eficaz, y acceder a dicha información para validar los roles y permisos de cada persona que accede a nuestra aplicación.
+
+> ### 💡
+> Si quieres profundizar sobre este tema, te dejamos el link a la documentación oficial de JWT: <https://jwt.io/#debugger-io>
