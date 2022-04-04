@@ -1,11 +1,3 @@
----
-title: "Design Thinking"
-author: "IVR"
-output: PDF_document
-lang: es-ES
-toc: TRUE
----
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 t {
