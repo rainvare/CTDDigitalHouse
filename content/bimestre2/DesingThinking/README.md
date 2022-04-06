@@ -1,42 +1,7 @@
----
-title: "Design Thinking"
-author: "IVR"
-output: PDF_document
-lang: es-ES
-toc: TRUE
----
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
-t {
-font-size: 50px;
-color: #006d77;
-font-family: 'Roboto Mono', monospace;
-letter-spacing: 5px;
-}
-h1 {
-color: #f2cc8f
-}
-h2 {
-color: #e07a5f;
-}
-h3 {
-color: #cd9777
-}
-r {
-color: #03045e;
-background-color: #90e0ef;
-}
-</style>
-
-<t>Design Thinking</t>
-
----
-
 ## Índice
 
 1. Introducción a design thinking
-- [C1- El disenio es el pensamiento convertido en herramienta](#c1)
+- [C1- El diseño es el pensamiento convertido en herramienta](#c1)
     - [Donde estamos](#c1a)
     - [Bienvenida](#c1b)
     - [Componentes esenciales](#c1z)
@@ -54,7 +19,7 @@ background-color: #90e0ef;
 4. Cierre y aprendizajes
 
 
-# C1 - El disenio es el pensamiento convertido en herramienta <a id='c1'></a>
+# C1 - El diseño es el pensamiento convertido en herramienta <a id='c1'></a>
     
 “El diseño es el pensamiento convertido en herramienta”
 En esta primera clase, encontrarás la bienvenida a la materia y el recorrido por los módulos. Además conocerás a los profesores y también los pilares de esta metodología basada en el diseño centrado en las personas.
