@@ -1,0 +1,20 @@
+{
+  "name": "calculadora_orig",
+  "version": "1.0.0",
+  "description": "",
+  "main": "funcionalidad.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
+  },
+  "scripts": {
+    "test": "jest --env=jsdom",
+    "test:coverage": "jest --coverage --env=jsdom"
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
