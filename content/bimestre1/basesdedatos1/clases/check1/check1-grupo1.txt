@@ -1,0 +1,286 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema el_descubierto
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema el_descubierto
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `el_descubierto` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE `el_descubierto` ;
+
+-- -----------------------------------------------------
+-- Table `el_descubierto`.`paises`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `el_descubierto`.`paises` (
+  `pais_id` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(50) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  PRIMARY KEY (`pais_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 21
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `el_descubierto`.`ciudades`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `el_descubierto`.`ciudades` (
+  `ciudad_id` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(40) NOT NULL,
+  `codigo_postal` CHAR(10) NOT NULL,
+  `paises_pais_id` INT NOT NULL,
+  PRIMARY KEY (`ciudad_id`),
+  INDEX `fk_ciudad_pais1_idx` (`paises_pais_id` ASC) VISIBLE,
+  CONSTRAINT `fk_ciudad_pais1`
+    FOREIGN KEY (`paises_pais_id`)
+    REFERENCES `el_descubierto`.`paises` (`pais_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 52
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `el_descubierto`.`clientes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `el_descubierto`.`clientes` (
+  `cliente_id` INT NOT NULL AUTO_INCREMENT,
+  `apellido` VARCHAR(25) NOT NULL,
+  `nombre` VARCHAR(25) NOT NULL,
+  `direccion` VARCHAR(100) NOT NULL,
+  `ciudad_id` INT NOT NULL,
+  `email` VARCHAR(50) NOT NULL,
+  `telefono` CHAR(15) NOT NULL,
+  PRIMARY KEY (`cliente_id`),
+  INDEX `fk_cliente_ciudad1_idx` (`ciudad_id` ASC) VISIBLE,
+  CONSTRAINT `fk_cliente_ciudad1`
+    FOREIGN KEY (`ciudad_id`)
+    REFERENCES `el_descubierto`.`ciudades` (`ciudad_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 46
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `el_descubierto`.`sucursales`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `el_descubierto`.`sucursales` (
+  `numero_sucursal` INT NOT NULL AUTO_INCREMENT,
+  `ciudad_id` INT NOT NULL,
+  `domicilio` VARCHAR(70) NOT NULL,
+  `telefono` CHAR(15) NOT NULL,
+  PRIMARY KEY (`numero_sucursal`),
+  INDEX `fk_Sucursales_Ciudad1_idx` (`ciudad_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Sucursales_Ciudad1`
+    FOREIGN KEY (`ciudad_id`)
+    REFERENCES `el_descubierto`.`ciudades` (`ciudad_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 23
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `el_descubierto`.`prestamos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `el_descubierto`.`prestamos` (
+  `prestamo_id` INT NOT NULL AUTO_INCREMENT,
+  `sucursal_numero` INT NOT NULL,
+  `fecha` DATE NOT NULL,
+  `importe` FLOAT(15,2) NOT NULL DEFAULT '0.00',
+  `cuotas` INT NOT NULL,
+  PRIMARY KEY (`prestamo_id`),
+  INDEX `fk_prestamo_sucursal1_idx` (`sucursal_numero` ASC) VISIBLE,
+  CONSTRAINT `fk_prestamo_sucursal1`
+    FOREIGN KEY (`sucursal_numero`)
+    REFERENCES `el_descubierto`.`sucursales` (`numero_sucursal`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 48
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `el_descubierto`.`cliente_x_prestamo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `el_descubierto`.`cliente_x_prestamo` (
+  `cliente_id` INT NOT NULL,
+  `prestamo_id` INT NOT NULL,
+  PRIMARY KEY (`cliente_id`, `prestamo_id`),
+  INDEX `fk_cliente_has_prestamo_prestamo1_idx` (`prestamo_id` ASC) VISIBLE,
+  INDEX `fk_cliente_has_prestamo_cliente1_idx` (`cliente_id` ASC) VISIBLE,
+  CONSTRAINT `fk_cliente_has_prestamo_cliente1`
+    FOREIGN KEY (`cliente_id`)
+    REFERENCES `el_descubierto`.`clientes` (`cliente_id`),
+  CONSTRAINT `fk_cliente_has_prestamo_prestamo1`
+    FOREIGN KEY (`prestamo_id`)
+    REFERENCES `el_descubierto`.`prestamos` (`prestamo_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `el_descubierto`.`tipo_de_cuentas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `el_descubierto`.`tipo_de_cuentas` (
+  `cuenta_tipo_id` INT NOT NULL AUTO_INCREMENT,
+  `tipo` VARCHAR(20) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  PRIMARY KEY (`cuenta_tipo_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `el_descubierto`.`empleados`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `el_descubierto`.`empleados` (
+  `legajo` INT NOT NULL AUTO_INCREMENT,
+  `sucursal_numero` INT NOT NULL,
+  `apellido` VARCHAR(25) NOT NULL,
+  `nombre` VARCHAR(25) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_bin' NOT NULL,
+  `domicilio` VARCHAR(70) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_bin' NOT NULL,
+  `ciudad_id` INT NOT NULL,
+  `email` VARCHAR(50) NOT NULL,
+  `telefono` CHAR(15) NOT NULL,
+  `alta` DATE NOT NULL,
+  PRIMARY KEY (`legajo`),
+  INDEX `fk_empleado_sucursal1_idx` (`sucursal_numero` ASC) VISIBLE,
+  INDEX `fk_empleado_ciudad1_idx` (`ciudad_id` ASC) VISIBLE,
+  CONSTRAINT `fk_empleado_ciudad1`
+    FOREIGN KEY (`ciudad_id`)
+    REFERENCES `el_descubierto`.`ciudades` (`ciudad_id`),
+  CONSTRAINT `fk_empleado_sucursal1`
+    FOREIGN KEY (`sucursal_numero`)
+    REFERENCES `el_descubierto`.`sucursales` (`numero_sucursal`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 51
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `el_descubierto`.`tipo_de_interes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `el_descubierto`.`tipo_de_interes` (
+  `interes_id` INT NOT NULL,
+  `tipo` CHAR(20) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  PRIMARY KEY (`interes_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `el_descubierto`.`cuentas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `el_descubierto`.`cuentas` (
+  `numero_de_cuenta` INT NOT NULL AUTO_INCREMENT,
+  `sucursal_numero` INT NOT NULL,
+  `cuenta_tipo_id` INT NOT NULL,
+  `saldo` FLOAT(15,2) NOT NULL DEFAULT '0.00',
+  `tipo_interes_id` INT NULL DEFAULT NULL,
+  `descubierto` FLOAT(15,2) NOT NULL DEFAULT '0.00',
+  `status` TINYINT NOT NULL DEFAULT '0',
+  `ejecutivo_cuenta` INT NOT NULL,
+  PRIMARY KEY (`numero_de_cuenta`),
+  INDEX `fk_cuenta_cuenta_tipo1_idx` (`cuenta_tipo_id` ASC) VISIBLE,
+  INDEX `fk_cuenta_tipo_interes1_idx` (`tipo_interes_id` ASC) VISIBLE,
+  INDEX `fk_cuenta_sucursal1_idx` (`sucursal_numero` ASC) VISIBLE,
+  INDEX `fk_cuenta_empleado1_idx` (`ejecutivo_cuenta` ASC) VISIBLE,
+  CONSTRAINT `fk_cuenta_cuenta_tipo1`
+    FOREIGN KEY (`cuenta_tipo_id`)
+    REFERENCES `el_descubierto`.`tipo_de_cuentas` (`cuenta_tipo_id`),
+  CONSTRAINT `fk_cuenta_empleado1`
+    FOREIGN KEY (`ejecutivo_cuenta`)
+    REFERENCES `el_descubierto`.`empleados` (`legajo`),
+  CONSTRAINT `fk_cuenta_sucursal1`
+    FOREIGN KEY (`sucursal_numero`)
+    REFERENCES `el_descubierto`.`sucursales` (`numero_sucursal`),
+  CONSTRAINT `fk_cuenta_tipo_interes1`
+    FOREIGN KEY (`tipo_interes_id`)
+    REFERENCES `el_descubierto`.`tipo_de_interes` (`interes_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 10562
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `el_descubierto`.`cuentas_x_clientes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `el_descubierto`.`cuentas_x_clientes` (
+  `cliente_id` INT NOT NULL,
+  `cuenta_numero` INT NOT NULL,
+  PRIMARY KEY (`cliente_id`, `cuenta_numero`),
+  INDEX `fk_cliente_has_cuenta_cuenta1_idx` (`cuenta_numero` ASC) VISIBLE,
+  INDEX `fk_cliente_has_cuenta_cliente1_idx` (`cliente_id` ASC) VISIBLE,
+  CONSTRAINT `fk_cliente_has_cuenta_cliente1`
+    FOREIGN KEY (`cliente_id`)
+    REFERENCES `el_descubierto`.`clientes` (`cliente_id`),
+  CONSTRAINT `fk_cliente_has_cuenta_cuenta1`
+    FOREIGN KEY (`cuenta_numero`)
+    REFERENCES `el_descubierto`.`cuentas` (`numero_de_cuenta`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `el_descubierto`.`historial`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `el_descubierto`.`historial` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `cliente_id` INT NOT NULL,
+  `numero_de_cuenta` INT NOT NULL,
+  `fecha_de_acceso` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_cliente_has_cuenta_cuenta2_idx` (`numero_de_cuenta` ASC) VISIBLE,
+  INDEX `fk_cliente_has_cuenta_cliente2_idx` (`cliente_id` ASC) VISIBLE,
+  CONSTRAINT `fk_cliente_has_cuenta_cliente2`
+    FOREIGN KEY (`cliente_id`)
+    REFERENCES `el_descubierto`.`clientes` (`cliente_id`),
+  CONSTRAINT `fk_cliente_has_cuenta_cuenta2`
+    FOREIGN KEY (`numero_de_cuenta`)
+    REFERENCES `el_descubierto`.`cuentas` (`numero_de_cuenta`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 237
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `el_descubierto`.`pagos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `el_descubierto`.`pagos` (
+  `pago_id` INT NOT NULL AUTO_INCREMENT,
+  `prestamo_id` INT NOT NULL,
+  `cuota` INT NOT NULL,
+  `fecha` DATE NOT NULL,
+  `importe` FLOAT(15,2) NOT NULL,
+  PRIMARY KEY (`pago_id`),
+  INDEX `fk_pago_prestamo1_idx` (`prestamo_id` ASC) VISIBLE,
+  CONSTRAINT `fk_pago_prestamo1`
+    FOREIGN KEY (`prestamo_id`)
+    REFERENCES `el_descubierto`.`prestamos` (`prestamo_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 110
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
