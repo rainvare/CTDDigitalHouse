@@ -1,28 +1,3 @@
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
-t {
-font-size: 50px;
-color: #006d77;
-font-family: 'Roboto Mono', monospace;
-letter-spacing: 5px;
-}
-h1 {
-color: #f2cc8f
-}
-h2 {
-color: #e07a5f;
-}
-h3 {
-color: #cd9777
-}
-r {
-color: #03045e;
-background-color: #90e0ef;
-}
-</style>
-
----
-
 <t>Infraestructura I</t>
 
 ## Índice
