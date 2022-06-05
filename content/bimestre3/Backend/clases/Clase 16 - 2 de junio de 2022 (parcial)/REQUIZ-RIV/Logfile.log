@@ -1,0 +1,307 @@
+[2022-06-04 00:22:08] [ INFO ] [ConfigurationJDBC:40] Se ha configurado correctamente a la BBDD
+[2022-06-04 00:22:08] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:22:08] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:22:08] [ INFO ] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:22:08] [ DEBUG] [OdontologoDaoH2:53] La Base de datos está vacía
+[2022-06-04 00:22:08] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:22:08] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:22:08] [ INFO ] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:22:08] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 1 se ha agregado a la BBDD
+[2022-06-04 00:22:08] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:22:09] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:22:09] [ INFO ] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:22:09] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 2 se ha agregado a la BBDD
+[2022-06-04 00:22:09] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:22:09] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:22:09] [ INFO ] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:22:09] [ DEBUG] [OdontologoDaoH2:126] Odontologos registrados en el sistema: 
+[2022-06-04 00:24:22] [ INFO ] [ConfigurationJDBC:40] Se ha configurado correctamente a la BBDD
+[2022-06-04 00:24:23] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:24:23] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:24:23] [ INFO ] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:24:23] [ DEBUG] [OdontologoDaoH2:53] La Base de datos está vacía
+[2022-06-04 00:24:23] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:24:23] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:24:23] [ INFO ] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:24:23] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 1 se ha agregado a la BBDD
+[2022-06-04 00:24:23] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:24:23] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:24:23] [ INFO ] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:24:23] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 2 se ha agregado a la BBDD
+[2022-06-04 00:24:23] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:24:23] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:24:23] [ INFO ] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:24:23] [ DEBUG] [OdontologoDaoH2:126] Los odontologos registrados en el sistema 
+[2022-06-04 00:29:04] [ INFO ] [ConfigurationJDBC:40] Se ha configurado correctamente a la BBDD
+[2022-06-04 00:29:04] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:29:05] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:29:05] [ INFO ] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:29:05] [ DEBUG] [OdontologoDaoH2:53] La Base de datos está vacía
+[2022-06-04 00:29:05] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:29:05] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:29:05] [ INFO ] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:29:05] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 1 se ha agregado a la BBDD
+[2022-06-04 00:29:05] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:29:05] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:29:05] [ INFO ] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:29:05] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 2 se ha agregado a la BBDD
+[2022-06-04 00:29:05] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:29:05] [ INFO ] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:29:05] [ INFO ] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:29:05] [ DEBUG] [OdontologoDaoH2:126] Los odontologos registrados en el sistema 
+[2022-06-04 00:30:40] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:30:40] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:30:40] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:30:40] [ DEBUG] [OdontologoDaoH2:53] La Base de datos está vacía
+[2022-06-04 00:30:40] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:30:40] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:30:40] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:30:40] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 1 se ha agregado a la BBDD
+[2022-06-04 00:30:40] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:30:40] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:30:40] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:30:40] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 2 se ha agregado a la BBDD
+[2022-06-04 00:30:40] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:30:40] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:30:40] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:30:40] [ DEBUG] [OdontologoDaoH2:126] Los odontologos registrados en el sistema 
+[2022-06-04 00:39:45] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:45] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:45] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:39:45] [ DEBUG] [OdontologoDaoH2:53] La Base de datos está vacía
+[2022-06-04 00:39:45] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:45] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:45] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:39:45] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 1 se ha agregado a la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:39:46] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 2 se ha agregado a la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:39:46] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 3 se ha agregado a la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:39:46] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 4 se ha agregado a la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:39:46] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 5 se ha agregado a la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:39:46] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 6 se ha agregado a la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:39:46] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 7 se ha agregado a la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:39:46] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 8 se ha agregado a la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:39:46] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 9 se ha agregado a la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:39:46] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 10 se ha agregado a la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:39:46] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:39:46] [ DEBUG] [OdontologoDaoH2:126] Los odontologos registrados en el sistema 
+[2022-06-04 00:40:23] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:23] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:23] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:40:23] [ DEBUG] [OdontologoDaoH2:53] La Base de datos está vacía
+[2022-06-04 00:40:23] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:23] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:23] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:40:23] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 1 se ha agregado a la BBDD
+[2022-06-04 00:40:23] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:23] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:23] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:40:23] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 2 se ha agregado a la BBDD
+[2022-06-04 00:40:23] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:23] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:23] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:40:23] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 3 se ha agregado a la BBDD
+[2022-06-04 00:40:23] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:40:24] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 4 se ha agregado a la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:40:24] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 5 se ha agregado a la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:40:24] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 6 se ha agregado a la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:40:24] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 7 se ha agregado a la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:40:24] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 8 se ha agregado a la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:40:24] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 9 se ha agregado a la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:40:24] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 10 se ha agregado a la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:40:24] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:40:24] [ DEBUG] [OdontologoDaoH2:126] Los odontologos registrados en el sistema 
+[2022-06-04 00:41:11] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:11] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:11] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:41:11] [ DEBUG] [OdontologoDaoH2:53] La Base de datos está vacía
+[2022-06-04 00:41:11] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:11] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:11] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:41:11] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 1 se ha agregado a la BBDD
+[2022-06-04 00:41:11] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:11] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:11] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:41:11] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 2 se ha agregado a la BBDD
+[2022-06-04 00:41:11] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:11] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:11] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:41:11] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 3 se ha agregado a la BBDD
+[2022-06-04 00:41:11] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:41:12] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 4 se ha agregado a la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:41:12] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 5 se ha agregado a la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:41:12] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 6 se ha agregado a la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:41:12] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 7 se ha agregado a la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:41:12] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 8 se ha agregado a la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:41:12] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 9 se ha agregado a la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:41:12] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 10 se ha agregado a la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:49] Se establece la conexión con la BBDD
+[2022-06-04 00:41:12] [ DEBUG] [ConfigurationJDBC:68] Statement exitoso
+[2022-06-04 00:41:12] [ DEBUG] [OdontologoDaoH2:126] Los odontologos registrados en el sistema 
+[2022-06-04 00:42:47] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:47] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:47] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:42:47] [ DEBUG] [OdontologoDaoH2:53] La Base de datos está vacía
+[2022-06-04 00:42:47] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:47] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:47] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:42:47] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 1 se ha agregado a la BBDD
+[2022-06-04 00:42:47] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:47] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:47] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:42:47] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 2 se ha agregado a la BBDD
+[2022-06-04 00:42:47] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:47] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:47] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:42:47] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 3 se ha agregado a la BBDD
+[2022-06-04 00:42:47] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:47] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:47] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:42:47] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 4 se ha agregado a la BBDD
+[2022-06-04 00:42:47] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:47] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:47] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:42:47] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 5 se ha agregado a la BBDD
+[2022-06-04 00:42:48] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:48] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:48] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:42:48] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 6 se ha agregado a la BBDD
+[2022-06-04 00:42:48] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:48] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:48] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:42:48] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 7 se ha agregado a la BBDD
+[2022-06-04 00:42:48] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:48] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:48] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:42:48] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 8 se ha agregado a la BBDD
+[2022-06-04 00:42:48] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:48] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:48] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:42:48] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 9 se ha agregado a la BBDD
+[2022-06-04 00:42:48] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:48] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:48] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:42:48] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 10 se ha agregado a la BBDD
+[2022-06-04 00:42:48] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:48] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:42:48] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:42:48] [ DEBUG] [OdontologoDaoH2:126] Los odontologos registrados en el sistema 
+[2022-06-04 00:48:22] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:22] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:22] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:48:22] [ DEBUG] [OdontologoDaoH2:53] La Base de datos está vacía
+[2022-06-04 00:48:22] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:22] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:22] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:48:22] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 1 se ha agregado a la BBDD
+[2022-06-04 00:48:22] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:48:23] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 2 se ha agregado a la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:48:23] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 3 se ha agregado a la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:48:23] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 4 se ha agregado a la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:48:23] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 5 se ha agregado a la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:48:23] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 6 se ha agregado a la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:48:23] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 7 se ha agregado a la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:48:23] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 8 se ha agregado a la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:48:23] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 9 se ha agregado a la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:48:23] [ DEBUG] [OdontologoDaoH2:74] El odontologo ID: 10 se ha agregado a la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:53] Se establece la conexión con la BBDD
+[2022-06-04 00:48:23] [ DEBUG] [ConfigurationJDBC:69] Statement exitoso
+[2022-06-04 00:48:23] [ DEBUG] [OdontologoDaoH2:126] Los odontologos registrados en el sistema 

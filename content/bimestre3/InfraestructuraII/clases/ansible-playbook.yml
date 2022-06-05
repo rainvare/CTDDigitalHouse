@@ -1,0 +1,36 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Crear grupo de seguridad con HTTPS, HTTP y SSH
+      ec2_group:
+        name: digitalhouse
+        vpc_id: vpc-0655ed8eb3a714564
+        description: sg con las reglas
+        region: us-east-1
+        rules:
+          - proto: tcp
+            ports:
+              - 443
+              - 80
+              - 22
+            cidr_ip: 0.0.0.0/0
+            rule_desc: Acepto todo el trafico
+    - name: Creamos nuestro servidor
+      ec2:
+        region: us-east-1
+        instance_type: t2.micro
+        image: ami-0c2b8ca1dad447f8a
+        wait: yes
+        wait_timeout: 500
+        group: digitalhouse
+        volumes:
+          - device_name: /dev/xvda
+            volume_type: gp2
+            volume_size: 8
+        vpc_subnet_id: subnet-0a852185686b8494e
+        assign_public_ip: yes
+        key_name: camada5grupo7
+      register: info
+    - name: DNS Publico de nuestro servidor
+      debug:
+        msg: 'La ip publica es {{ info.instances[0].public_ip }} y su DNS es {{ info.instances[0].public_dns_name }}'

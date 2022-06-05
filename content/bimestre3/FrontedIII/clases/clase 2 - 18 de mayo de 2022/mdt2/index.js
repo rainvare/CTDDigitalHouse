@@ -1,3 +1,5 @@
+// Array de elemento o DATA
+
 const products = [
     {id: 1, name: "Ajo", isStock: true},
     {id: 2, name: "Papa", isStock: false},
@@ -7,11 +9,16 @@ const products = [
     
 ]
 
+
+// itero los elementos para crear dos headers don un título y una lista cada uno
 const displayProducts = (argument)=>{
+
+
     if(argument === 1){
         return(
-            <ul>
+           <header> 
             <h1>Productos de nuestra verdurería</h1>
+            <ul>
            {
                products.map((product)=>{
                    return (
@@ -20,11 +27,14 @@ const displayProducts = (argument)=>{
                })
            }
        </ul>
+       </header>
         )
+
     }else if (argument === 2){
         return(
-            <ul>
+            <header>
             <h2>Productos disponibles</h2>
+            <ul>
            {
                products.map(product =>{
                 if(product.isStock){
@@ -35,13 +45,14 @@ const displayProducts = (argument)=>{
                })
            }
        </ul>
+       </header>
         )
     }
         
     
 }
 
-
+//guardo mis componentes en App
 const App = (
     <div>
        {
@@ -54,5 +65,8 @@ const App = (
     </div>
 )
 
+//creo mi hook
 const hookedElement = document.getElementById("root");
+
+//renderizo
 ReactDOM.render(App, hookedElement)

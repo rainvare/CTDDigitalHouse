@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="esp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    
+<!--Script de REACT-->
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+<!-- Uso CreateElement para hacer mi elemento root dentro del html-->
+
+<!--Elemento html-->
+
+<div id="root"></div>   
+
+<!--Script que sustituye al archivo .js-->
+    <script type="text/javascript">
+     
+     //Render 
+      ReactDOM.render(
+          
+          //Creo elemento
+        React.createElement('h1', null, 'Hola Mundo!'),
+
+        //lo ubico en el div gracias a su id
+        document.getElementById("root")
+      );
+    </script>
+
+</body>
+</html>
