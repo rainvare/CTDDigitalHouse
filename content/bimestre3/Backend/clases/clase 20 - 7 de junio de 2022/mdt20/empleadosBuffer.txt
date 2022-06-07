@@ -1,0 +1,16 @@
+Nombre: Romina
+ Apellido: Villatta
+ Legajo: 0572
+ Sueldo: 500000.0Nombre: Marcela
+ Apellido: Ramírez
+ Legajo: 0581
+ Sueldo: 450000.0Nombre: Jime
+ Apellido: S.H.K
+ Legajo: 0560
+ Sueldo: 1.0E7Nombre: Nestor
+ Apellido: Centeno
+ Legajo: 0596
+ Sueldo: 705000.0Nombre: Indira
+ Apellido: Réquiz
+ Legajo: 05592
+ Sueldo: 350000.0
