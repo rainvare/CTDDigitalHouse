@@ -35,68 +35,68 @@ Ambas prácticas se llevan a cabo mediante **pipelines de CI o CD** que son proc
 
 # Conexión con otras materias
 
-[https://view.genial.ly/60fb526757ce830d9ce57554](https://view.genial.ly/60fb526757ce830d9ce57554)
+[conexión](https://view.genial.ly/60fb526757ce830d9ce57554)
 
 # DevOps <a id='c1a'></a> 
 
 Antes al desarrollar un producto cada departamento estaba aislado y separado uno de los otros, lo que implicaba que estuvieran incomunicados y pasandose el código a ciegas:
 
-![Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled.png](Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled.png)
+![](./img/Untitled.png)
 
-![Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%201.png](Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%201.png)
+![](./img/Untitled%201.png)
 
 DevOps es la combinación de filosofías, prácticas y herramientas que incrementan la velocidad a la que una organización entrega aplicaciones y servicios, permitiendo mejorar los productos a un ritmo más rápido que las organizaciones que usen procesos de desarrollo e infraestructura tradicionales. Esta velocidad le permite a las organizaciones entregar más valor a sus clientes y ser más competitivas en el mercado.
 
-![Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%202.png](Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%202.png)
+![](./img/Untitled%202.png)
 
-![Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%203.png](Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%203.png)
+![](./img/Untitled%203.png)
 
-![Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%204.png](Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%204.png)
+![](./img/Untitled%204.png)
 
 ## Herramientas
 
 - Control de versiones → llevar un registro y gestionar los cambios realizados en el código fuente
     
-    ![Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%205.png](Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%205.png)
+   ![](./img/Untitled%205.png)
     
 - Contenedores → es una unidad estándar que empaqueta el código y sus dependencias para que la aplicación pueda funcionar de forma confiable en diversos entornos
     
-    ![Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%206.png](Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%206.png)
+    ![](./img/Untitled%206.png)
     
 - Orquestadores → se ocupa del despliegue, gestión, escalamiento, conectividad y disponibilidad de las aplicaciones basadas en contenedores
 - Monitoreo de aplicación → es el proceso de medir la performance, la disponibilidad y experiencia de usuario de una aplicación. Nos permite resolver problemas antes de que impacte en nuestros usuarios
     
-    ![Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%207.png](Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%207.png)
+    ![](./img/Untitled%207.png)
     
 - Monitoreo de servidores → es el proceso de ganar visibilidad respecto a la actividad de los servidores (físicos o virtuales). Las principales métricas son disponibilidad y carga.
     
-    ![Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%208.png](Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%208.png)
+    ![](./img/Untitled%208.png)
     
 - Gestión de configuración → es un proceso que lleva un registro de las distintas configuraciones que un sistema adopta a lo largo de su ciclo de vida
     
-    ![Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%209.png](Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%209.png)
+    ![](./img/Untitled%209.png)
     
 - Integración continua → es una práctica de desarrollo que consiste en integrar el código a un repositorio compartido lo más frecuentemente posible, idealmente varias veces al día. Cada integración es verificada por un proceso automatizado.
     
-    ![Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%2010.png](Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%2010.png)
+    ![](./img/Untitled%2010.png)
     
 - Despliegue continuo → es la habilidad de poner en producción cambios de cualquier tipo de manera segura y sostenida. Dichos cambios pueden ser nuevas funcionalidades, cambios de configuación, solución de errores, experimentos, etc.
 - Automatización de pruebas → es un software que hace uso de herramientas de automatización para controlar la ejecución de las pruebas. Luego esos resultados se comparan con los esperados para determinar si tuvieron o no éxito.
     
-    ![Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%2011.png](Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%2011.png)
+    ![](./img/Untitled%2011.png)
     
 - Infraestructura como código → es la gestión de infraestructura con un modelo descriptivo, usando las mismas herramientas de versionado que los desarrolladores.
     
-    ![Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%2012.png](Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%2012.png)
+    ![](./img/Untitled%2012.png)
     
 - Computación en la nube → es el uso de servicios de cómputos a través de internet.
     
-    ![Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%2013.png](Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%2013.png)
+    ![](./img/Untitled%2013.png)
     
 
 Perfiles
 
-![Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%2014.png](Mo%CC%81dulo%201%20-%20Introduccio%CC%81n%20ae4c3db44dae4001aee06cbd2cbba1ef/Untitled%2014.png)
+![](./img/Untitled%2014.png)
 
 - Desarrolladores → Son quienes desarrollan la aplicación, los programadores front-end, back-end, mobile, full stack o especializados en una tecnología particular. En un entorno DevOps es importante que se comuniquen constantemente con los demás roles.
 - QA → Son quienes verifican y validan la aplicación. En un entorno DevOps es importante que también se concentren en automatizar pruebas para hacerlas repetibles y confiables.
