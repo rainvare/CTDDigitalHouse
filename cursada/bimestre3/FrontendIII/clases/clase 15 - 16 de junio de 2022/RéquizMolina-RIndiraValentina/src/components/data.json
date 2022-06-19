@@ -1,0 +1,26 @@
+[
+    {
+        "id": "1",
+        "producto": {
+            "name": "Zapatillas Nike Revolution 6 Next Nature",
+            "description": "Suma más y más kilómetros con tus Zapatillas Nike Revolution 6 Next Nature, que aportan amortiguación y confort a cada paso que des. Su capellada transpirable y suela diseñada por computadora para una mejor tracción son ideales hasta para los corredores más exigentes."
+        },
+        "stock": 5
+    },
+    {
+        "id": "2",
+        "producto": {
+            "name": "Zapatillas Puma Shuffle",
+            "description": "Las zapatillas Puma Shuffle ADP están confeccionadas en materiales sintéticos. De caña baja, con ajuste personalizado gracias al sistema de cordones, sus perforaciones le dan un estilo urbano que se fusiona con la inserción del logo PUMA N°1 y PUMA N°2 para que camines la calle de la ciudad con un calzado sofisticado."
+        },
+        "stock": 1
+    },
+    {
+        "id": "3",
+        "producto": {
+            "name": "Zapatillas Adidas Coreracer",
+            "description": "Urbanas, livianas y frescas, las Zapatillas adidas Coreracer están pensadas para cumplir con las demandas de los corredores más exigentes. Su suela tiene un estabilizador de talón y su capellada es transpirable para mantener el confort que mereces durante todo tu trayecto."
+        },
+        "stock": 3
+    }
+]
