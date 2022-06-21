@@ -1,0 +1,5 @@
+com\dh\app\Application.class
+com\dh\app\controller\UsuariosController.class
+com\dh\app\service\EjemploService.class
+com\dh\app\persistence\repository\UsuarioRepository.class
+com\dh\app\persistence\entities\Usuario.class
