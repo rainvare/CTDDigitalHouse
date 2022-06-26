@@ -1,0 +1,31 @@
+[2022-06-26 16:39:05] [ INFO ] [Test:40] Se está creando la tabla
+[2022-06-26 16:39:07] [ ERROR] [Test:86] Error en la BBDD
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "CREATE TABLE ODONTOLOGOS (ID INT PRIMARY KEY,NOMBRE varchar(100) NOT NULL,APELLIDO varchar(100) NOT NULL,MATRICULA varchar(100) NOT NULL,[*]"; se esperaba "identifier"
+Syntax error in SQL statement "CREATE TABLE ODONTOLOGOS (ID INT PRIMARY KEY,NOMBRE varchar(100) NOT NULL,APELLIDO varchar(100) NOT NULL,MATRICULA varchar(100) NOT NULL,[*]"; expected "identifier"; SQL statement:
+CREATE TABLE ODONTOLOGOS (ID INT PRIMARY KEY,NOMBRE varchar(100) NOT NULL,APELLIDO varchar(100) NOT NULL,MATRICULA varchar(100) NOT NULL, [42001-212]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.getSyntaxError(DbException.java:261)
+	at org.h2.command.Parser.readIdentifier(Parser.java:5724)
+	at org.h2.command.Parser.parseTableColumnDefinition(Parser.java:9323)
+	at org.h2.command.Parser.parseCreateTable(Parser.java:9266)
+	at org.h2.command.Parser.parseCreate(Parser.java:6745)
+	at org.h2.command.Parser.parsePrepared(Parser.java:763)
+	at org.h2.command.Parser.parse(Parser.java:691)
+	at org.h2.command.Parser.parse(Parser.java:661)
+	at org.h2.command.Parser.prepareCommand(Parser.java:568)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:631)
+	at org.h2.command.CommandList.executeRemaining(CommandList.java:53)
+	at org.h2.command.CommandList.update(CommandList.java:66)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at com.dh.Test.main(Test.java:44)
+[2022-06-26 16:40:34] [ INFO ] [Test:41] Se está creando la tabla
+[2022-06-26 16:40:36] [ INFO ] [Test:47] Se están insertando los datos en la BDD
+[2022-06-26 16:40:36] [ INFO ] [Test:59] Update
+[2022-06-26 16:40:36] [ DEBUG] [Test:75] 
+1
+García
+Humberto
+35890632

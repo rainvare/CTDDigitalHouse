@@ -1,0 +1,27 @@
+ERROR   2022-06-26 14:30:00,165 [main] Test  - Error al insertar un registro
+org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Violación de indice de Unicidad ó Clave primaria: "PRIMARY KEY ON PUBLIC.EMPLEADO(ID) ( /* key:3 */ 3, 'Diego', 'Google', 33, '12/20/2021')"
+Unique index or primary key violation: "PRIMARY KEY ON PUBLIC.EMPLEADO(ID) ( /* key:3 */ 3, 'Diego', 'Google', 33, '12/20/2021')"; SQL statement:
+INSERT INTO EMPLEADO (ID, NOMBRE, EMPRESA, EDAD, FECHA_INICIO) VALUES (3,'juan','duck',33,'12/20/2022') [23505-212]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:508)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.mvstore.db.MVPrimaryIndex.add(MVPrimaryIndex.java:120)
+	at org.h2.mvstore.db.MVTable.addRow(MVTable.java:519)
+	at org.h2.command.dml.Insert.insertRows(Insert.java:174)
+	at org.h2.command.dml.Insert.update(Insert.java:135)
+	at org.h2.command.dml.DataChangeStatement.update(DataChangeStatement.java:74)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:174)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at Test.main(Test.java:56)
+DEBUG   2022-06-26 14:30:00,243 [main] Test  - Se actualizo registro
+INFO    2022-06-26 14:30:00,258 [main] Test  - Se eliminó el registro
+INFO    2022-06-26 14:30:00,258 [main] Test  - Se eliminó el registro
+DEBUG   2022-06-26 14:31:29,032 [main] Test  - Se actualizo registro
+INFO    2022-06-26 14:31:29,032 [main] Test  - Se eliminó el registro
+INFO    2022-06-26 14:31:29,032 [main] Test  - Se eliminó el registro
+DEBUG   2022-06-26 14:32:33,204 [main] Test  - Se actualizo registro
+INFO    2022-06-26 14:32:33,204 [main] Test  - Se eliminó el registro
+INFO    2022-06-26 14:32:33,204 [main] Test  - Se eliminó el registro

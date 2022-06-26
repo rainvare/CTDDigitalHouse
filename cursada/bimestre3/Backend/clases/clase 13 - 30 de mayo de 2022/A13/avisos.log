@@ -1,0 +1,186 @@
+[2022-06-26 15:40:32] [ INFO ] [Test:28] Creacion de tabla
+[2022-06-26 15:40:34] [ ERROR] [Test:93] Error en la BBDD
+org.h2.jdbc.JdbcSQLNonTransientException: Tipo de dato desconocido : "VACHAR"
+Unknown data type: "VACHAR"; SQL statement:
+CREATE TABLE PACIENTES (ID INT PRIMARY KEY,NOMBRE varchar(100) NOT NULL,APELLIDO varchar(100) NOT NULL,DOMICILIO varchar(255) NOT NULL,DNI bigint NOT NULL,FECHA_ALTA vachar(100) NOT NULL,USUARIO varchar(255) NOT NULL,PASSWORD varchar(50) NOT NULL) [50004-212]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:554)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.Parser.readIfDataType1(Parser.java:6199)
+	at org.h2.command.Parser.readIfDataType(Parser.java:6040)
+	at org.h2.command.Parser.parseColumnWithType(Parser.java:6022)
+	at org.h2.command.Parser.parseColumnForTable(Parser.java:5897)
+	at org.h2.command.Parser.parseTableColumnDefinition(Parser.java:9328)
+	at org.h2.command.Parser.parseCreateTable(Parser.java:9266)
+	at org.h2.command.Parser.parseCreate(Parser.java:6745)
+	at org.h2.command.Parser.parsePrepared(Parser.java:763)
+	at org.h2.command.Parser.parse(Parser.java:691)
+	at org.h2.command.Parser.parse(Parser.java:661)
+	at org.h2.command.Parser.prepareCommand(Parser.java:568)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:631)
+	at org.h2.command.CommandList.executeRemaining(CommandList.java:53)
+	at org.h2.command.CommandList.update(CommandList.java:66)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at Test.main(Test.java:31)
+[2022-06-26 15:41:22] [ INFO ] [Test:28] Creacion de tabla
+[2022-06-26 15:41:23] [ ERROR] [Test:93] Error en la BBDD
+org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos puede que ya esté siendo utilizada: null. Soluciones Posibles: cierre todas las otras conexiones; use el modo server
+Database may be already in use: null. Possible solutions: close all other connection(s); use the server mode [90020-212]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:678)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.mvstore.db.Store.convertMVStoreException(Store.java:165)
+	at org.h2.mvstore.db.Store.<init>(Store.java:144)
+	at org.h2.engine.Database.<init>(Database.java:324)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:681)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:229)
+	at Test.getConnection(Test.java:101)
+	at Test.main(Test.java:29)
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/rainv/test.mv.db [2.1.212/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:1004)
+	at org.h2.mvstore.FileStore.open(FileStore.java:163)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:449)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:4118)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	... 11 more
+[2022-06-26 15:41:47] [ INFO ] [Test:28] Creacion de tabla
+[2022-06-26 15:41:49] [ INFO ] [Test:33] Insercion datos en la BDD
+[2022-06-26 15:41:49] [ INFO ] [Test:47] el registro se está actualizando
+[2022-06-26 15:41:49] [ DEBUG] [Test:62] 
+1
+Luana
+Santos
+Av Silva 1856
+184672428
+2022-05-12
+lsilva
+12345
+[2022-06-26 15:41:49] [ INFO ] [Test:69] Update
+[2022-06-26 15:41:49] [ DEBUG] [Test:84] 
+1
+Luana
+Santos
+Av Silva 1856
+184672428
+2022-05-12
+lsilva
+12345
+[2022-06-26 15:46:40] [ INFO ] [Test:28] Creacion de tabla
+[2022-06-26 15:46:41] [ INFO ] [Test:33] Insercion datos en la BDD
+[2022-06-26 15:46:41] [ INFO ] [Test:47] el registro se está actualizando
+[2022-06-26 15:46:41] [ DEBUG] [Test:62] 
+1
+Luana
+Santos
+Av Silva 1856
+184672428
+2022-05-12
+lsilva
+12345
+[2022-06-26 15:46:41] [ INFO ] [Test:69] Update
+[2022-06-26 15:46:41] [ DEBUG] [Test:84] 
+1
+Luana
+Santos
+Av Silva 1856
+184672428
+2022-05-12
+lsilva
+12345
+[2022-06-26 15:50:45] [ INFO ] [Test:28] Creacion de tabla
+[2022-06-26 15:50:46] [ INFO ] [Test:33] Insercion datos en la BDD
+[2022-06-26 15:50:46] [ INFO ] [Test:47] el registro se está actualizando
+[2022-06-26 15:50:46] [ DEBUG] [Test:62] 
+1
+Luana
+Santos
+Av Silva
+184672428
+2022-05-12
+lsilva
+12345
+[2022-06-26 15:50:46] [ ERROR] [Test:73] Update que no debe funcionar 
+[2022-06-26 15:50:46] [ DEBUG] [Test:88] 
+1
+Luana
+Santos
+Av Silva
+184672428
+2022-05-12
+lsilva
+12345
+[2022-06-26 15:59:59] [ INFO ] [Test:28] Creacion de tabla
+[2022-06-26 16:00:00] [ INFO ] [Test:33] Insercion datos en la BDD
+[2022-06-26 16:00:00] [ INFO ] [Test:47] el registro se está actualizando
+[2022-06-26 16:00:00] [ DEBUG] [Test:62] 
+1
+Luana
+Santos
+Av Silva
+184672428
+2022-05-12
+lsilva
+12345
+[2022-06-26 16:00:00] [ ERROR] [Test:73] Update que no debe funcionar 
+[2022-06-26 16:00:00] [ DEBUG] [Test:88] 
+1
+Luana
+Santos
+Av Silva
+184672428
+2022-05-12
+lsilva
+12345
+[2022-06-26 16:01:02] [ INFO ] [Test:28] Creacion de tabla
+[2022-06-26 16:01:04] [ INFO ] [Test:33] Insercion datos en la BDD
+[2022-06-26 16:01:05] [ INFO ] [Test:47] el registro se está actualizando
+[2022-06-26 16:01:05] [ DEBUG] [Test:62] 
+1
+Luana
+Santos
+Av Silva
+184672428
+2022-05-12
+lsilva
+54321
+[2022-06-26 16:01:05] [ ERROR] [Test:73] Update que no debe funcionar 
+[2022-06-26 16:01:05] [ DEBUG] [Test:88] 
+1
+Luana
+Santos
+Av Silva
+184672428
+2022-05-12
+lsilva
+09876
+[2022-06-26 16:03:55] [ INFO ] [Test:28] Creacion de tabla
+[2022-06-26 16:03:56] [ INFO ] [Test:33] Insercion datos en la BDD
+[2022-06-26 16:03:56] [ INFO ] [Test:47] Update 1
+[2022-06-26 16:03:56] [ DEBUG] [Test:62] 
+1
+Luana
+Santos
+Av Silva
+184672428
+2022-05-12
+lsilva
+54321
+[2022-06-26 16:03:56] [ ERROR] [Test:73] Update 2
+[2022-06-26 16:03:56] [ DEBUG] [Test:88] 
+1
+Luana
+Santos
+Av Silva
+184672428
+2022-05-12
+lsilva
+asf

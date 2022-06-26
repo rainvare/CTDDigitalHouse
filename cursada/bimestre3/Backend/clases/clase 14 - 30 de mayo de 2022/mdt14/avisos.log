@@ -1,0 +1,7 @@
+[2022-06-26 18:15:31] [ DEBUG] [ConfiguracionJDBC:19] Instanciando ConfiguracionJDBC con valores por defecto. Driver: H2
+[2022-06-26 18:15:31] [ DEBUG] [DaoH2Medicamento:53] Iniciando método 'insertarNuevo()'
+[2022-06-26 18:15:31] [ DEBUG] [ConfiguracionJDBC:35] Creando conexión con la base de datos
+[2022-06-26 18:15:32] [ ERROR] [ConfiguracionJDBC:40] IO Exception: "java.nio.file.NoSuchFileException: create.sql"; "create.sql"
+IO Exception: "java.nio.file.NoSuchFileException: create.sql"; "create.sql"; SQL statement:
+RUNSCRIPT FROM 'create.sql' [90031-212]
+[2022-06-26 18:15:32] [ ERROR] [Main:38] Cannot invoke "java.sql.Connection.prepareStatement(String)" because "connection" is null
