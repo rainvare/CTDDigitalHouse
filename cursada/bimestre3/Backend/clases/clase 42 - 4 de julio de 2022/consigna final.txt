@@ -1,0 +1,24 @@
+Trabajo Integrador:
+
+• Funcionalidades: ABM de Pacientes, ABM de Odontólogos, asignación de turnos, login y consulta de turnos.
+• Organización del proyecto y configuraciones.
+• Clases de negocio.
+• Clases de acceso a datos con la utilización de ORM.
+• Clases de servicio.
+
+Utilizar Maven para las dependencias de librerías y frameworks.
+Implementar una arquitectura empresarial en capas e inyección
+de dependencias.
+Utilizar el patrón MVC que proporciona el propio framework de Spring.
+Utilizar un ORM para el acceso a datos y persistencia.
+Mantener un logueo de la aplicación a través de Log4J para facilitar la solución de problemas (troubleshooting) ante errores.
+Mantener siempre la práctica de realizar testeos unitarios para asegurar la calidad del software.
+
+Temas a evaluar:
+Buenas prácticas:
+• Clases controllers.
+• Utilización MVC y Thymeleaf.
+• Invocación de alguna API con JavaScript.
+• Uso de buenas prácticas:
+- Logueo con Log4J ante excepciones.
+- Testeo unitario a través del uso de JUnit.
