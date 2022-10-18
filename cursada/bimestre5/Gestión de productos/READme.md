@@ -71,7 +71,8 @@ Click up es una startup que surgió a finales del 2020 para brindar soluciones I
 
 La metodología de trabajo a implementar
 
-[scrum](https://view.genial.ly/62014e4b549f780012248f96)
+![](./img/scrum%20view.png)
+[Link a presentación en genia.ly ](https://view.genial.ly/62014e4b549f780012248f96)
 
 
 ## Proyecto a desarrollar  <a id='mdt1'></a>
