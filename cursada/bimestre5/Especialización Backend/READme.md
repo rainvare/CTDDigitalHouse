@@ -56,47 +56,47 @@ La tecnología habilita nuevos negocios y estos afectan principalmente al back e
 ## Repaso de Backend I
 Formulario de repaso
 1 - El método HTTP GET por lo general se utiliza para: 
-[ ] Crear un nuevo registro.
-[X] Consultar información.
-[ ] Eliminar un registro.
+* [ ] Crear un nuevo registro.
+* [X] Consultar información.
+* [ ] Eliminar un registro.
 
 2- Las clases de controlador en Spring están anotadas con @RequestMapping.
-[ ] Verdadero
-[X] Falso
+* [ ] Verdadero
+* [X] Falso
 
 3- @GetMapping es un atajo para @RequestMapping(method = RequestMethod.GET) y se utiliza para mapear solicitudes HTTP GET a los métodos de controlador asignados.
-[X] Verdadero
-[ ] Falso
+* [X] Verdadero
+* [ ] Falso
 
 4- La anotación @ResponseBody solo se puede utilizar a nivel de clase en el controlador.
-[ ] Verdadero
-[X] Falso
+* [ ] Verdadero
+* [X] Falso
 
 5- Cuando el controlador devuelve datos en una respuesta, ¿en qué formato se devuelve al cliente?
-[ ] XML
-[ ] HTTP
-[X] JSON
+* [ ] XML
+* [ ] HTTP
+* [X] JSON
 
 6- Siempre es mejor exponer entidades completas en los endpoints para evitar crear otras capas de servicios.
-[X] Verdadero
-[ ] Falso
+* [X] Verdadero
+* [ ] Falso
 
 7- La razón principal para usar un DTO es agrupar lo que serían múltiples llamadas remotas en una sola.
-[ ] Verdadero
-[X] Falso
+* [ ] Verdadero
+* [X] Falso
 
 8- Un ResponseEntity está formado por:
-[ ] Código de estado, cuerpo y conexiones.
-[ ] Código de estado y cuerpo.
-[X] Código de estado, cuerpo y cabecera.
+* [ ] Código de estado, cuerpo y conexiones.
+* [ ] Código de estado y cuerpo.
+* [X] Código de estado, cuerpo y cabecera.
 
 9- Siguiendo los conceptos del patrón MVC: Las vistas se comunican de forma directa con los modelos.
-[ ] Verdadero
-[X] Falso
+* [ ] Verdadero
+* [X] Falso
 
 10- Cuando definimos una interfaz en la capa repository (o DAO), al extender de JpaRepository, solo podemos hacer uso de los métodos delete y update.
-[ ] Verdadero
-[X] Falso
+* [ ] Verdadero
+* [X] Falso
 
 ## Introducción a microservicios 
 
