@@ -65,7 +65,7 @@ La tecnología habilita nuevos negocios y estos afectan principalmente al back e
 
 ![](./img/M2/Untitled.png)
 
-    - # Ejes de la materia
+
 <!--###############################################--  MÓDULO 1--#####################################################################-->
 ## Repaso de Backend I
 
@@ -191,21 +191,31 @@ Poder generar inversiones como plazos fijos (API de Inversiones).
 - La dificultad de orquestar una **gran cantidad de microservicios**.
 - La **dificultad de gestionar dependencias tanto internas como externas**.
 
+-----
 
-### Patrones de diseño <a id='t2'></a>
+## Patrones de diseño <a id='t2'></a>
 
 Los patrones de diseño que vamos a ver son:
 
 1- Service registry
+
 2- Service discovery
+
 3- Edge server
+
 4- Central configuration
+
 5- Log aggregation
+
 6- Distributed tracing
+
 7- Circuit Breaker
+
 8- Reactive microservices
+
 9- Centralized monitoring and alarms
 
+------
 
 ### Service registry <a id='c2se'></a>
 El patrón Service registry permite contar con la creación de un servidor centralizado, donde todos los servicios se registren al momento de iniciar. De esta manera, cada uno de los servicios le tendrá que enviar la dirección IP, el puerto en el que responde al servidor y, finalmente, el identificador de servicio (que por lo general es un nombre alfanumérico que ayuda a identificarlo). De esta forma, el servidor central o registro sabrá exactamente dónde está cada servicio disponible.
@@ -220,7 +230,7 @@ Otra característica es que los servicios que se registren, deberán estar envia
 
 ![Service registry 2](./img/service-registry-parte-2.jpg)
 
-     Service registry es un componente indispensable en una arquitectura de microservicios porque permite que los servicios se puedan registrar independientemente de su ubicación física. Esto genera que podamos conocer su ubicación fácilmente y, posteriormente, utilizar técnicas de autodescubrimiento para localizarlos y balancear la carga. 
+Service registry es un componente indispensable en una arquitectura de microservicios porque permite que los servicios se puedan registrar independientemente de su ubicación física. Esto genera que podamos conocer su ubicación fácilmente y, posteriormente, utilizar técnicas de autodescubrimiento para localizarlos y balancear la carga. 
 
 
 ----- 
