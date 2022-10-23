@@ -418,6 +418,7 @@ En 2007 Netflix inició un camino que lo llevaría hacia la operación total en 
 - Ribbon para el balanceo de carga (Hoy reemplazado por Spring Cloud balancer)
 - Eureka, para el descubrimiento de servicios
 - Histrix, para la tolerancia a fallos (reemplazada hoy por Resilience4J).
+
 ![Bibliotecas creadas por Netflix](./img/springcloudnetflix1.jpg)
 
 ![](./img/componentvsnetflix.png)
