@@ -22,11 +22,11 @@ La tecnología habilita nuevos negocios y estos afectan principalmente al back e
 ## Índice
 
 1. Módulo 1 - Introducción a microservicios
+
 - [¿Qué es un microservicio?](#t1) 
  - [Arquitectura monolítica](#c1)
  - [Arquitectura de microservicios](#c1a)
  - [Desafíos de los microservicios](#c2a)
-
 - [Patrones de diseño](#t2) 
  - [Service registry](#c2se)
  - [Service discovery](#c2sd)
@@ -37,6 +37,7 @@ La tecnología habilita nuevos negocios y estos afectan principalmente al back e
  - [Circuit Breaker](#c2cb)
  - [Reactive microservices](#c2rm)
  - [Centralized monitoring and alarms](#c2cmaa)
+ -[De la arquitectura monolítica a los microservicios](#claseCierreM1)
 
 
 2. Módulo 2 - Framework spring cloud
@@ -215,6 +216,9 @@ Los patrones de diseño que vamos a ver son:
 
 9- Centralized monitoring and alarms
 
+![](./img/patrones%20y%20spring%20boot.jpeg)
+
+
 ------
 
 ### Service registry <a id='c2se'></a>
@@ -261,15 +265,137 @@ El Service discovery es un componente que se encarga de recuperar del Service re
 ----
 
 ### Edge server <a id='c2es'></a>
+
+En muchos casos, en una arquitectura de microservicios, es necesario mostrar algunos microservicios fuera del contexto de nuestro sistema y ocultar otros del acceso externo. Aquellos microservicios expuestos al exterior deben estar protegidos ante solicitudes de clientes malintencionados. Es aquí donde juega un rol clave el componente Edge Server, a través del cual pasarán todas las peticiones provenientes del exterior.
+
+![edge server](./img/edge-server-new.jpg)
+
+Típicamente, un componente como este se comporta como si se tratara de un reverse proxy (proxy reverso) y puede ser integrado al Service discovery para ofrecer capacidad de balanceo de carga dinámica.
+
+**Por lo tanto, para protegerse de solicitudes maliciosas, podemos hacer uso de protocolos estándares y buenas prácticas —tales como OAuth, OIDC, JWT y API keys—, de manera tal de saber que provienen de clientes confiables. De igual forma, los microservicios que necesiten contar con esta “capa de invisibilidad” pueden hacerse “visibles” para aquellos que requieren su servicio, teniendo configuradas oportunamente las rutas de acceso a los mismos.**
+
+
+
 ### Central configuration <a id='c2cc'></a>
+
+Normalmente, una aplicación se implementa junto a su configuración, donde podemos encontrarnos con un conjunto de variables de entorno y/o archivos que contienen información de configuración. Ante una arquitectura basada en microservicios, es decir, con una gran cantidad de instancias de microservicios desplegados, surgen los siguientes interrogantes:
+
+* ¿Cómo obtengo una imagen completa de la configuración que existe para todas las instancias de microservicios en ejecución?
+* ¿Cómo hacemos para actualizar la configuración y, al mismo tiempo, asegurarnos de que todas las instancias de microservicios afectados adopten la misma?
+
+![Central Configuration](./img/central-configuration.jpg)
+
+El patrón propone una respuesta a esto agregando un nuevo componente llamado Configuration server (servidor de configuración) donde almacena la configuración de todos los microservicios, como podemos observar en el siguiente diagrama:
+
+
+Al mismo tiempo, este permite centralizar toda la información en un solo lugar, incluso con diferentes configuraciones según se trate del entorno (desarrollo, testing, QA, producción, etc.).
+
 ### Log aggregation <a id='c2la'></a>
+
+Cuando hablamos de arquitectura distribuida, uno de los problemas más frecuentes es obtener una trazabilidad de la ejecución de un servicio, ya que en este tipo de arquitecturas la ejecución de un servicio pasa por múltiples servicios. Esto dificulta comprender lo que está pasando y contar con un log detallado de lo que está sucediendo. Puntualmente, en el caso de arquitecturas como microservicios, es esperable tener múltiples instancias de un mismo componente, lo que hace aún más tedioso recuperar la traza de ejecución.
+
+Para solucionar este problema, contamos con el patrón Log aggregation, el cual mediante un componente externo nos permite concentrar todos los logs en una sola fuente de datos que podemos consultar más adelante, sin necesidad de tener acceso físico a los servidores y sin importarnos cuántas instancias de cada componente tengamos. De esta manera, mediante este patrón, podemos encontrar los errores de una forma más eficiente, dándole una mejor atención a nuestros clientes.
+
+![Log aggregation](./img/log-aggregation.jpg)
+
 ### Distributed tracing <a id='c2dt'></a>
+
+Como dijimos anteriormente, uno de los principales problemas en una arquitectura distribuida es la trazabilidad de la ejecución de un proceso porque una sola llamada puede repercutir en la llamada de varios servicios. Esto implica que tengamos que ir recuperando el log por partes, es decir, tenemos que sacar cada parte del log en cada microservicio y luego unirlos, lo cual puede ser una tarea titánica y complicada. Por este motivo, es importante implementar un sistema de traza distribuido que permita unificar los logs en un solo punto y agruparlos por ejecución.
+
+Para poder analizar los retrasos en una serie de llamadas de microservicios que cooperan, debemos poder recopilar marcas de tiempo de cuándo entran y salen solicitudes, respuestas y mensajes de cada microservicio.
+
+Cuando un microservicio se comunica con otro envía en su petición el ID de la transacción global y el de su transacción. Si un microservicio no recibe estos ID, los genera. En el protocolo HTTP estos ID se envían y reciben a través de las cabeceras. Estos permiten correlacionar todas las trazas que emiten los diferentes procesos de los microservicios de una misma petición en la aplicación. Haciendo una búsqueda global por el identificativo global se obtiene el conjunto de trazas que han emitido los microservicios por los que ha transitado una petición.
+
+![Distributed tracing](./img/distributed-tracing-mesa-de-trabajo-1.jpg)
+
+**Como conclusión, debemos asegurarnos de que todas las solicitudes y mensajes relacionados estén marcados con un ID de correlación común, y que el ID de correlación sea parte de todos los eventos de registro. En función de un ID de correlación, podemos usar el servicio de registro centralizado para encontrar todos los eventos de registro relacionados.**
+
 ### Circuit Breaker <a id='c2cb'></a>
+
+En la práctica, es habitual que, cuando algo falla, simplemente le mostremos al usuario un error de que algo salió mal y que lo intente más tarde, pero ¿qué sucede si el usuario estaba queriendo hacer una venta? ¿Estamos dispuestos a dejarlo pasar?
+
+Con la llegada de nuevas arquitecturas distribuidas como microservicios, vinieron aparejadas muchas ventajas, pero con ello también aparecieron nuevas problemáticas que pocas veces se saben resolver con precisión. Uno de estos casos es poder identificar cuándo un servicio dejó de funcionar repentinamente para así dejar de esperar peticiones y, al mismo tiempo, hacer algo en consecuencia.
+
+El patrón Circuit Breaker —cortacircuitos o fusible (no confundir con “cortocircuito”, en inglés short circuit)— propone una solución a la problemática anterior y permite trazar una analogía como si se tratara de un fusible (eléctrico) hogareño, el cual se funde para evitar que una descarga eléctrica afecte al circuito. En otras palabras, este patrón permite cortar de manera inteligente la comunicación con un determinado servicio cuando se ha detectado que el mismo está fallando, evitando de esta manera, que el sistema continúe fallando.
+
+![circuit breaker](./img/circuit-breaker-mesa-de-trabajo-1.jpg)
+
+Continuando con el ejemplo, si se tratara de una venta, ante la falla del servicio, podríamos pensar en dejar de mandarle peticiones y ejecutar un plan B en lo que el servicio se reponga. Algunas alternativas podrían ser volver a intentar realizar la venta en diferido, dejando pasar algunos minutos que definamos de manera explícita, o bien enviarlas a una cola para que sea procesada de manera asincrónica y luego sí podamos dar la confirmación de la misma al consumidor final.
+
+Por último, el patrón Circuit Breaker puede pasar por tres estados diferentes. Cada uno de ellos afectará la forma en que funciona. Estos son: cerrado, abierto y medio abierto. Avancemos para conocer más.
+
+![estados](./img/circuit-breaker-estados.jpg)
+
+[presentación genialy](https://view.genial.ly/6203c277c293b60012dbd9e4)
+
+En líneas generales, el patrón Circuit Breaker se aplica cuando un servicio depende de otro. Si otro servicio falla o tarda demasiado en responder (time-out), se vuelve a reintentar un determinado número de veces. Una vez excedido dicho número, se devuelve un error. Caso contrario, se vuelve a la operación normal.
+
+A su vez, este patrón suele delatar problemas de diseño. Supongamos que nuestro servicio depende de un servicio de terceros que falla continuamente. Una opción es llamar al owner y pedir que lo “arreglen”, pero a veces esto no es posible. Entonces, la solución —en vez de una llamada al servicio directa— debería ser el uso de una cola de mensajes y hacer que la operación sea asincrónica.
+
+**A modo de conclusión, el patrón Circuit Breaker es muy utilizado en procesos críticos, evitando de antemano que nuestra aplicación se vea envuelta en una gran cantidad de peticiones que sabemos que van a fallar, consiguiendo tomar una acción en consecuencia. Siempre se deberá priorizar dar respuesta del servicio, así sea de una forma diferente.**
+
+![](./img/conclusion-circuit-breaker.jpg)
+
 ### Reactive microservices <a id='c2rm'></a>
+
+Como desarrolladores, estamos acostumbrados a implementar la comunicación sincrónica mediante bloqueos I/O (bloqueos de entrada/salida), por ejemplo, para el caso de una API RESTful JSON sobre HTTP. El servidor que recibe alguna petición y, conforme a esta, espera dar una respuesta asigna (dentro del sistema operativo) un subproceso durante el tiempo que tome la solicitud. Ante este escenario, si aumenta la cantidad de solicitudes simultáneas, dicho servidor podría quedarse sin subprocesos disponibles. Esto puede provocar diversos problemas, que van desde tiempos de respuesta más prolongados hasta fallas en los servidores. En una arquitectura de microservicios, este problema suele empeorar aún más, ya que usualmente se involucra a una serie de microservicios cooperativos para atender una solicitud. Y cuantos más microservicios participen en la atención de una solicitud, más rápido se agotarán los subprocesos disponibles.
+![](./img/reactive-microservices-new.jpg)
+
+Por lo tanto, lo que ofrece este patrón es hacer uso de llamadas asíncronas no bloqueantes siempre que sea posible. Esto incluye las llamadas habituales a recursos muy lentos a través de la red, las llamadas a base de datos, la gestión de peticiones y —en general— todo el flujo de llamadas. De esta manera, necesitaremos utilizar programación reactiva para realizar una comunicación asíncrona óptima y correcta entre los distintos API REST de los diferentes microservicios que creamos.
+
+![](./img/reactive-microservices-02.jpg)
+
+Los sistemas creados como sistemas reactivos son más flexibles, poco acoplados y escalables. Esto los hace más fáciles de desarrollar y susceptibles de cambiar. Son significativamente más tolerantes ante fallos y, cuando ocurre uno, lo enfrentan con una solución pragmática en lugar de resultar un desastre.
+
+Pensemos un ejemplo de un microservicio bloqueante y no bloqueante
+Supongamos que tenemos un e-commerce con un proceso de checkout de una orden que consiste en comprobar las ofertas, comprobar el stock y comprobar el envío. Cada paso toma 1 segundo (con el servidor desocupado) y el servidor tiene capacidad para mantener 10.000 sesiones abiertas en simultáneo.
+
+Si nuestra operación es sincrónica bloqueante, el usuario va a enviar su petición y, a los tres segundos, se ejecutarán todos los pasos. En esos tres segundos se verificará todo, pero ¿qué pasa si suceden 10.000 órdenes simultáneas? Se ejecuta correctamente la primera, la segunda tarda un poco más (porque tiene que esperar que termine la anterior) y, cuando llegamos a 5.000, el sistema se degrada y comienzan a aparecer los errores al saturarse el servidor.
+
+Ahora, supongamos que nuestra operación es asincrónica. El servidor recibe el checkout del usuario y envía el evento a una cola de mensajes para que los servicios de ofertas, stock y entrega vayan levantando las órdenes. El usuario recibe el mensaje “su orden está siendo procesada” en una milésima de segundo y se libera el servidor. Entonces, si tenemos 10.000 órdenes y vienen 10.000 más al siguiente segundo, el sistema no se degrada. Quizás algunas órdenes “en proceso” no se cumplirán por falta de stock, pero en la práctica este caso es mucho mejor porque:
+
+1- No se bloquea el servidor y seguimos recibiendo órdenes.
+2- La ventana de stock desactualizada es muy pequeña.
+3- Los proveedores tienen un margen de stock de seguridad.
+4- Podemos paralelizar procesos.
+
+![](./img/reactive-microservices-03.jpg)
 ### Centralized monitoring and alarms <a id='c2cmaa'></a>
 
+Si los tiempos de respuesta observados y/o el uso de recursos de hardware se vuelven inaceptablemente altos, puede ser muy difícil descubrir la causa del problema. Necesitamos poder analizar el consumo de los recursos de hardware por microservicio. Para eso, podemos agregar un nuevo componente: Monitor service (un servicio de monitoreo), que es capaz de recopilar métricas sobre el uso de recursos de hardware para cada nivel de instancia del microservicio. Este nos permitirá:
 
+Recopilar métricas de todos los servidores que utiliza el entorno del sistema, incluyendo servidores de escalado automático.
+Detectar nuevas instancias de microservicios a medida que se lanzan en los servidores disponibles y comenzar a recopilar métricas de ellos.
+Proporcionar una API y herramientas gráficas para consultar y analizar las métricas recopiladas.
+Definir alertas que se activan cuando una métrica determinada excede un valor de umbral específico.
+
+### Ejercicio playground
+
+![](./img/ejerciciopatrones-playground.jpg)
  
+Mdt clase 2
+Identificar en cada punto qué patrones de diseño podrían aplicarse en la arquitectura de microservicios propuesta y hacer un diagrama integral de la arquitectura con los patrones aplicados.
+
+![](./clases/clase%202%20-%2019%20de%20octubre%20de%202022/mdt%202.png)
+
+## De la arquitectura monolítica a los microservicios <a id='claseCierreM1'></a>
+
+De arquitectura monolítica a microservicios
+A continuación repasamos la evolución de las arquitecturas de aplicaciones. Primero, tenemos las aplicaciones monolíticas donde la aplicación se concibe como un solo componente. Luego, las arquitecturas orientadas a servicios que permitieron modularizar en grupos de servicios a los aplicativos. Por último, los microservicios que permiten —gracias a la evolución de las infraestructuras de contenedores y Kubernetes— un nivel mucho más granular de modularización permitiendo la gestión de dichos microservicios totalmente independientes.
+
+![](./img/clase-cierre-de-semana-ultima.jpg)
+
+En el siguiente mapa conceptual te mostramos las principales características y beneficios de los microservicios:
+![](./img/clase-cierre-de-semana-ultima-2.jpg)
+
+Por otro lado, de acuerdo a las características deseables en todo producto de software, te resumimos cómo se resuelve en cada una de las arquitecturas monolítica y de microservicios:
+![](./img/cierre-de-semana-tabla.jpg)
+
+Por otro lado, en el siguiente gráfico se puede observar una arquitectura con todos los patrones que aprendimos:
+![](./img/clase-cierre-de-semana-ultima-3.jpg)
+
+Por último, cada patrón que hemos aprendido se corresponde con un componente del framework de Spring Cloud. A continuación, te mostramos cómo se llama ese componente en Spring Cloud Netflix y que estaremos estudiando en cada una de las siguientes clases:
+![](./img/clase-cierre-de-semana-02.jpg)
 
 ----
 
