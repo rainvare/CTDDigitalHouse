@@ -41,7 +41,11 @@ La tecnología habilita nuevos negocios y estos afectan principalmente al back e
 
 
 2. Módulo 2 - Framework spring cloud
-- [Eureka server](#t3)  
+- [Spring Cloud Netflix](#netflix)
+- [Eureka](#t3)  
+    - [Registro y descubrimiento de microservicios](#c4eureka)
+    - [Eureka server y eureka client](#c4eurekaserver)
+    -[Spring Boot Actuator (heartbeat)](#c4actuator)
 - [Configuración en sistemas distribuidos](#t4) 
 - [Invocaciones REST declarativas y balanceo de carga](#t5) 
 - [ API Gateway](#t6)
@@ -373,7 +377,7 @@ Definir alertas que se activan cuando una métrica determinada excede un valor d
 
 ![](./img/ejerciciopatrones-playground.jpg)
  
-Mdt clase 2
+### Mdt clase 2
 Identificar en cada punto qué patrones de diseño podrían aplicarse en la arquitectura de microservicios propuesta y hacer un diagrama integral de la arquitectura con los patrones aplicados.
 
 ![](./clases/clase%202%20-%2019%20de%20octubre%20de%202022/mdt%202.png)
@@ -397,14 +401,205 @@ Por otro lado, en el siguiente gráfico se puede observar una arquitectura con t
 Por último, cada patrón que hemos aprendido se corresponde con un componente del framework de Spring Cloud. A continuación, te mostramos cómo se llama ese componente en Spring Cloud Netflix y que estaremos estudiando en cada una de las siguientes clases:
 ![](./img/clase-cierre-de-semana-02.jpg)
 
+
+### mdt clase 3
+Identificar los patrones de diseño y asociarlos con los microservicios solución propuestos.
+![](./clases/clase%203%20-%2020%20de%20octubre%20de%202022/mdt-clase3.png)
+
 ----
 
 <!--###############################################--  MÓDULO 2 --#####################################################################-->
 ## Framework spring cloud 
-### Eureka server <a id='t3'></a>
+Vamos a comenzar a ver cada uno de los componentes de la solución que ideó Netflix en su arquitectura de microservicios. A continuación te invitamos a mirar este video para conocer un poco acerca de la historia de este framework y de uno de sus componentes, llamado Eureka. ¡No te lo pierdas!
 
+## SpringCloud y Netflix <a id='netflix'></a>
+En 2007 Netflix inició un camino que lo llevaría hacia la operación total en la nube. Gran parte de las aplicaciones de backend estaban desarrolladas con Java, y como parte de este proceso, Nteflix creó varias biblitecas.
+
+- Ribbon para el balanceo de carga (Hoy reemplazado por Spring Cloud balancer)
+- Eureka, para el descubrimiento de servicios
+- Histrix, para la tolerancia a fallos (reemplazada hoy por Resilience4J).
+![Bibliotecas creadas por Netflix](./img/springcloudnetflix1.jpg)
+
+![](./img/componentvsnetflix.png)
+
+Todas estas comenzaron a ser de código abierto alrededor del año 2012. En 2015 se lanzó Spring Cloud Netflix 1.0, un esfuerzo de la comunidad para unir los componentes de Netflix al usar Spring Boot. En 2018, la empresa hizó una transición a Spring Boot, y lo transformó en el principal framework de su sistema.
+
+Spring Cloud Netflix proporciona herramientas para solucionar problemas de sistemas distribuidos a gran escala, como:
+
+![](./img/springcloudnetflix.jpg)
+
+### Eureka<a id='t3'></a>
+
+Eureka es un servicio REST, cuyo objetivo es registrar y localizar microservicios existentes, informar de su localización, estado y datos relevantes de cada uno. 
+¿Cómo funciona? Durante su arranque cada microservicios se comunicará con el servidor eureka para informar: si está disponible, dónde se ubica, y sus metadatos. Así, Eureka tendrá en su registro la información de todos los microservicios de un sistema. El nuevo microservicio notificará su estado cada 30 seg (heartbits), si después de tres periodos (90seg) Eureka no recibe información, lo eliminará del registro. Del mismo modo, una vez que se reciban tres notificaciones, se considerará que el servicio está disponible de nuevo.
+
+Además, Eureka nos permite aumentar o reducir instancias de manera dinámica y transparente. y puede integrarse Eureka con un balanceador de carga, que permitirá enviar la petición a la instancia que se encuentre en mejores condiciones para procesarla.
+
+Este tiene dos partes, server y client:
+
+donde cada microservicio deberá configurarse como un cliente de Eureka.
+
+![](./img/eurekacomofunciona.jpg)
+
+-----
+
+### Registro y descubrimiento de microservicios <a id='c4eureka'></a>
+
+¿Qué problemas viene a solucionar?
+El estilo de arquitectura de microservicios no se trata tanto de construir servicios individuales, sino de cómo hacer que las interacciones entre los servicios sean confiables y tolerantes a fallas.
+
+En una arquitectura de este tipo, cada microservicio se encuentra en una dirección IP y un puerto, generalmente asignados dinámicamente. Esto dificulta que un cliente realice una solicitud a un microservicio que, por ejemplo, expone una API REST a través de HTTP.
+
+Consideremos el siguiente diagrama. Tenemos un servicio con tres instancias, en la que cada una de ellas se encuentra en una ubicación diferente. ¿Cómo podría saber el cliente la dirección de cada uno de ellos?, y si vamos un paso más allá de la dirección, ¿cómo podría saber cuál es la instancia con menos carga para procesar la petición enviada?
+
+![](./img/eureka-registro-y-descubrimiento-micro-servicios.jpg)
+
+Ante este problema, debemos agregar un nuevo componente a nuestra arquitectura que nos permita:
+
+* Registrar automáticamente los microservicios y sus instancias, tan pronto como se encuentren ejecutando y eliminarlas del registro en cuanto dejan de ejecutarse o dejan de responder.
+* El cliente debe ser capaz de enviar una solicitud a los microservicios sin conocer su ubicación.
+* Las solicitudes a las instancias de un microservicio deben poder ser equilibradas mediante un balanceador de carga.
+
+En Spring Cloud este componente es Eureka, el cual veremos en detalle a continuación, pero antes te queremos contar de dónde proviene la palabra. Todo comienza cuando a Hierón II le obsequiaron una corona y quería saber si era de oro o si tenía partes que no lo eran, entonces, le instruyó a Arquímedes que haga un invento para tal fin. Este no encontraba la solución y el tiempo lo apremiaba. Entonces, tomó un baño y notó cómo el agua se desplazaba en función de su densidad. Así se le ocurrió que podría aplicar el mismo principio a la corona. Es así como cuenta la anécdota que salió corriendo gritando ‘’Eureka’’ (lo encontré).
+
+### Eureka Server y client <a id='c4eurekaserver'></a>
+Podemos dividir Eureka en dos grandes componentes: Eureka client, el encargado de publicar la información del microservicio en el que se encuentra; y Eureka server, el encargado de recopilar la información de todos los clientes.
+
+![](./img/arquitectura-eureka-server-01.jpg)
+
+### Monitoreando la salud de nuestros microservicios con Spring Boot Actuator (heartbeat)<a id='c4actuator'></a>
+En un ecosistema de microservicios e instancias es necesario llevar un control de los mismos, ya sea por errores, para balanceo de carga o incluso para analizar métricas para determinar si necesitan más instancias de un servicio en particular.
+
+Puede haber varios escenarios de problemas en una instancia, pero los más comunes son errores por excepción de aplicación, timeout y errores de instancia. Los errores de aplicaciones son las excepciones programadas. Los de instancia puede ser, por ejemplo, que la instancia se quede sin espacio en disco o sin memoria. Mientras que los errores de timeout suceden cuando la respuesta llega después de un determinado umbral.
+
+Obviamente, no se puede monitorear cada endpoint y mandar datos “inertes” cada vez. En la práctica se utilizan endpoints especiales que devuelven información crítica respecto del estado de la instancia y el servicio.
+
+La solución que ofrece el framework de Spring para este problema es Spring Actuator, que básicamente genera los endpoints necesarios para este monitoreo de manera automática. A su vez, las respuestas de estos endpoints pueden ser “sondeadas” por balanceadores de carga u otras aplicaciones para administrar el tráfico, tales como Eureka.
+
+Spring Boot Actuator ofrece funcionalidades listas para un entorno de producción que supervisan nuestra aplicación, recopilan métricas, comprenden y analizan el tráfico y el estado de nuestra base de datos. Todo esto sin necesidad de tener que implementarlo por nuestra cuenta.
+
+Los Actuators se utilizan principalmente para exponer información operacional sobre nuestra aplicación en ejecución (health, metrics, info, dump, env, etc.) a través de una API REST.
+
+![endpoints](./img/actuator-endpoints.jpg)
+
+
+Por defecto, solo el endpoint /health está habilitado para consumirlo, para habilitar el resto tenemos que configurar la siguiente propiedad en application.properties:
+
+management.endpoints.web.exposure.include=serviceregistry,health,info
+
+Por ejemplo, con esta configuración estamos habilitando los endpoints /serviceregistry, /health e /info. En caso de querer habilitar todos, ingresamos:
+
+management.endpoints.web.exposure.include=*
+
+Si querés conocer más sobre los endpoints que ofrece Actuator, te recomendamos ingresar en el siguiente link.
+
+Por otro lado, Eureka server utiliza los endpoints /health e /info para obtener información sobre los microservicios. Por defecto, si realizamos una solicitud HTTP mediante el método GET al endpoint /health, nos responderá:
+
+***
+{
+
+"status" : "UP"
+
+}
+***
+
+En el caso de /info, podemos personalizar la respuesta configurando ciertas propiedades, por ejemplo:
+
+info.app.name=mi-servicio
+info.app.description=Servicio probando Eureka
+info.app.version=1.0.0
+
+La respuesta será:
+
+*** 
+{
+"app" : {
+"version" : "1.0.0",
+"description" : "Servicio probando Eureka",
+"name" : "mi-servicio"
+}
+}
+***
+
+Dependiendo de la versión de Actuator, es posible que el endpoint /info no esté habilitado por defecto para leer las variables cargadas desde el archivo application.properties. Para habilitarlo debemos agregar lo siguiente en dicho archivo:
+
+management.info.env.enabled = true
+
+¿Cómo agregamos actuator a nuestro proyecto?
+Para hacerlo debemos utilizar Maven:
+
+    
+
+<dependency>
+    <groupid>org.springframework.boot</groupid>
+    <artifactid>spring-boot-starter-actuator</artifactid>
+</dependency>
+    
+
+  
+Posteriormente, actualizamos las dependencias, ejecutamos el proyecto y ya tendremos los endpoints listos para consumir.
+### Ejercicio Asincrónico clase 4
+Para practicar lo visto durante esta clase, te proponemos realizar el siguiente ejercicio.
+
+**Objetivo**: Ejecutar Eureka server para el registro y descubrimiento de microservicios.
+
+**Consigna**: Para la página web de un importante diario nos solicitan el desarrollo de una API que nos informe la cotización de diferentes monedas.
+
+Nuestro tech lead nos pide:
+
+- Crear un servicio nuevo y configurar Eureka server.
+Configurar para que su ejecución sea en el puerto 8761.
+- Crear un servicio que nos retorne la cotización actual de una moneda con respecto a otra.
+- Configurar el nombre del servicio como currency-converter-service
+- Crear un endpoint que reciba dos parámetros: from y to. Este endpoint deberá retornar la cotización de la moneda dada. Por ejemplo, una petición mediante el método GET a http://localhost:8080/converter?from=USD&to=ARS podría responder: 104,76. Por el momento, retornar un número aleatorio.
+- Configurar Eureka client en el servicio creado anteriormente.
+- Ejecutar Eureka server junto con el microservicio y visualizar en el dashboard el listado de servicios registrados.
+
+¡Manos al teclado!
 
 ### Configuración en sistemas distribuidos <a id='t4'></a>
+
+Introducción a la problemática de las configuraciones
+Pensemos en una organización que comienza a crecer en términos de escala, por ende, comienza a desarrollar microservicios atómicos que dan soporte a los distintos procesos de negocio. Estos microservicios que proveen la infraestructura, el procesamiento y el soporte de datos necesitan de diferentes tipos de configuraciones para funcionar, por ejemplo:
+
+- Localización de otros microservicios.
+Paths de base de datos y endpoints de los servicios que se desplegarán.
+- Dirección IP de servidores de almacenamiento, tales como FTP o S3.
+- Tipo de logging de información por Log4j (INFO, ERROR, DEBUG).
+- Contraseñas y/o secretos (en la práctica se aplica seguridad adicional en este caso).
+- Variables de entorno.
+
+Pero… ¿Por qué esta información necesita una configuración en particular y no puede estar como constantes dentro de una aplicación? Veamos cuáles son las razones.
+
+![](./img/config-sist.jpg)
+[presentación genialy]()
+
+### ¿Qué solución nos puede brindar Spring Cloud para las configuraciones distribuidas?
+
+Spring Cloud config es el módulo de Spring que nos permite centralizar la configuración de los sistemas. Y se crean para cada servicio que requiera externalizar información para no afectar la intregridad de la aplicación al momento del deploy. ara esto, nos brinda dos componentes básicos: Spring Cloud Config Server y Spring Cloud Client. Estos interactúan entre sí para lograr su cometido, como vemos en el siguiente diagrama:
+
+![](./img/solucion-con-spring-cloud-config-01.jpg)
+
+-----
+### Ejercicio Asincrónico clase 5
+¡A poner en práctica lo aprendido!
+Basados en la lógica de negocio vista en la clase 3, relacionada con las maquinarias de construcción, nos piden agregar las siguientes configuraciones en los microservicios de usuarios y máquinas:
+
+- Cantidad máxima de login incorrecto de usuarios: 3.
+- Dominios de correos habilitados para alta: @outlook.com, @gmail.com, @digitalhouse.com.
+URL de servicio de registro de vehículos: https://www.dnrpa.gov.ar/portal_dnrpa.
+- Cantidad máxima de maquinaria en catálogo según playa de estacionamiento: 650.
+Se pide:
+
+Importar los ZIP de los proyectos de maquinaria y usuarios.
+Crear en Git un repositorio para los servicios de usuarios y maquinarias especificando las configuraciones pedidas.
+Crear el servidor de configuraciones relacionándolo con el repositorio Git.
+Asociar los proyectos de maquinaria y usuario con el servidor de configuración.
+Crear un endpoint REST en cada servicio con el nombre “/config” que muestre las dos configuraciones de cada proyecto.
+
+¡Éxitos!
+---- 
+
 ### Invocaciones REST declarativas y balanceo de carga <a id='t5'></a>
 ### API Gateway <a id='t6'></a>
 ### Evaluación <a id='t7'></a>
