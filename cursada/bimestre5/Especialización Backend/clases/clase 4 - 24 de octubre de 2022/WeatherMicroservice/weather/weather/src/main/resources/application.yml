@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: api-weather-ms
+
+server:
+  port: 8083
+# Configuracion para eureka client
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+#config info de actuator
+management.info.env.enabled: true
+management.endpoints.web.exposure.include: health,info
+
+info.app.name: weather-service
+info.app.description: Get fast and easy access to the world's most accurate weather, ocean, environment and climate data for every location on earth.
+info.app.version: 1.0.0
