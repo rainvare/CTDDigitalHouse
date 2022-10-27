@@ -1,8 +1,0 @@
-spring:
-  application:
-    name: dh-maquinaria-usuario-service
-  cloud:
-    config:
-      uri: ${CONFIG_SERVER:http://localhost:8888}
-  profiles:
-    active: dev
