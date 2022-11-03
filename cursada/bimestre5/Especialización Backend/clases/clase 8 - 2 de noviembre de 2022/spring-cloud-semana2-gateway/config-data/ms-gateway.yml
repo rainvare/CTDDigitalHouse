@@ -1,0 +1,41 @@
+server:
+  port: ${PORT:${SERVER_PORT:8080}}
+
+spring:
+  application:
+    name: ms-gateway
+  cloud:    
+    gateway:
+      default-filters:
+        - name: FilterCustom
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: mscourse
+          uri: lb://ms-course
+          predicates:
+            - Path=/course/**
+        - id: mssubscription
+          uri: lb://ms-subscription
+          predicates:
+            - Path=/subscription/**
+
+info:
+  app:
+    name: ${spring.application.name}
+
+eureka:
+   client:
+      registerWithEureka: false
+      fetchRegistry: true
+      serviceURL:
+         defaultZone: http://localhost:8761/eureka
+management:
+   endpoint:
+      gateway:
+         enabled: true
+   endpoints:
+      web:
+         exposure:
+            include: gateway

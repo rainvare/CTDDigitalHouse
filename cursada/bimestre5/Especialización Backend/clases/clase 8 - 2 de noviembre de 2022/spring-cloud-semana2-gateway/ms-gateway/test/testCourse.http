@@ -1,0 +1,13 @@
+### GET request with a header
+GET http://localhost:62666/course/find
+Accept: application/json
+
+
+### GET request with a header
+GET http://localhost:8080/course/find
+Accept: application/json
+
+
+### GET request with a header
+GET http://localhost:8080/subscription/find
+Accept: application/json

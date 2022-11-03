@@ -1,0 +1,3 @@
+Consigna:
+Opcion A: Crear otro metodo en algun controller de ms-course o ms-susbcription y probar desde la carpeta test que esta en api-gateway
+Opcion B: crear un nuevo controller, y mapear ese nuevo en el archivo de configuración (pueden hacer fork del repo) asi no modifican todo el mismo que esta
