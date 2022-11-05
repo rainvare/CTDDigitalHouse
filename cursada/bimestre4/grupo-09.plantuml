@@ -1,0 +1,443 @@
+@startuml
+
+title __WESPED's Class Diagram__\n
+
+  namespace com.dh.Wesped {
+    namespace Controller {
+      class com.dh.Wesped.Controller.AuthController {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Controller {
+      class com.dh.Wesped.Controller.BookingController {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Controller {
+      class com.dh.Wesped.Controller.CategoryController {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Controller {
+      class com.dh.Wesped.Controller.CityController {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Controller {
+      class com.dh.Wesped.Controller.FeatureController {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Controller {
+      class com.dh.Wesped.Controller.ImageController {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Controller {
+      class com.dh.Wesped.Controller.PolicyController {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Controller {
+      class com.dh.Wesped.Controller.ProductController {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Controller {
+      class com.dh.Wesped.Controller.UserController {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Exceptions {
+      class com.dh.Wesped.Exceptions.BadRequestException {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Exceptions {
+      class com.dh.Wesped.Exceptions.GlobalExceptions {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Exceptions {
+      class com.dh.Wesped.Exceptions.ResourceNotFoundException {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Model {
+      class com.dh.Wesped.Model.Booking {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Model {
+      class com.dh.Wesped.Model.Category {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Model {
+      class com.dh.Wesped.Model.City {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Model {
+      class com.dh.Wesped.Model.Feature {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Model {
+      class com.dh.Wesped.Model.Image {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Model {
+      class com.dh.Wesped.Model.Policy {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Model {
+      class com.dh.Wesped.Model.Product {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Model {
+      class com.dh.Wesped.Model.Role {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Model {
+      enum RoleName {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Model {
+      class com.dh.Wesped.Model.User {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Repository {
+      interface com.dh.Wesped.Repository.BookingRepository {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Repository {
+      interface com.dh.Wesped.Repository.CategoryRepository {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Repository {
+      interface com.dh.Wesped.Repository.CityRepository {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Repository {
+      interface com.dh.Wesped.Repository.FeatureRepository {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Repository {
+      interface com.dh.Wesped.Repository.ImageRepository {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Repository {
+      interface com.dh.Wesped.Repository.PolicyRepository {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Repository {
+      interface com.dh.Wesped.Repository.ProductRepository {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Repository {
+      interface com.dh.Wesped.Repository.UserRepository {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Security {
+      class com.dh.Wesped.Security.AppUser {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Security {
+      class com.dh.Wesped.Security.AppUserService {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Security {
+      namespace Jwt {
+        class com.dh.Wesped.Security.Jwt.JwtEntryPoint {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Security {
+      namespace Jwt {
+        class com.dh.Wesped.Security.Jwt.JwtProvider {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Security {
+      namespace Jwt {
+        class com.dh.Wesped.Security.Jwt.JwtTokenFilter {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Security {
+      namespace Payload {
+        class com.dh.Wesped.Security.Payload.LoginRequest {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Security {
+      namespace Payload {
+        class com.dh.Wesped.Security.Payload.LoginResponse {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Security {
+      namespace Payload {
+        class com.dh.Wesped.Security.Payload.RegisterRequest {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Security {
+      class com.dh.Wesped.Security.SecurityConfiguration {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Service {
+      class com.dh.Wesped.Service.BookingService {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Service {
+      class com.dh.Wesped.Service.CategoryService {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Service {
+      class com.dh.Wesped.Service.CityService {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Service {
+      class com.dh.Wesped.Service.FeatureService {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Service {
+      class com.dh.Wesped.Service.ImageService {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Service {
+      class com.dh.Wesped.Service.PolicyService {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Service {
+      class com.dh.Wesped.Service.ProductService {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Service {
+      class com.dh.Wesped.Service.UserService {
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    class com.dh.Wesped.WespedApplication {
+    }
+  }
+  
+
+  com.dh.Wesped.Controller.AuthController o-- com.dh.Wesped.Security.Jwt.JwtProvider : jwtProvider
+  com.dh.Wesped.Controller.AuthController o-- com.dh.Wesped.Service.UserService : userService
+  com.dh.Wesped.Controller.BookingController o-- com.dh.Wesped.Service.BookingService : bookingService
+  com.dh.Wesped.Controller.CategoryController o-- com.dh.Wesped.Service.CategoryService : categoryService
+  com.dh.Wesped.Controller.CityController o-- com.dh.Wesped.Service.CityService : cityService
+  com.dh.Wesped.Controller.FeatureController o-- com.dh.Wesped.Service.FeatureService : featureService
+  com.dh.Wesped.Controller.ImageController o-- com.dh.Wesped.Service.ImageService : imageService
+  com.dh.Wesped.Controller.PolicyController o-- com.dh.Wesped.Service.PolicyService : policyService
+  com.dh.Wesped.Controller.ProductController o-- com.dh.Wesped.Service.ProductService : productService
+  com.dh.Wesped.Controller.UserController o-- com.dh.Wesped.Service.UserService : userService
+  com.dh.Wesped.Model.Booking o-- com.dh.Wesped.Model.Product : product
+  com.dh.Wesped.Model.Booking o-- com.dh.Wesped.Model.User : user
+  com.dh.Wesped.Model.Image o-- com.dh.Wesped.Model.Product : product
+  com.dh.Wesped.Model.Product o-- com.dh.Wesped.Model.Category : category
+  com.dh.Wesped.Model.Product o-- com.dh.Wesped.Model.City : city
+  com.dh.Wesped.Model.Role o-- com.dh.Wesped.Model.RoleName : name
+  com.dh.Wesped.Model.User o-- com.dh.Wesped.Model.Role : role
+  com.dh.Wesped.Security.AppUser .up.|> org.springframework.security.core.userdetails.UserDetails
+  com.dh.Wesped.Security.AppUserService .up.|> org.springframework.security.core.userdetails.UserDetailsService
+  com.dh.Wesped.Security.AppUserService o-- com.dh.Wesped.Service.UserService : userService
+  com.dh.Wesped.Security.Jwt.JwtEntryPoint .up.|> org.springframework.security.web.AuthenticationEntryPoint
+  com.dh.Wesped.Security.Jwt.JwtTokenFilter -up-|> org.springframework.web.filter.OncePerRequestFilter
+  com.dh.Wesped.Security.Jwt.JwtTokenFilter o-- com.dh.Wesped.Security.AppUserService : appUserService
+  com.dh.Wesped.Security.Jwt.JwtTokenFilter o-- com.dh.Wesped.Security.Jwt.JwtProvider : jwtProvider
+  com.dh.Wesped.Security.SecurityConfiguration -up-|> org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+  com.dh.Wesped.Security.SecurityConfiguration o-- com.dh.Wesped.Security.AppUserService : appUserService
+  com.dh.Wesped.Security.SecurityConfiguration o-- com.dh.Wesped.Security.Jwt.JwtEntryPoint : jwtEntryPoint
+  com.dh.Wesped.Service.BookingService o-- com.dh.Wesped.Repository.BookingRepository : bookingRepository
+  com.dh.Wesped.Service.CategoryService o-- com.dh.Wesped.Repository.CategoryRepository : categoryRepository
+  com.dh.Wesped.Service.CityService o-- com.dh.Wesped.Repository.CityRepository : cityRepository
+  com.dh.Wesped.Service.FeatureService o-- com.dh.Wesped.Repository.FeatureRepository : featureRepository
+  com.dh.Wesped.Service.ImageService o-- com.dh.Wesped.Repository.ImageRepository : imageRepository
+  com.dh.Wesped.Service.PolicyService o-- com.dh.Wesped.Repository.PolicyRepository : policyRepository
+  com.dh.Wesped.Service.ProductService o-- com.dh.Wesped.Repository.ProductRepository : productRepository
+  com.dh.Wesped.Service.UserService o-- com.dh.Wesped.Repository.UserRepository : userRepository
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

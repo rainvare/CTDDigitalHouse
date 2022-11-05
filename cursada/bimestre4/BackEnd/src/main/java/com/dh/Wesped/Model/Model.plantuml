@@ -1,0 +1,279 @@
+@startuml
+
+title __MODEL's Class Diagram__\n
+
+  namespace com.dh.Wesped {
+    namespace Model {
+      class com.dh.Wesped.Model.Booking {
+          - checkin : LocalDate
+          - checkout : LocalDate
+          - hour : LocalTime
+          - id : Integer
+          + Booking()
+          + Booking()
+          + getCheckin()
+          + getCheckout()
+          + getHour()
+          + getId()
+          + getProduct()
+          + getUser()
+          + setCheckin()
+          + setCheckout()
+          + setHour()
+          + setId()
+          + setProduct()
+          + setUser()
+          + toString()
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Model {
+      class com.dh.Wesped.Model.Category {
+          - description : String
+          - id : Integer
+          - products : Set<Product>
+          - title : String
+          - urlImage : String
+          + Category()
+          + Category()
+          + getDescription()
+          + getId()
+          + getProducts()
+          + getTitle()
+          + getUrlImage()
+          + setDescription()
+          + setId()
+          + setProducts()
+          + setTitle()
+          + setUrlImage()
+          + toString()
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Model {
+      class com.dh.Wesped.Model.City {
+          - country : String
+          - id : Integer
+          - name : String
+          - products : Set<Product>
+          + City()
+          + City()
+          + getCountry()
+          + getId()
+          + getName()
+          + getProducts()
+          + setCountry()
+          + setId()
+          + setName()
+          + setProducts()
+          + toString()
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Model {
+      class com.dh.Wesped.Model.Feature {
+          - icon : String
+          - id : Integer
+          - products : Set<Product>
+          - title : String
+          + Feature()
+          + Feature()
+          + getIcon()
+          + getId()
+          + getProducts()
+          + getTitle()
+          + setIcon()
+          + setId()
+          + setProducts()
+          + setTitle()
+          + toString()
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Model {
+      class com.dh.Wesped.Model.Image {
+          - description : String
+          - id : Integer
+          - title : String
+          - urlImage : String
+          + Image()
+          + Image()
+          + getDescription()
+          + getId()
+          + getProduct()
+          + getTitle()
+          + getUrlImage()
+          + setDescription()
+          + setId()
+          + setProduct()
+          + setTitle()
+          + setUrlImage()
+          + toString()
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Model {
+      class com.dh.Wesped.Model.Policy {
+          - description : String
+          - id : Integer
+          - products : Set<Product>
+          - title : String
+          + Policy()
+          + Policy()
+          + getDescription()
+          + getId()
+          + getProducts()
+          + getTitle()
+          + setDescription()
+          + setId()
+          + setProducts()
+          + setTitle()
+          + toString()
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Model {
+      class com.dh.Wesped.Model.Product {
+          - availability : Boolean
+          - bookings : Set<Booking>
+          - description : String
+          - features : Set<Feature>
+          - id : Integer
+          - images : Set<Image>
+          - latitude : Double
+          - longitude : Double
+          - policies : Set<Policy>
+          - rating : Double
+          - title : String
+          + Product()
+          + Product()
+          + getAvailability()
+          + getBookings()
+          + getCategory()
+          + getCity()
+          + getDescription()
+          + getFeatures()
+          + getId()
+          + getImages()
+          + getLatitude()
+          + getLongitude()
+          + getPolicies()
+          + getRating()
+          + getTitle()
+          + setAvailability()
+          + setBookings()
+          + setCategory()
+          + setCity()
+          + setDescription()
+          + setFeatures()
+          + setId()
+          + setImages()
+          + setLatitude()
+          + setLongitude()
+          + setPolicies()
+          + setRating()
+          + setTitle()
+          + toString()
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Model {
+      class com.dh.Wesped.Model.Role {
+          - id : Integer
+          - users : Set<User>
+          + Role()
+          + Role()
+          + getId()
+          + getName()
+          + getUsers()
+          + setId()
+          + setName()
+          + setUsers()
+          + toString()
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Model {
+      enum RoleName {
+        ROLE_ADMIN
+        ROLE_USER
+      }
+    }
+  }
+  
+
+  namespace com.dh.Wesped {
+    namespace Model {
+      class com.dh.Wesped.Model.User {
+          - bookings : Set<Booking>
+          - city : String
+          - email : String
+          - id : Integer
+          - name : String
+          - password : String
+          - surname : String
+          + User()
+          + User()
+          + getBookings()
+          + getCity()
+          + getEmail()
+          + getId()
+          + getName()
+          + getPassword()
+          + getRole()
+          + getSurname()
+          + setBookings()
+          + setCity()
+          + setEmail()
+          + setId()
+          + setName()
+          + setPassword()
+          + setRole()
+          + setSurname()
+          + toString()
+      }
+    }
+  }
+  
+
+  com.dh.Wesped.Model.Booking o-- com.dh.Wesped.Model.Product : product
+  com.dh.Wesped.Model.Booking o-- com.dh.Wesped.Model.User : user
+  com.dh.Wesped.Model.Image o-- com.dh.Wesped.Model.Product : product
+  com.dh.Wesped.Model.Product o-- com.dh.Wesped.Model.Category : category
+  com.dh.Wesped.Model.Product o-- com.dh.Wesped.Model.City : city
+  com.dh.Wesped.Model.Role o-- com.dh.Wesped.Model.RoleName : name
+  com.dh.Wesped.Model.User o-- com.dh.Wesped.Model.Role : role
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

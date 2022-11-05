@@ -1,0 +1,85 @@
+{
+  "id": "61076b64-64a7-4b4f-979f-5dfa05be85d4",
+  "version": "2.0",
+  "name": "WESPED",
+  "url": "http://wesped-frontend.s3-website.us-east-2.amazonaws.com",
+  "tests": [{
+    "id": "c789d488-4af8-45f4-8bb5-22d985686679",
+    "name": "CDP-92 ",
+    "commands": [{
+      "id": "7b22a953-bddc-4cb1-b189-b0b6535f48d1",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ae68ed03-9e67-47d7-92f4-e874c787bb5a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "652x382",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "87ac0fd7-725c-4dfa-82c8-85aa83b8753e",
+      "comment": "",
+      "command": "click",
+      "target": "css=a:nth-child(2) > .sc-fEOsli",
+      "targets": [
+        ["css=a:nth-child(2) > .sc-fEOsli", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/header/nav/a[2]/button", "xpath:idRelative"],
+        ["xpath=//a[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Ingresar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "03d15645-05ae-48f8-a836-35dd56e0be90",
+      "comment": "",
+      "command": "click",
+      "target": "css=.sc-jIZahH",
+      "targets": [
+        ["css=.sc-jIZahH", "css:finder"],
+        ["xpath=//img[@alt='Logo Digital Booking']", "xpath:img"],
+        ["xpath=//div[@id='root']/div/header/div/a/img", "xpath:idRelative"],
+        ["xpath=//img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "93dc495b-5aa9-41d4-896e-1dd898ba5763",
+      "comment": "",
+      "command": "click",
+      "target": "css=a:nth-child(1) > .sc-fEOsli",
+      "targets": [
+        ["css=a:nth-child(1) > .sc-fEOsli", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/header/nav/a/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Crear cuenta')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3a02f758-4310-4016-b437-c106d8e03b7a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.sc-iAvgwm",
+      "targets": [
+        ["css=.sc-iAvgwm", "css:finder"],
+        ["xpath=//div[@id='root']/div/header/div/a[2]/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Encuentra la estadía de tus sueños')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "f5c76c25-611d-425a-b560-bb0583baf658",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://wesped-frontend.s3-website.us-east-2.amazonaws.com/"],
+  "plugins": []
+}

@@ -1,0 +1,67 @@
+[
+    {
+        "id": 1,
+        "img": "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/349359663.jpg?k=04c348094e45ca22f888f241acb332dc0007e7086e6cb91f987bbdd87108f6a2&o=&hp=1",
+        "category": "Hotel",
+        "title": "Fisher Island Club",
+        "location": "Rio de Janeiro, Brasil",
+        "description": "Este alojamiento está a 1 minuto a pie de la playa. El Rio Othon Palace, ubicado frente a la playa de Copacabana, cuenta con centro de fitness y piscina en la azotea con vistas hermosas al morro Pan de Azúcar."
+    },
+    {
+        "id": 2,
+        "img": "https://images.unsplash.com/photo-1631049552057-403cdb8f0658?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGhhYml0YWNpb24lMjBob3RlbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500",
+        "category": "Hostel",
+        "title": "Ibis Budget",
+        "location": "España, Madrid",
+        "description": "El Ibis Budget Madrid Calle Alcalá se encuentra a 1 km de la plaza de toros de Madrid y ofrece desayuno buffet continental con café, bollería, cereales y frutas. Hay WiFi gratuita en todas las instalaciones."
+    },
+    {
+        "id": 3,
+        "img": "https://images.unsplash.com/photo-1591924450983-b8f7587ea332?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+        "category": "Departamento",
+        "title": "Unique Executive",
+        "location": "Argentina, Buenos Aires",
+        "description": "El Unique Executive Central está situado en pleno centro de Buenos Aires, junto a la Plaza de La República y a poca distancia a pie de varios lugares de interés turístico."
+    },
+    {
+        "id": 4,
+        "img": "https://images.unsplash.com/photo-1568495248636-6432b97bd949?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGhhYml0YWNpb24lMjBob3RlbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500",
+        "category": "Bed and Breakfast",
+        "title": "Maison Villeroy",
+        "location": "Francia, Paris",
+        "description": "Disfruta este magnifico lugar en Paris Francia, essss donde conatmos con muchas actividades. Contamos con pileta, sauna, y muchas cosas mas para relajarse."
+    },
+    {
+        "id": 5,
+        "img": "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/349359663.jpg?k=04c348094e45ca22f888f241acb332dc0007e7086e6cb91f987bbdd87108f6a2&o=&hp=1",
+        "category": "Hotel",
+        "title": "Fisher Island Club",
+        "location": "Rio de Janeiro, Brasil",
+        "description": "Este alojamiento está a 1 minuto a pie de la playa. El Rio Othon Palace, ubicado frente a la playa de Copacabana, cuenta con centro de fitness y piscina en la azotea con vistas hermosas al morro Pan de Azúcar."
+    },
+    {
+        "id": 6,
+        "img": "https://images.unsplash.com/photo-1631049552057-403cdb8f0658?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGhhYml0YWNpb24lMjBob3RlbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500",
+        "category": "Hostel",
+        "title": "Ibis Budget",
+        "location": "España, Madrid",
+        "description": "El Ibis Budget Madrid Calle Alcalá se encuentra a 1 km de la plaza de toros de Madrid y ofrece desayuno buffet continental con café, bollería, cereales y frutas. Hay WiFi gratuita en todas las instalaciones."
+    },
+    {
+        "id": 7,
+        "img": "https://images.unsplash.com/photo-1591924450983-b8f7587ea332?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+        "category": "Departamento",
+        "title": "Unique Executive",
+        "location": "Argentina, Buenos Aires",
+        "description": "El Unique Executive Central está situado en pleno centro de Buenos Aires, junto a la Plaza de La República y a poca distancia a pie de varios lugares de interés turístico."
+    },
+    {
+        "id": 8,
+        "img": "https://images.unsplash.com/photo-1568495248636-6432b97bd949?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGhhYml0YWNpb24lMjBob3RlbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500",
+        "category": "Bed and Breakfast",
+        "title": "Maison Villeroy",
+        "location": "Francia, Paris",
+        "description": "Disfruta este magnifico lugar en Paris Francia, essss donde conatmos con muchas actividades. Contamos con pileta, sauna, y muchas cosas mas para relajarse."
+    }
+    
+]

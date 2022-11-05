@@ -1,0 +1,72 @@
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - when: always
+
+stages:
+  - build
+  - deploy
+
+backend_build_job:
+  stage: build
+  image: maven:3.8.6-openjdk-18-slim
+  script:
+    - cd ./BackEnd
+    - echo "Maven compile started"
+    - mvn clean install
+  artifacts:
+    paths:
+      - BackEnd/target/wesped.jar
+  rules:
+    - changes:
+      - BackEnd/**/*
+
+frontend_build_job:
+  stage: build
+  image: node:latest
+  script:
+      - cd ./frontend
+      - echo "Start building App"
+      - npm install
+      - CI=false npm run build
+      - echo "Build successfully!"
+  artifacts:
+    paths:
+      - frontend/build/
+  rules:
+    - changes:
+      - frontend/**/*
+
+backend_deploy_job:
+  stage: deploy 
+  image: alpine:3.11 
+  before_script: 
+      - apk update && apk add openssh-client bash 
+      - mkdir -p ~/.ssh 
+      - eval $(ssh-agent -s) 
+      - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null 
+      - touch ~/.ssh/config 
+      - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config 
+      - ssh-keyscan -H $DEPLOY_SERVER_IP >> ~/.ssh/known_hosts 
+  script:
+      - ssh ubuntu@$DEPLOY_SERVER_IP "sudo apt install openjdk-18-jdk -y" 
+      - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl stop wesped.service"
+      - scp BackEnd/target/wesped.jar ubuntu@$DEPLOY_SERVER_IP:~/wesped/ 
+      - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl start wesped.service"
+  rules:
+    - changes:
+      - BackEnd/**/*
+
+frontend_deploy_job:
+  stage: deploy
+  image: python:latest
+  script:
+      - echo "Deploying App"
+      - pip3 install awscli
+      - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+      - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+      - aws s3 sync ./frontend/build s3://$S3_BUCKET_NAME --delete
+  rules:
+    - changes:
+      - frontend/**/*

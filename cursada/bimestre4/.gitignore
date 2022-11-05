@@ -1,0 +1,7 @@
+# Sacar node_modules
+node_modules
+
+# Sacar archivos particulares de IDEs y de Mac
+.DS_Store
+.idea
+.vscode
