@@ -49,9 +49,18 @@ La tecnología habilita nuevos negocios y estos afectan principalmente al back e
 - [Configuración en sistemas distribuidos](#t4) 
 - [Invocaciones REST declarativas y balanceo de carga](#t5) 
 - [ API Gateway](#t6)
+    - [Componentes de Spring Cloud Gateway](#componentesgateway)
+    -[Implementacion Gateway](#implementaciongateway)
+    -[Load balancer](#loadbalancer)
 - [Evaluación](#t7) 
 - [API Gateway - Seguridad](#t8) 
+    - [Spring Security - OAuth 2.0](#oauth)
+    - [Roles OAuth](#rolesoauth)
+    - [Flujo del proceso de autorización](#flujooauth)
+    -[Sobre la seguridad de los endpoints](#seguridadendpoints)
+    -[Spring Security](#springsecurity)
 - [Patrón Circuit Breaker](#t9) 
+    -[Resilience4J](#Resilience4J)
 - [Traceo distribuido](#t10) 
 
 3. Módulo 3 -  Mensajería asincrónica
@@ -602,10 +611,371 @@ Crear un endpoint REST en cada servicio con el nombre “/config” que muestre 
 ---- 
 
 ### Invocaciones REST declarativas y balanceo de carga <a id='t5'></a>
+
+## Introducción a Feign
+### ¿Qué son las invocaciones declarativas?
+Las invocaciones declarativas han sido creadas para facilitar la integración entre microservicios mediante la creación de clientes HTTP de forma declarativa. Esto significa que se simplifica la invocación entre estos microservicios. El desarrollador simplemente necesita crear una interfaz y configurarla mediante anotaciones. No se necesita programar toda la lógica de conexión e invocación de una API, sino que simplemente se declara escribiendo anotaciones en los métodos que necesitamos invocar y/o exponer.
+
+Feign nos servirá para hacer invocaciones declarativas y es un componente que originalmente fue desarrollado por Netflix. Actualmente, se integró dentro de los componentes de Spring Cloud, rebautizado como Spring Cloud OpenFeign. Gracias a la integración con Spring Cloud, dentro de sus ventajas podemos destacar:
+
+- Autodescubrimiento: utilizando Eureka, podemos hacer llamadas a los microservicios utilizando el nombre en lugar de una URL formada por IP y puerto.
+- Balanceo de carga: podemos integrar Feign con un balanceador de carga como Spring Cloud LoadBalancer.
+
+[Ver guía de configuración](./clases/config-guias/ConfiguraciónFeign.pdf")
+
+## ¿Qué es el balanceo de carga?
+Según lo visto, podemos mencionar que el balanceo de carga es el proceso de distribuir el tráfico a través de diferentes instancias de la misma aplicación.
+[](./img/balanceo-de-carga-01.jpg)
+
+Para crear un sistema tolerante a fallas es común ejecutar múltiples instancias de cada aplicación. Por lo tanto, cuando un servicio quiera comunicarse con otro que tiene varias instancias en ejecución, necesitaremos de un mecanismo que nos ayude a elegir la instancia más adecuada para recibir la petición.
+
+¿Cómo funcionan los balanceadores de carga?
+Los balanceadores de carga utilizan diferentes algoritmos para elegir la instancia más adecuada. Existen muchos algoritmos, algunos de los más utilizados por los balanceadores de carga son:
+[](./img/ejemplos-de-balanceo-de-carga_Mesa-de-trabajo-1.jpg)
+
+Para cerrar, podemos mencionar que utilizar un balanceador de carga es una parte esencial a la hora de construir sistemas tolerantes a fallos. Usando Spring Cloud Load Balancer podemos elegir diferentes técnicas de balanceo para distribuir la carga a través de las diferentes instancias.
+
+Para comunicar servicios REST, siempre necesitaremos de un cliente REST. Utilizar Feign —además de permitirnos comunicarnos— nos ofrece las ventajas de integrarse con Eureka para hacer completamente transparente la comunicación al desacoplarnos de una dirección física.
+
+### Ejercicio Asincrónico clase 7
+¡A practicar!
+Para la plataforma online de educación, en donde los usuarios adquieren un plan y pueden acceder a diferentes cursos, nos solicitan migrar algunos de sus servicios a Java utilizando Spring Cloud.
+
+Para esta etapa vamos a empezar con el microservicio encargado de gestionar los diferentes Planes/Suscripciones y con el microservicio encargado de gestionar los cursos.
+
+Servicio de suscripciones:
+Este servicio cuenta con dos entidades —suscripción y plan—, en donde la suscripción tiene un plan. Detalle:
+
+Plan
+Id
+name
+price
+Subscription
+id
+startDate
+endDate
+plan
+userId
+
+Nuestro tech lead nos pide:
+
+- Crear un proyecto y configurarlo con Eureka server.
+- Crear el servicio de suscripciones y configurarlo con Eureka Client.
+- El nombre con el que se registrará en Eureka deberá ser subscripcion-service.
+- Exponer una API que nos permita buscar una suscripción pasándole como parámetro el ID de usuario.
+- El endpoint deberá ser /subscription/find y como parámetro userId. Ejemplo: http://localhost:8081/subscription/find?userId=1.
+- Implementar JpaRepository con H2 como base de datos (opcional).
+Servicio de cursos:
+
+Este servicio también cuenta con dos entidades —curso y capítulo—, en donde cada curso tiene un listado de capítulos. Detalle:
+
+Course
+id
+name
+chapters
+Chapter
+id
+name
+urlStreaming
+course
+
+
+Nuestro tech lead nos pide:
+
+- Crear el servicio de cursos y configurarlo con Eureka Client.
+- -El nombre con el que se registrará en Eureka deberá ser course-service.
+- Exponer una API que nos permita obtener un curso mediante el ID.
+- El endpoint deberá ser /courses/{courseId}.
+- Además, este endpoint recibe por header el ID del usuario.
+- Antes de buscar el curso, validar que el usuario tenga una suscripción activa al momento.
+- Utilizando Feign buscar la suscripción del usuario (microservicio de suscripciones) y validar que se encuentra activa comparando la fecha actual con la fecha de inicio y fin de la suscripción. En caso de estar activa, retornar el curso. Si no está activa, retornar un mensaje.
+- Implementar JpaRepository con H2 como base de datos (opcional).
+
 ### API Gateway <a id='t6'></a>
+
+La solución de Spring Cloud nos provee de un framework llamado Spring Cloud Gateway que implementa el patrón Edge Server y nos brinda varias herramientas para aprovechar este punto en común de comunicación con el ecosistema de microservicios desde sistemas externos.
+[ejemplo gateway](./img/intro-api-gateway.jpg)
+
+Recordemos nuestra Fintech de DH que vimos en la primera clase y analicemos la forma de comunicación de la solución.
+[ejemplo fintech](./img/ejemplo-fintech-dh-01.jpg)
+
+Como podemos apreciar en la imagen, tenemos dos canales de comunicación: uno público y otro privado. El canal violeta —o seguro— está compuesto por las comunicaciones internas entre microservicios en puertos diferentes al 8080, sobre el cual no tienen acceso desde fuera de la red. Por esta razón, un front end no podría invocar a estos servicios de forma directa. Mientras que el canal amarillo —o público— es utilizado para dar acceso desde nuestro Cloud Gateway al mundo exterior. 
+
+A continuación, veamos algunas de las ventajas de esta arquitectura.
+[genialy api gateway](https://view.genial.ly/621045cb6ad65900195e681c)
+
+## Componentes de Spring Cloud Gateway <a id='componentesgateway'></a>
+[genialy api gateway](https://view.genial.ly/620ebdf5441b710019f0201c)
+
+## Implementación de Spring Cloud Gateway <a id='implementaciongateway'></a>
+La implementación la vamos a realizar sobre la base de dos microservicios de nuestra Fintech DH: el microservicio de usuarios y el de productos. Tomamos como punto de partida el siguiente diagrama para implementar los componentes que vimos teóricamente.
+[implementación](./img/implementaci%C3%B3n-de-spring-cloud-gateway2-01.jpg)
+
+[Guía de configuración](./clases/config-guias/Configuraci%C3%B3n%20de%20proyecto%20gateway.pdf) 
+
+## Ejercicio Asincrónico clase 8
+¡A practicar!
+La gerencia de arquitectura de DH Fintech necesita comenzar a agregar tareas relacionadas con cross-cutting concerns en todos sus microservicios. Para esto nos solicita agregar Spring Cloud Gateway a los microservicios de productos y usuarios que se encuentran en el ZIP adjunto. Debemos encapsular los endpoints de estos dos microservicios bajo el puerto 8090.
+
+¿Qué debemos hacer?
+
+Identificar los servicios a agregar analizando el código.
+Identificar las rutas adecuadas para esos servicios. Estas deben tener sentido semántico —por ejemplo, en los servicios de “Productos”, la ruta no debería ser “/cursos”—. Recordar la buena práctica de que las rutas sean en plural (salvo excepciones), respetar los parámetros de las rutas —cuándo va en la ruta y cuándo en el querystring, es decir, “/productos/12” o “/product?id=12”—.
+Una vez que se tienen identificadas las rutas, analizar la forma más eficiente y clara de aplicar los filtros.
+Impactar lo resuelto en los pasos anteriores en los distintos archivos de código y configuración.
+A continuación, compartimos un diagrama de ejemplo de una aplicación. Podemos observar que los distintos clientes entran por el API Gateway y, a su vez, este redirige a cada microservicio. Podemos hacer un gráfico similar para el ejercicio y, a continuación, hacer las rutas.
+
+[](./img/ejercicio-clase-api-gateway--8A.jpg)
+[](./img/Cross-cutting-concern-8A.jpg)
+
+## Load balancer <a id='loadbalancer'></a>
+La mejor alternativa para manejar el balanceo de carga es agregando una capa de balanceo de carga del lado del servidor. De esta manera, solo el cliente conoce la URL del servidor de balanceo de cargas e internamente se realiza el balanceo.
+
+[](./img/load-balancer-mesa-de-trabajo-1.jpg)
+
+Con esta arquitectura las ventajas están a la vista. El cliente solo debe de ejecutar una única URL, donde, si agregáramos una nueva instancia al clúster, solo tenemos que actualizar el Load balancer y para las aplicaciones sería algo transparente, ya que no se enterarán del cambio. Además, podemos realizar el balanceo de la carga mediante el algoritmo que determinemos que mejor se adapta y, de esta forma, estamos seguros de que la carga se distribuye adecuadamente entre todos los servidores.
+
+Por último, conseguimos incrementar la seguridad, ya que solo exponemos a Internet (red pública) el balanceador de cargas, mientras que el resto de los servicios pueden estar en una red sin salida a Internet. Esto disminuye la posibilidad de un ataque desde fuera de la red.
+
+## Ejemplo de acciones tomadas por una compañía
+A continuación te mostramos las decisiones de infraestructura que una start-up fue tomando a lo largo del tiempo. Estas comienzan a ser posibles gracias a una arquitectura basada en microservicios:
+
+Día 1: La compañía contrata una instancia de AWS con un objetivo claro en todas las start-ups: salir rápido a producción. Implementa su aplicación y base de datos. La primera semana tienen 0 usuarios.
+
+Día 90: La compañía tiene 1000 usuarios. Se comienza a implementar gran cantidad de nuevas funcionalidades solicitadas por los usuarios. Por ahora, sin cambios de infraestructura. El crecimiento es del 30% mensual.
+
+Día 180: La compañía a esta altura logra crecer a 2000 usuarios. El servidor se empieza a quedar sin capacidad. Se adquiere más memoria/CPU/disco (escalamiento vertical).
+
+Día 360: El crecimiento comienza a dispararse, se llega a 26.000 usuarios y ya no es posible seguir escalando, es decir, seguir agregando memoria y procesamiento al mismo servidor. La compañía necesita adquirir otro servidor para balancear la carga (escalamiento horizontal).
+
+## API Gateway
+A continuación repasaremos las características y funcionalidades que ofrece Spring Cloud Gateway.
+[características](./img/caracteristicas-spring-cloud-gateway.jpg)
+
 ### Evaluación <a id='t7'></a>
+[Ver parcial](https://github.com/rainvare/esp-back-i-parcial)
 ### API Gateway - Seguridad <a id='t8'></a>
+En clases anteriores, presentamos qué es API Gateway, pero aquí hablaremos más específicamente sobre autenticación, Spring Cloud y Spring Security.
+
+Retomando qué es el API Gateway
+El mismo nombre de este recurso ya anticipa su funcionalidad: en español, gateway significa “puerta de entrada”. Situada entre el cliente y los servicios del back end, API Gateway actúa como un proxy inverso que filtra el tráfico de todas las solicitudes y dirige los datos y las llamadas a la ubicación adecuada.
+
+El gateway actúa como un mecanismo de seguridad que garantiza la protección a través de la autenticación de los usuarios, limitando las conexiones y los permisos de los usuarios. Esto facilita el control de acceso al back end y al servicio web, ya que centraliza las solicitudes en un único punto de entrada, lo que permite enrutar el tráfico. Además, la API de negocio se vuelve menos compleja y mucho más sencilla de mantener, ya que la función de control de acceso se concentra en la API del gateway.
+## Spring Security - OAuth 2.0 <a id='oauth'></a>
+Intuitivamente, podemos relacionar el nombre OAuth 2.0 con autenticación y seguridad. OAuth es un protocolo estándar para la autorización, permite que las aplicaciones web, móviles y de escritorio obtengan acceso limitado a la información del usuario a través del protocolo HTTP. Puede considerarse un marco de autorización que tiene un estándar abierto para la autenticación en sistemas que usan HTTP. Empresas muy grandes y famosas —como Twitter, Google, Facebook y GitHub— utilizan esta tecnología.
+
+Es común encontrar el uso de esta tecnología en las pantallas de inicio de sesión, por ejemplo, en los sitios web de las empresas mencionadas anteriormente. Sin embargo, nos encontraremos mucho con este protocolo en la autenticación de APIs, donde se deberá generar un token para poder acceder a estas, de una forma segura y eficiente.
+
+## ¿Por qué OAuth?
+En la práctica, la mayoría de los sitios tienen sus propios mecanismos de autenticación (cuando se registran les pide un correo y una contraseña). Pero, por otro lado, también permiten loguearse con las credenciales de otros proveedores (Google, por ejemplo). Muchos usuarios usan el segundo mecanismo y, a su vez, a las empresas les conviene desde el punto de vista de negocio, porque automatizan el proceso de onboarding (ingreso de usuarios a una nueva plataforma) y, desde el punto de vista tecnológico, delega el proceso de autenticación —con sus costos y riesgos asociados— en un proveedor validado.
+
+[](https://view.genial.ly/623087fdee2eb40011314b37)
+
+## Roles de OAuth <a id='rolesoauth'></a>
+A continuación conoceremos los roles de OAuth.
+[roles](./img/Los-4-roles-del-OAuth-2.0.jpg)
+
+## Flujo del proceso de autorización <a id='flujooauth'></a>
+Ahora que conocemos los pilares que estructuran OAuth 2.0, comprendamos el flujo durante el proceso de autorización. Sin embargo, recordemos que el flujo que se muestra es una descripción general, ya que puede ser un poco diferente según el tipo de concesión de autorización y el uso. Para comprenderlo, hagamos un repaso de los conceptos de autenticación y autorización:
+
+Autenticación: es el proceso que determina que un usuario es quien dice ser.
+Autorización: es el proceso que determina que un determinado usuario puede ejecutar determinada acción.
+En la práctica, un usuario provee un usuario, una contraseña y, en algunos casos, una segunda contraseña (llamada segundo factor de autenticación). A partir de esto, se obtiene un token de sesión (un string encriptado) que se verifica en el server. El “uso malicioso” de este token se conoce como session hijacking.
+
+Respecto de la autorización, proceso posterior a la autenticación, cada vez que se recibe un request se obtiene un objeto con los datos del usuario asociado a esa sesión. Entre estos datos vienen los denominados claims o permissions que son por lo general strings con un determinado protocolo, por ejemplo, JWT. En la práctica, estos permisos no son otra cosa más que “roles”, a los usuarios se les asignan estos roles y las aplicaciones o microservicios controlan que un usuario tenga uno o más roles según el caso.
+
+A continuación, veremos el flujo del proceso de autorización de OAuth 2.0.
+
+[](https://view.genial.ly/622f73407f06120011d379b9)
+
+### Sobre la seguridad de los endpoints <a id='seguridadendpoints'></a>
+En primer lugar, veamos cómo es el flujo de un request asumiendo que ha pasado todos los controles de seguridad.
+[](./img/Sobre_la_seguridad_de_los_endpoints.png)
+
+Este tipo de diagrama se conoce como diagrama de secuencia UML. Por lo general, las fechas tienen llamadas a métodos. En la práctica, el microservicio no es una caja negra y, además, la base de datos es parte del microservicio. Veamos cómo sería en detalle en la práctica.
+
+[](./img/Sobre_la_segurida_de_los_endpoints.png)
+
+De acuerdo a lo visto en el gráfico, podemos apreciar que el gateway recibe un request a una determinada ruta y este conoce a qué instancia de microservicio redirigir dicho pedido. Este accionar, el gateway, lo realiza a través de un manejador de rutas (RouteHandler), el cual a su vez deriva el pedido a un controlador (Controller) que es quien finalmente invoca al servicio de negocio solicitado.
+
+Luego, como en toda aplicación en capas, la capa de servicios realiza las transformaciones (DTO) y validaciones de negocio necesarias para enviar a la capa de datos solo la información que necesita. La capa de datos traduce la información recibida en sentencias SQL para ser enviada a la base de datos (patrón DAO).
+
+De la misma manera, la respuesta genera el camino inverso. La base de datos responde a la capa de datos la petición generada a través de la sentencia SQL recibida. Luego, esta la envía a la capa de servicios, para finalmente dirigir la información al controlador, quien transforma la información recibida en un response y devuelve esta respuesta al origen que —a los ojos de quien generó la petición— es el gateway.
+
+### Seguridad
+En el diagrama anterior, vimos con cierto detalle el camino con el que se ejecuta un request. Cuanto más se acerque un request a la base de datos, más costoso es en términos de consumo de recursos.
+
+Si pensamos en la seguridad como un filtro, el punto más claro para aplicar seguridad es el gateway. Esto no es absoluto, pero es el caso típico, si un usuario exterior solo puede acceder por el gateway no tiene sentido aplicar seguridad en los microservicios individuales. No obstante, los riesgos se miden de acuerdo a “probabilidad x impacto”, e incluso existen ciertas regulaciones (SOX, por ejemplo) y buenas prácticas. Esto sugiere que se pueden aplicar controles redundantes de seguridad a fin de mitigar riesgos. Por ejemplo, que un endpoint en el gateway tenga un fallo de seguridad que permita pasar un request a los microservicios sin autenticación. Este tipo de fallo se conoce como “back door”.
+
+Otro caso típico son controles en la base de datos, la restricción de ciertos comandos e incluso backups y rollbacks de transacciones no autorizadas. Supongamos un usuario ya logueado que en un campo de texto logra hacer un ataque de SQL injection. El request, al estar autenticado, pasaría el firewall e iría hasta la base de datos, entonces, es necesario aplicar un “DROP ALL TABLES”.
+
+En esta clase vamos a ver cómo aplicar oAuth sobre un gateway de Spring.
+
+## Spring Security <a id='springsecurity'></a>
+Repasando lo visto en clases anteriores, el mecanismo de seguridad por default de Spring es Spring Security. Este provee mecanismos de autenticación (un usuario es quien dice ser), autorización (un usuario determinado puede ejecutar determinadas acciones) y gestión de tokens de sesiones. Existen diferentes maneras de representar esto, pero en la práctica terminan siendo una serie de tablas en la base de datos que contienen la información de los usuarios y sus permisos. La magia de Spring permite gestionar esa información de manera automática, lo que se traduce en logins, permisos, accesos, ABM de usuarios, etc.
+
+## ¿Cómo funciona la autenticación vía web?
+Cada vez que usamos el navegador y abrimos una página web, internamente hacemos un request contra esa página. Al hacer esa petición, además de la ruta y los parámetros, el navegador envía información en forma de “headers”, que no son más que valores “key-value” que pueden ser leídos por quien recibe la petición. Hay varios tipos de headers: de idioma, de locación, de manejo de caché, pero a nosotros nos interesan los de seguridad.
+
+Entre esos valores tenemos el header “authorization”, el cual posee dos valores (separados por un espacio, recordemos que el valor es un string encodeado): el primero es el tipo de autenticación y el segundo serían las credenciales. Hay muchas implementaciones y estándares, e incluso estas implementaciones se suelen customizar por temas de seguridad y performance.
+
+El caso más sencillo sería pedir usuario y contraseña, guardarlo del lado del cliente y enviarlo encodeado con cada request sin encriptar. Efectivamente, este tipo de autenticación se llama justamente “basic”. Header de ejemplo:
+```cmd
+Authorization: Basic AXVubzpwQDU1dzByYM==
+```
+Esto es muy inseguro, ya que cualquiera que pudiera leer los headers automáticamente tendría el user y el password del usuario.
+Entonces, el próximo paso sería que en el server se genere un token, el cual por lo general es una función hash (si recuerdan de Java, la función hashCode genera un string único a partir del valor de las propiedades de un objeto), entonces, cuando el usuario se loguea la primera vez, el server le devuelve el token que debe usar de ahora en adelante. Este tipo de autenticación se llama Bearer.
+```cmd
+Authorization: Bearer
+```
+Supongamos que tenemos varias aplicaciones (o varias APIs) y queremos diferenciar el acceso a una API u otra. Entonces, empezamos a jugar con otro parámetro que entra en combinación con el anterior. Este tipo de autenticación se conoce como autenticación por API Key.
+```cmd
+X-API-Key: abcdefgh123456789
+```
+Vamos avanzando un poco más. En los casos anteriores, había que enviar usuario y contraseña en texto “planos” (no es estrictamente así, pero a fines ilustrativos supongamos que sí) al menos una vez y almacenarlos de la misma manera. De esta forma, el servidor debería conocer nuestro password. Pero ¿podríamos hacer que el servidor no sepa nuestro password y aun así poder autenticarlo? Volvamos al principio de la función hashCode de Java. Recuerden que —cuando vieron objetos— si sobreescribían la función equals, debían hacer lo mismo con la función hashCode, porque “objetos iguales deben devolver el mismo hashcode”. Entonces, siguiendo ese razonamiento, si yo tengo dos strings y quisiera saber si son iguales, podría hacerlo comparando tan solo sus hashcodes. Por lo que no tendría que conocer las strings originales. Este mecanismo se llama digest. Les compartimos un request de ejemplo:
+```cmd
+Authorization: Digest username=”admin” Realm=”abcxyz” nonce=”474754847743646”, uri=”/uri” response=”7cffhfr54685gnnfgerg8”
+```
+Este mecanismo es un poco más complejo que los otros, olvidémonos del parámetro URI que es la dirección de retorno. Veamos a continuación cómo funciona.
+
+[](https://view.genial.ly/6230bfeb7b9c2000197bfbe9)
+
+## Ejercicio Asincrónico clase 13
+¡A practicar!
+La autenticación es el acto de confirmar que algo o alguien es auténtico, es decir, una garantía de que cualquier afirmación de o sobre un objeto es verdadera. En este ejercicio, crearemos una aplicación que se encargará de autenticar al usuario que accederá a un sistema que se está creando.
+
+Imaginemos que necesitamos crear un sistema para una tienda de smartphones, en el cual tendremos dos tipos de usuarios: uno que será nuestro cliente y tendrá acceso a nuestra tienda, y otro será específico del sistema que tendrá acceso a nuestro back end. Para poder realizar esta actividad, en nuestra aplicación Spring, es necesario importar los siguientes recursos:
+
+Spring Web Starter
+Spring Security
+Como mencionamos, un punto importante es que esta aplicación tendrá dos tipos de usuarios:
+
+Uno que tendrá acceso a nuestro back end (que sus rutas en la API sean /backend/**).
+Otro que tendrá acceso a nuestro sistema, cada uno con sus dependencias (rutas /frontend/**).
+Deberemos seguir los siguientes pasos:
+
+Crear microservicio “frontend” (ruta /frontend/**)
+Endpoints:
+Ver listado de productos -> **/frontend/products (pueden hardcodear la respuesta) (GET)
+Mi perfil (mostrar el user del usuario) -> **/frontend/users/{id} (GET)
+Mostrar productos de una categoría -> **/frontend/product/{category} (GET)
+Crear microservicio “backend” (ruta /backend/**)
+Endpoints:
+Ver listado de productos -> /backend/products (GET)
+Ver listado de usuarios -> /backend/users (GET)
+Alta producto -> /backend/products (POST)
+Configurar estos servicios para utilizar un perfil u otro.
+Crear los usuarios mencionados, uno con perfil “backend” y otro “frontend”..
+Que el perfil “backend” también pueda acceder a los servicios “frontend”.
+Observaciones:
+
+Hardcodear las respuestas al principio, la clave del ejercicio es la seguridad.
+Una vez que tengan los servicios con autenticación es un plus darle funcionalidad.
+El caso de prueba ideal es que el usuario “backend” dé de alta un producto y el usuario “frontend” lo vea en una lista.
+Utilizar la siguiente información:
+
+Usuario de acceso a API: “userAPI” y contraseña: “user123”.
+Usuario de acceso al portal: “clienteSmartTienda” y contraseña: “cliente123" con el papel de “CLIENTE’’.
+
+
 ### Patrón Circuit Breaker <a id='t9'></a>
+
+## ¿Qué es la tolerancia a fallas?
+Cuando pasamos de construir sistemas monolíticos a microservicios, una de las primeras cosas que notamos es que cada uno de los componentes que se encuentran en nuestro ecosistema de microservicios es parte de una red. Y comunicarnos a través de una red puede traernos problemas que antes ignorábamos, ya que pasamos de tener una única aplicación en ejecución a varios componentes independientes que tienen que trabajar en conjunto para garantizar el correcto funcionamiento del sistema. Cuando hablamos de tolerancia a fallas en sistemas distribuidos, hacemos referencia a la capacidad del sistema para continuar en funcionamiento si alguno de sus componentes falla.
+
+### Problema
+Un sistema de microservicios que se comunica sincrónicamente puede estar expuesto a una cadena de fallas. Si un microservicio deja de responder, sus clientes también pueden tener problemas y dejar de responder a las solicitudes de sus clientes. El problema se propaga recursivamente a través del sistema, provocando fallos en cascada.
+
+### Solución
+Evitar enviar nuevas solicitudes a un servicio si detectamos un problema. Para comprobar el estado de los microservicios, utilizamos un Circuit Breaker que actúa de intermediario en la comunicación.
+
+## Estados 
+[](./img/estados-circuit-break.png)
+
+### Comprobando el estado con Actuator
+Resilience4j se integra con Actuator (una serie de servicios estándar que otorgan información sobre el estado del servicio) para exponer información sobre el estado del Circuit Breaker en tiempo real de varias maneras:
+
+El estado actual del Circuit Breaker puede ser monitoreado usando el endpoint /actuator/health.
+El Circuit Breaker además publica eventos en un endpoint de Actuator, por ejemplo, las transiciones de estados en /actuator/circuitbreakerevents.
+
+
+## Resilience4J <a id='Resilience4J'></a>
+Inicialmente, Spring Cloud nos ofrecía a Netflix Hystrix como Circuit Breaker. Sin embargo, actualmente, Spring Cloud implementa para esta tarea a una librería llamada Resilience4j. Esta es una librería de tolerancia a fallas de código abierto inspirada en Netflix Hystrix, pero diseñada para Java 8 y la programación funcional.
+
+[](./img/Resilience4j_antes_y_ahora.png)
+
+## Ejercicio asincrónico clase 14 
+¡Vamos a practicar!
+Nuestro chapter lead nos solicita implementar el patrón Circuit Breaker en la comunicación de dos microservicios que actualmente se registran en Eureka y se comunican utilizando Feign.
+
+Dado los siguientes microservicios, utilizar Spring Cloud Circuit Breaker en conjunto con Resilience4j para implementar el patrón Circuit Breaker en la comunicación entre product-service y review-service.
+
+ [eureka-server](https://drive.google.com/file/d/171WFB5lqJEA_PDXVymGPyPemHOLZo7z4/view)
+ [review-service](https://drive.google.com/file/d/1zHKsDqLS9uJafFNqc2IAzbVVGlRcdWv0/view?usp=sharing)
+ [product-service](https://drive.google.com/file/d/1Sp2bQp5DLbT7o9holJ1euvbBDsdXbiej/view?usp=sharing)
+
+API Doc:
+
+Review-service
+
+[GET] /review/find
+
+Request Params
+
+productId (requerido)
+faultPercent (probabilidad de que la API nos devuelva un error). (OPCIONAL)
+El parámetro faultPercent es utilizado para provocar un error, con el objetivo de probar el Circuit Breaker. Es un campo opcional, por defecto la probabilidad de error es 0.
+
+Ejemplos:
+
+Request:
+[GET]
+
+http://localhost:8084/review/find?productId=1&faultPercent=0
+
+faultPercent en 0 indica que tenemos 0% de probabilidades de que la API nos arroje un error.
+
+Response:
+```json
+      
+
+  [
+    {
+      "id": 1,
+       "title": "Buen producto",
+       "detail": "Buena relación/precio calidad",
+       "productId": 1,
+       "userId": 1
+    },
+    {
+       "id": 2,
+       "title": "¡Me encantó!",
+       "detail": "Excelente calidad",
+       "productId": 1,
+       "userId": 2
+   }
+  ]
+``` 
+
+    
+Request:
+[GET]
+
+http://localhost:8084/review/find?productId=1&faultPercent=99
+
+faultPercent en 99 indica que tenemos 99% de probabilidades de que la API nos arroje un error.
+
+Response:
+```json
+        
+
+      {
+        "timestamp": "2022-03-07T02:57:10.264+00:00",
+        "status": 500,
+        "error": "Internal Server Error",
+        "path": "/review/find"
+      }
+```   
 ### Traceo distribuido <a id='t10'></a>
 
 <!--###############################################--  MÓDULO 3 --#####################################################################-->
