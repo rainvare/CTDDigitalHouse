@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: eureka-server
+  cloud:
+    config:
+      enable: True
+      server:
+        git:
+          uri: http://localhost:8888
