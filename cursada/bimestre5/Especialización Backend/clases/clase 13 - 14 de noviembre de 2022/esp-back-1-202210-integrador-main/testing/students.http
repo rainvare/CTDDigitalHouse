@@ -1,0 +1,7 @@
+### GET request with a header
+GET http://localhost:8080/api/v1/students
+Accept: application/json
+
+### GET request with a header
+GET http://localhost:8080/api/v1/courses
+Accept: application/json
