@@ -1,0 +1,59 @@
+server:
+  port: ${PORT:${SERVER_PORT:8080}}
+
+
+
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: gateway
+  cloud:    
+    gateway:      
+      discovery:
+        locator:
+          enabled: true
+      default-filters:
+        - TokenRelay
+      routes:
+        - id: msstudent
+          uri: lb://api-student
+          predicates:
+            - Path=/api/v1/students/**
+        - id: mscourse
+          uri: lb://api-course
+          predicates:
+            - Path=/api/v1/courses/**
+  security:
+    oauth2:
+      client:
+        provider:
+          google:
+            issuer-uri: https://accounts.google.com
+        registration:
+          google:
+            client-id: 552889245564-03s2mfimec7bnv9kceks8dr4ivti5fvg.apps.googleusercontent.com
+            client-secret: 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
+            scope: openid
+            redirect_uri: http://localhost:8080/login/oauth2/code/google
+
+
+info:
+  app:
+    name: ${spring.application.name}
+
+eureka:
+   client:
+      registerWithEureka: false
+      fetchRegistry: true
+      serviceURL:
+         defaultZone: http://localhost:8761/eureka
+management:
+   endpoint:
+      gateway:
+         enabled: true
+   endpoints:
+      web:
+         exposure:
+            include: gateway

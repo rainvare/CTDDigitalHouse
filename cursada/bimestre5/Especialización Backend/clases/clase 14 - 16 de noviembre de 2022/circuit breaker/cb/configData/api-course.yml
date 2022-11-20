@@ -1,0 +1,47 @@
+server:
+  port: ${PORT:${SERVER_PORT:0}}
+spring:
+  application:
+    name: api-course
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/digitalhouse-dev
+    username: usr-digitalhouse
+    password: pwd-digitalhouse
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+    
+eureka:
+   client:
+      registerWithEureka: true
+      fetchRegistry: true
+      serviceURL:
+         defaultZone: http://localhost:8761/eureka
+
+resilience4j.circuitbreaker:
+  instances:
+    clientStudent:
+      registerHealthIndicator: true
+      slidingWindowSize: 10
+      permittedNumberOfCallsInHalfOpenState: 3
+      slidingWindowType: TIME_BASED
+      minimumNumberOfCalls: 20
+      waitDurationInOpenState: 50s
+      failureRateThreshold: 50
+      eventConsumerBufferSize: 10
+#      recordFailurePredicate: io.github.robwin.exception.RecordFailurePredicate
+
+resilience4j.retry:
+  instances:
+    clientStudent:
+      maxAttempts: 3
+      waitDuration: 10s
+      enableExponentialBackoff: true
+      exponentialBackoffMultiplier: 2
+      retryExceptions:
+        - org.springframework.web.client.HttpServerErrorException
+        - java.io.IOException
+#      ignoreExceptions:
+#        - io.github.robwin.exception.BusinessException

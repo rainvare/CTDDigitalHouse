@@ -1,0 +1,18 @@
+### GET request with a header
+GET http://localhost:8080/api/v1/students
+Content-Type: application/json
+
+### GET request with a header
+GET http://localhost:8080/api/v1/courses
+Content-Type: application/json
+
+
+
+### PATCH request with a header
+PATCH http://localhost:8080/api/v1/courses/addStudent
+Content-Type: application/json
+
+{
+    "courseId": 3,
+    "studentId": 22
+}
