@@ -75,8 +75,60 @@ Ambos deben correr en forma local en nuestras computadoras, por lo cual debemos 
         - [Funciones de información](#c4-27)
         - Funciones almacenadas
 
+- [Variables](#c7)
+- [Condicionales](#c7-1)
+- [Estructuras repetitivas](#c7-2)
+
+- [Cursores](#c8)
+ - [Ventajas y Desventajas](#c8-1)
+
+- [Tablas Temporales](#c8-2)
+
+- [Subconsultas](#c9-1)
+  - [Escalares](#c9-1-1)
+  - [Subconsultas con EXISTS o NOT EXISTS](#c9-1-2)
+  - [Subconsultas relacionadas](#c9-1-3)
+
+- [Triggers](#c9-2)
+  - [Crear un trigger](#c9-2-1)
+  - [Eliminar un trigger](#c9-2-2)
+  - [¿Cuándo se usan?](#c9-2-3)
+
+- [Manejo de errores](#c10)
+  - [Handlers](#c10-1)
+    - [Creación](#c10-1-1)
+    - [Tipos de condiciones](#c10-1-1)
+  - [Conditions](#c10-2)
+    - [Creación](#c10-2-1)
+    - [Tipos de condiciones](#c10-2-2)
+    
+- [Transacciones](#c10-3)
+  - [Niveles de aislamiento](#c10-4)
+
+- [Optimización](#c11)
+ - [Índices](#c11-1)
+   - Ventajas y Desventajas
+   - [Índices agrupados](#c11-1)
+   - [Índices agrupados](#c11-2)
+   - [Unique](#c11-3)
+   - [FullText](#c11-3)
+ - [Estructuras de almacenamiento](#c11-5)
+   - [B-Tree](#c11-5-1)
+   - [Hash](#c11-5-2)
+ - [Informes de optimización](#c12)
+   - [Schema Inspector](#c12-1)
+      - [Cardinalidad](#c12-1-2)
+   - [Table Inspector](#c12-2)
+
+- [Herramientas](#c14)
+
 3. Módulo 3 -  Bases de datos no relacionales
-- [Bases de datos no relacionales](#m2)  
+- [Bases de datos no relacionales](#m3)  
+ - [NOSQL](#c16) 
+  - [tipode de datos NOSQL](#c16-1) 
+ - [SQL VS NOSQL](#c16-2)  
+
+  - [MongoDB](#c17)  
 
 4. Módulo 4 -  Data never sleeps 
 - [Data](#m4)
@@ -407,14 +459,746 @@ Funciones más utilizadas:
 ■ ROW_COUNT: Devuelve el número de filas actualizadas.
 ■ VERSION: Devuelve una cadena que indica la versión del servidor MySQL.
 
-#### Desafío: Funciones de MySQL
+#### Variables <a id='c7'></a>
+Las variables  son elementos que almacenan datos que pueden ir cambiando a lo largo de la ejecución.
+Para hacer esto, almacena el valor de la misma en su  primera declaración y se refiere a ella en las siguientes declaraciones.
+
+Hay varios tipos: De Usuario, locales y de sistema.
+
+La vida útil de una variable definida por el usuario dura mientras la sesión esté activa, y es invisible para otras sesiones. Una vez que la 
+sesión se cierra, la variable desaparece.
+
+![](./img/var.png)
+
+Las variables locales no necesitan el prefijo @ en sus 
+nombres, pero deben ser declaradas antes de que puedan ser usadas. Para declarar una variable local, se puede usar la declaración DECLARE o usarla como un parámetro dentro de una declaración STORED PROCEDURE o FUNCTION.
+
+![](./img/varlocal.png)
+
+Hay un tercer tipo de variables llamadas variables del sistema que se usan para almacenar valores que afectan a las conexiones individuales de los clientes —variables de SESSION— o que afectan a toda la operación del servidor —variables GLOBAL—.
+Las variables del sistema pueden ser identificadas usando un doble signo @ como prefijo o usando las palabras GLOBAL o SESSION en la sentencia SET.
+
+![](./img/varsys.png)
+
+#### Condicionales <a id='c7-1'></a>
+Estas son IF, CASE e IF anidados.
+![](./img/condicionales.png)
+
+[genially](https://view.genial.ly/620ba24a07820e00123a1db3)
+
+#### Estructuras repetitivas <a id='c7-2'></a>
+Las estructuras repetitivas son While, Repeat, y Loop.
+
+![](./img/estructurasrepetitivas.png)
+
+[genially](https://view.genial.ly/620e9e0309558700184a1b7a)
+
+#### Revisar lo aprendido 
+
+Variables #1 - Declaración:
+¿Cuál es la sintaxis correcta para crear una variable llamada “pepe” dentro de un SP, y asignarle el valor 10 en la misma línea?
+
+Pista: En este ejercicio tienes que declarar una variable local para el SP. Agregar siempre el ; al final del código. Recordá asignar el tipo de dato.
+```
+DECLARE pepe INT DEFAULT 10;
+```
+
+Variables #2 - Declaración 2
+
+¿Cuál es la sintaxis correcta para crear una variable llamada “pepe” dentro de una query, y asignarle el valor “hola” en la misma línea?
+
+ 
+
+Pista: En este ejercicio tienen que declarar una variable local para una query. Agregar siempre el ; al final del código. Recordemos usar comillas simples para los textos.
+```
+DECLARE pepe STRING DEFAULT 'hola';
+
+```
+
+Variables #3 - Variables del sistema
+
+Si queremos ver todas las variables del sistema que contienen la palabra port, ¿qué código deberíamos ejecutar?
+Ingresar debajo del código, la posición en la que encontramos el registro “port” para la columna Variable_name.
+
+ 
+
+Pista: En este ejercicio tienes que ver todas las variables del sistema. Agregar siempre el ; al final del código. La posición debe ser ingresada en número y sin ; al final debajo del código pedido. 
+```
+SHOW VARIABLES LIKE 'port';
+```
+
+#### Cursores <a id='c8'></a>
+Un cursor nos permite realizar una o más operaciones por cada uno de los registros de nuestra consulta.
+
+En MySQL podemos definir el cursor con las siguientes sentencias.
+1. DECLARE: se utiliza para definir el cursor
+2. OPEN: se utiliza para abrir el cursor.
+3. FETCH: se utiliza para asignar el próximo valor del cursor a un variable.
+4. CLOSE: se utiliza para cerrar un cursor.
+
+Aclaración, hay 2 sentencias que agregar a los cursores: un LOOP para recorrer los registros del SELECT, y un HANDLER
+para cuando nos quedemos sin registros por recorrer en el SELECT.
+1. DECLARE CONTINUE HANDLER FOR NOT FOUND SET finished = 1;
+2. ABRIR EL LOOP.
+3. IF finished = 1 THEN LEAVE recorre; END IF;
+4. CERRAR EL LOOP
+
+![](./img/ejemcursores.png)
+
+#### ¿Cuándo usarlos? 
+Siempre utilizaremos un cursor cuando queramos procesar individualmente cada fila de una consulta.
+
+#### Ventajas y Desventajas<a id='c8-1'></a>
+![](./img/cursores-ventajasydesventajas.png)
+
+#### Tablas temporales <a id='c8-2'></a>
+Cuando necesitemos mejorar el rendimiento de nuestras consultas y procedimientos, una de las alternativas que tenemos es amigarnos con un nuevo objeto de nuestra base de datos: Tablas Temporales.
+
+Una tabla temporal es un tipo de tabla que nos permite guardar resultados de forma temporal. Podemos acceder a esos datos cuantas veces queramos y siempre que estemos en una misma sesión.
+Son muy útiles para evitar ejecutar varias veces la misma consulta, ya que podemos ejecutar una sola vez la consulta, guardar los resultados temporalmente y luego accedemos directamente a la tabla temporal.
+
+La podemos crear de la siguiente manera:
+![](./img/creartablatemp.png)
+
+Las operaciones que podemos realizar a la tabla temporal dentro de una sesión son: DROP, SELECT, INSERT y UPDATE.
+
+Un ejemplo de TT:
+![](./img/ejemptablatemp.png)
+
+#### Practica
+![](./img/practicacursores.png)
+
+### Subconsultas <a id='c9-1'></a>
+Una subconsulta es una consulta escrita dentro de otra consulta. Tenemos la opción de anidar consultas para agregar más lógica y así filtrar y/o agregar más información a nuestros resultados. Las mismas pueden retornar un único valor, una columna con varios registros y/o también varias columnas con varios valores.
+
+#### Tipos de subconsultas
+#### Escalares <a id='c9-1-1'></a>
+Estas subconsultas devuelven un único valor escalar. Por ejemplo, si queremos ver el o los clientes  que tienen la última factura, podemos crear la siguiente consulta:
+
+```sql
+SELECT c.* 
+FROM factura f 
+INNER JOIN cliente c 
+ON f.id_cliente = c.id_cliente
+WHERE fecha_factura = (SELECT MAX(fecha_factura) FROM factura )
+```
+#### Subconsultas con EXISTS o NOT EXISTS <a id='c9-1-2'></a>
+¿Recuerdan que en BDI que vimos EXISTS y NOT EXISTS ? ¡Es porque los usamos para subconsultas! Si la subconsulta retorna valores, entonces Exist subconsulta es verdadero, si la consulta no retorna valores, Exists subconsulta es falso.
+
+```sql
+SELECT c.* 
+FROM factura f 
+INNER JOIN cliente c 
+ON f.id_cliente = c.id_cliente
+WHERE EXISTS (SELECT * FROM cliente  )
+```
+
+#### Subconsultas relacionadas <a id='c9-1-3'></a>
+La subconsulta que se hace tiene relación y campos correlacionados con la consulta padre. 
+
+```sql
+SELECT f.* 
+FROM factura f 
+INNER JOIN cliente c 
+ON f.id_cliente = c.id_cliente
+WHERE EXISTS (SELECT * FROM cliente c2 where c2.nombre like ‘%Juan%’ and c.id_cliente = c2.id_cliente  )
+```
+
+Además tenemos subconsultas de filas y correlacionadas, pero no las veremos en este curso.
+
+#### Triggers <a id='c9-2'></a>
+Los triggers son objetos de base de datos que nos
+sirven para ejecutar código SQL luego de que
+se haya ejecutado una sentencia de Insert,
+Update o Delete sobre una tabla específica.
+
+● Un trigger siempre está asociado a una tabla.
+● Los triggers no se pueden definir para tablas temporales como tampoco para vistas.
+
+#### Crear un trigger: <a id='c9-2-1'></a>
+![](./img/createtriggers.png)
+
+➔ tiempoTrigger: pueden ser los valores BEFORE o AFTER. Esto es para definir cuándo se ejecuta el trigger. MySQL permite ejecutar el código ANTES de una operación sobre la tabla o DESPUÉS de la operación sobre la tabla.
+➔ eventoTrigger: pueden ser los valores INSERT, UPDATE o DELETE . Este es el evento que se ejecuta sobre nuestra tabla que va a disparar el trigger.
+➔ ordenTrigger: pueden ser los valores FOLLOWS o PRECEDES nombreTrigger. En caso de que tengamos varios triggers en nuestra tabla, tenemos la opción de agregar el orden de ejecución de los mismos.
+➔ cuerpoTrigger: cuerpo del trigger. Si queremos ejecutar varias sentencias, podemos agregar el bloque BEGIN…END
+
+#### Eliminar un trigger: <a id='c9-2-2'></a>
+![](./img/eliminartriggers.png)
+
+#### ¿Cuándo se usan? <a id='c9-2-3'></a>
+Se usan en los siguientes casos:
+■ Modificar datos
+■ Reglas complejas
+■ Auditoría
+
+#### Manejo de errores <a id='c10'></a>
+Podemos encontrarnos con muchos errores de SQL en nuestros programas de base de datos pero no desesperen: los handlers y conditions vienen a nuestro rescate
+
+
+#### Handlers <a id='c10-1'></a>
+■ Es el manejador de errores. Por cada error que se ejecute, y si esa condición está definida en un handler, el código que definimos será ejecutado.
+
+#### Creación <a id='c10-1-1'></a>
+![](./img/creacionhandlers.png)
+
+➔ handler_action: puede ser los siguientes valores: continue, exit y undo.
+➔ Continue: Ante la ejecución del handler, este continúa con la ejecución
+del bloque BEGin..End.
+➔ Exit: termina la ejecución del bloque begin..End que disparó el handler.
+➔ valorCondicion: Son los errores que vamos a capturar con nuestro
+handler. Ante alguno de estos errores, se ejecutará el código que
+definamos. Para ello, tenemos varios tipos de condiciones.
+#### Tipos de condiciones <a id='c10-1-1'></a>
+1- Mysql_error_code: es un valor numérico que indica un error de sql. podemos definir por ejemplo el valor 1051. Son los que están en la siguiente documentación: clic aquí.
+2- SQLState: es un string que indica un error. por ejemplo el valor 42S02. Los valores posibles son los que están en la siguiente documentación: clic aquí.
+3- Condition_name: Si definimos una condition, podemos agregar el nombre de la misma.
+4- SQLWarning: es un abreviado para incluir a todos los códigos de SQLSTATE que empiezan con ‘01’
+5- Not Found: es un abreviado para incluir a todos los códigos de SQLSTATE que empiezan con ’02’
+6- SQLEXCEPTION: es un abreviado que excluye a todos los códigos de SQLSTATE que empiezan con ‘00’, ‘01’, ‘02’
+#### Conditions <a id='c10-2'></a>
+■ Son nombres que podemos agregar a los errores para dejar más legible nuestro código.
+
+#### Creación <a id='c10-2-1'></a>
+![](./img/creacionconditions.png)
+
+#### Tipos de condiciones <a id='c10-2-2'></a>
+➔ valorCondicion: Son los errores que vamos a capturar con nuestro handler. Ante alguno de estos errores, se ejecutará el código que definamos. Para ello, tenemos varios tipos de condiciones:
+1- mysql_error_code: es un valor numérico que indica un error de sql.
+Podemos definir, por ejemplo, el valor 1051. Son los que están en esta documentación.
+2- SQLState: es un string que indica un error. Por ejemplo, el valor 42S02. Los valores posibles son los que están en la documentación 
+
+#### Uso:
+![](./img/usohandlersyconditions.png)
+
+#### Transacciones <a id='c10-3'></a>
+Esta nueva estructura es muy utilizada para mantener la integridad de los datos dentro de una base de datos.
+#### Sintaxis:
+![](./img/sintaxis-transactions.png)
+
+
+####  Niveles de aislamiento <a id='c10-4'></a>
+Las transacciones definen un nivel de aislamiento que determina la forma en que una transacción se aísla de las demás transacciones. El aislamiento es la separación de las modificaciones de estructura o datos realizadas por diferentes transacciones. Los niveles de aislamiento se definen para los efectos secundarios de la simultaneidad que existen, como las lecturas de datos sucios o las lecturas fantasma.
+
+Primero, definamos las propiedades ACID (Atomicity, Consistency, Isolation y Durability) que garantizan que las transacciones se puedan realizar en una base de datos de forma segura.
+
+■ Atomicidad después de que comienza la transacción, todas las operaciones se completan o no se realizan. Es imposible estancarse en el medio. Si se produce un error durante la ejecución de la transacción, se revertirá al estado anterior al inicio de la transacción. En otras palabras, el bloque de código es un todo indivisible, al igual que un átomo.
+
+■ Consistencia antes de que la transacción comience y termine, las restricciones de integridad de la base de datos siguen existiendo. Los datos luego de la transacción deben seguir siendo consistentes.
+
+■ Aislamiento al mismo tiempo, solo una transacción puede solicitar los mismos datos, y las diferentes transacciones no interfieren entre sí. Por ejemplo, si una transacción quiere acceder de forma concurrente a los datos que están siendo utilizados por otra transacción, no podrá hacerlo hasta que la primera haya terminado.
+
+■ Durabilidad una vez completada la transacción, todas las actualizaciones de la base de datos por la transacción se guardarán en la base de datos y no se pueden revertir, es decir, son permanentes.
+Ahora definamos los problemas de concurrencia que pueden surgir en una base de datos:
+
+■ Lectura sucia supongamos que tenemos 2 transacciones: A y B. La transacción A lee los datos actualizados por la transacción B, y luego B revierte la operación, luego los datos leídos por A son datos sucios.
+![](./img/lectsucia.png)
+
+■ Lectura no repetible se produce cuando una transacción consulta el mismo dato dos veces durante la ejecución de la transacción y, la segunda vez, encuentra que el valor del dato ha sido modificado por otra transacción.
+![](./img/lectnorepetible.png)
+
+■ Lectura fantasma: este error ocurre cuando una transacción ejecuta dos veces una consulta que devuelve un conjunto de filas y en la segunda ejecución de la consulta aparecen nuevas filas en el conjunto que no existían cuando se inició la transacción.
+![](./img/lectfantasma.png)
+
+Para evitar que sucedan los problemas de acceso concurrente que hemos comentado anteriormente podemos establecer diferentes niveles de aislamiento que controlan el nivel de bloqueo durante el acceso a los datos. Existen cuatro niveles de aislamiento para MySQL:
+
+■ Read Uncommitted: en este nivel no se realiza ningún bloqueo, por lo tanto, permite que sucedan los tres problemas.
+Read Committed: en este caso los datos leídos por una transacción pueden ser modificados por otras transacciones, por lo tanto, se pueden dar los problemas lectura no repetible y lectura fantasma.
+Repeatable Read: en este nivel ningún registro leído con un SELECT puede ser modificado en otra transacción, por lo tanto, sólo puede suceder el problema de lectura fantasma.
+
+■ Serializable: en este caso las transacciones se ejecutan unas detrás de otras, sin que exista la posibilidad de concurrencia.
+Dejamos una tabla con esta información.
+
+![](./img/serializableinfo.png)
+
+Podemos consultar el nivel de aislamiento que estamos utilizando, consultando el contenido de la variable global y de sesión @@transaction_isolation.
+SELECT @@GLOBAL.transaction_isolation;
+SELECT @@SESSION.transaction_isolation;
+
+#### Optimización <a id='c11'></a>
+### Índice <a id='c11-1'></a>
+Un índice es una estructura de datos.
+Su función es aumentar la velocidad de las consultas en una tabla.
+■ Las instrucciones INSERT y UPDATE llevan más
+tiempo en tablas con índices.
+■ Las instrucciones SELECT son más rápidas en tablas
+con índices.
+Esto se debe a que, para realizar una inserción o actualización, una base de datos también necesita agregar o actualizar los valores en el índice.
+
+#### Ventajas y Desventajas 
+![](./img/indices-ventajasydesventajas.png)
+
+#### Índice agrupado<a id='c11-1'></a>
+El índice agrupado (CLUSTERED) se identifica como
+primario (PRIMARY), se almacena junto con los datos en
+la propia tabla y ordena físicamente los registros
+Cada vez que se insertan o actualizan nuevos datos, los datos se reescriben en el índice para mantenerlos ordenados.
+Solo puede haber un índice principal por tabla.
+
+####  Índices no-agrupados <a id='c11-2'></a>
+Se pueden crear otros índices en campos diferentes y de uso más frecuente. Estos son índices secundarios, no agrupados(NON-CLUSTERED).
+El índice no agrupado almacena la columna de clave principal en su estructura, así como las columnas especificadas para crear el índice. Esto crea un puntero, que apunta a la posición real de los datos.
+Se pueden crear múltiples índices no agrupados en una tabla. El tamaño de cada índice se suma al tamaño de la tabla. Tengamos en cuenta que hay que evaluar la cantidad de índices que se crean para que no afecte el rendimiento.
+
+En general, MySQL usa índices para realizar las siguientes acciones:
+❏ Encontrar rápidamente registros que coincidan con
+una cláusula WHERE.
+❏ Recuperar registros de otras tablas al usar
+operaciones JOIN.
+❏ Disminuir el tiempo de ejecución de las consultas con
+ordenación (ORDER BY) o agrupamiento (GROUP BY), en el caso que todas las columnas utilizadas en los criterios hagan parte de un índice.
+
+#### Creación 
+![](./img/creacionindice.png)
+
+#### Visualización
+![](./img/visualizacionindice.png)
+
+#### Eliminación
+![](./img/eliminacionindice.png)
+
+#### Confirmación
+![](./img/confirmacionindice.png)
+
+#### Índice no exclusivo
+![](./img/indicenoinclusivo.png)
+
+#### Unique <a id='c11-3'></a>
+El tipo de índice unique indica que todas las columnas utilizadas en la creación del índice deben tener un valor único.
+Es decir, la columna —o columnas— que componen el índice no puede tener valores repetidos.
+
+#### Creación 
+![](./img/unique.png)
+
+#### FullText <a id='c11-4'></a>
+Este índice se utiliza para realizar búsquedas en cadenas
+de texto con mayor precisión.
+FullText es más potente que usar like porque, además de
+ordenar el resultado por similitud semántica, ofrece más
+opciones para filtrar la consulta.
+Es adecuado para aplicaciones con una gran cantidad de
+texto y que necesitan realizar búsquedas basadas en la
+relevancia.
+
+#### Creación 
+![](./img/fulltext.png)
+
+#### Eliminación 
+![](./img/fulltexteliminacion.png)
+
+#### Consideraciones
+■ En consultas con índice FullText, MySQL descarta
+palabras con menos de 4 caracteres.
+■ Expresiones como "de", "que" y "o" se excluyen
+automáticamente de la búsqueda.
+■ Una palabra presente en más del 50% de los registros
+será excluida de la búsqueda.
+
+#### Tipos de búsqueda
+■ IN NATURAL LANGUAGE MODE - Es el tipo de búsqueda de
+Fulltext predeterminado. No hay operadores especiales y lasbúsquedas consisten en una o más palabras clave separadas por una coma. Las búsquedas se devuelven en orden descendente de relevancia.
+■ IN BOOLEAN MODE - Permite el uso de varios operadores
+especiales. Las búsquedas no se devuelven en orden de
+relevancia, ni se aplica el límite del 50% y puede buscar palabras con 4 caracteres o menos.
+
+#### Estructuras de almacenamiento <a id='c11-5'></a>
+
+■ B-TREE <a id='c11-5-1'></a>
+Se usa un índice de árbol B para comparaciones del tipo =, >,<, >=, <=, BETWEEN y LIKE —siempre que se use en
+constantes que no comiencen con %—.
+Para realizar búsquedas utilizando este tipo de índice, se utilizará cualquier columna —o conjunto de columnas que forme el prefijo del índice.
+Ejemplo: si un índice está compuesto por columnas [A, B, C], las búsquedas se pueden realizar en: [A], [A, B] o [A, B, C]
+
+■ Hash <a id='c11-5-2'></a>
+El tipo de estructura Hash solo se usa para comparaciones de tipo = o <=>. No se utilizan para operadores de comparación, como encontrar un rango de valores.
+
+El optimizador no puede usar un índice hash para acelerar las operaciones ORDER BY —el Hash no se puede usar para buscar la siguiente entrada en orden—.
+Para realizar búsquedas utilizando este tipo de índice, se utilizarán todas las columnas que componen el índice.
+
+#### Consideraciones
+A veces, MySQL no usa un índice, incluso si hay uno disponible.
+Esto ocurre, por ejemplo, cuando el optimizador estima que usar el índice requeriría que MySQL acceda a un porcentaje muy grande de las filas de la tabla.
+En este caso, es probable que la exploración de una tabla sea mucho más rápida, ya que requiere menos búsquedas. Sin embargo, si logramos limitar el rango de búsqueda, MySQL usa el índice disponible, agilizando la consulta.
+
+
+#### Repaso 
+1 - ¿Para que sirve un índice?
+* [ ] Para poder leer de manera cómoda la estructura de nuestra base de datos.
+* [ ] Para tener un muestreo de filas importantes de las tablas.
+* [X] Para optimizar búsquedas en la base de datos.
+
+### Informes de optimización <a id='c12'></a>
+Cuando hablamos de Informes de Optimización, pensamos en una funcionalidad que nos permite encontrar la información principal de nuestra base de datos. Todo en un solo lugar, de forma rápida y cómoda. 
+
+Las funcionalidades Schema Inspector y Table Inspector proveen un conjunto de vistas detalladas de todos los objetos, además del acceso a las operaciones de mantenimiento. Como, por ejemplo, analizar y optimizar tablas.
+
+#### Schema Inspector <a id='c12-1'></a>
+Se encuentra en las opciones del los schemas.
+En este se encuentran diferentes pestañas con información sobre la bbdd, las tablas, los índices(Column: muestra el nombre de la columna donde se creó el índice. Seq in Index: indica la secuencia de creación del índice.); y la cardinalidad o el número de
+valores diferentes contenidos en una columna de datos
+![](./img/schemainspector.png)
+
+#### ¿Qué es cardinalidad? <a id='c12-1-2'></a>
+La cardinalidad es la cantidad de números distintos dentro de una sola columna.
+Observen la columna de al lado.
+Los números 2 y 4 se repiten. Por lo tanto, el primer número de cada uno se cuenta como
+distinto y las unidades duplicadas se excluyen del cálculo de cardinalidad.
+Así, la cardinalidad de esta columna es 4, ya que es el número de números distintos.
+Generalmente, esta columna se basa en la cantidad de registros en un campo de Primary Key,
+ya que es la columna que no se repite
+
+#### Table Inspector <a id='c12-2'></a>
+Así como el Schema Inspector informa sobre la base de datos seleccionada, Table Inspector muestra información sobre la tabla seleccionada.
+La información mostrada es similar. Sin embargo, son relativos a una sola tabla.
+
+A el Table Inspector se puede ingresar de dos formas.
+Una de ellas es seleccionar la tabla deseada en la pestaña Table Schema Inspector. Luego, se debe hacer clic en el botón Inspect Table. La otra forma de acceder a Table Inspector es realizar los procedimientos
+que se ven a continuación, desde el panel de Schemas.
+
+
+#### Veamos más detalles: 
+Opciones:
+![](./img/optionsschemainspector.png)
+
+[Ejemplo genially](https://view.genial.ly/6221183de6c9b000107c9545)
+
+Maintenance:
+![](./img/maintenanceoptionsschemainspector.png)
+
+[Ejemplo genially](https://view.genial.ly/6233779aac58ea00138587c8)
+
+Columns:
+![](./img/columnsoptionsschemainspector.png)
+
+[Ejemplo genially](https://view.genial.ly/62225ed8bb866b0011b145b1)
+
+Triggers y Views:
+![](./img/triggersyviewsoptionsschemainspector.png)
+
+[Ejemplo genially](https://view.genial.ly/62335a246d5df8001aecb41e)
+
+
+#### Repaso
+1 - Sobre Informe de Optimización es CORRECTO afirmar:
+* [ ] Amplía la capacidad de gestión de la base de datos y mejora la productividad del usuario.
+* [X] Schema Inspector muestra información de una tabla seleccionada
+* [ ] El Table Inspector muestra información para una base de datos seleccionada.
+
+2 - Al eliminar una gran cantidad de registros en una base de datos, ¿qué característica es conveniente aplicar a la tabla? 
+* [ ] ANALIZE
+* [X] OPTIMIZE
+* [ ] CHECKSUM/.
+
+3 -  ¿A través de qué pestaña es posible acceder a las opciones de mantenimiento de tablas? 
+* [X] Table.
+* [ ] Info.
+* [ ] Events.
+
+4 - ¿Qué información podemos encontrar en la pestaña Info del Schema Inspector?
+* [X] Cantidad de Tablas y Tamaño de la Base de Datos.
+* [ ] Cantidad de Tablas y Cantidad de Índices.
+* [ ] Cantidad de Tablas y Cantidad de Columnas.
+
+5 - ¿Qué es Cardinalidad en los informes de optimización?
+* [ ] El número de registros repetidos para una columna que contiene un índice.
+* [X] El número de registros distintos en una columna que contiene un índice.
+* [ ] El número de registros distintos en una tabla.
+
+6 - El comando CHECK:
+* [ ] Rehacer las estructuras de los índices..
+* [ ] Recuperar espacios no utilizados en una tabla.
+* [X] Valida la integridad de una tabla.
+
+7 - Marcar la opción que contiene estructuras de almacenamiento de índices.
+* [X] B-Tree, Hash, R-Tree, FullText;
+* [ ] Primary, Index, Unique, FullText.
+* [ ] Clustered, Non-Clustered
+
+8 - ¿Qué sucede cuando dividimos la cardinalidad por el número de filas en una tabla?
+* [X] Tenemos la selectividad del índice, que es la probabilidad de que el optimizador use un índice.
+* [ ] Tenemos la cantidad de registros que se pueden devolver en una consulta.
+* [ ] Tenemos el número de registros que no se repiten en una columna.
+
+9 - Acerca de la selectividad del índice, ¿qué sucede cuanto más se acerca el resultado a uno?
+* [X] Optimizer es más probable que use el índice.
+* [ ] Es menos probable que el optimizador utilice el índice..
+* [ ] Mayor probabilidad de que el optimizador descarte el índice.
+
+10 - Elija la alternativa correcta con respecto a la Table Inspector. 
+* [X] Muestra información sobre una tabla seleccionada.
+* [ ] Muestra información sobre la base de datos seleccionada.
+* [ ] Muestra información sobre la última consulta procesada.
+
+
+#### Herramientas <a id='c14'></a>
+Las herramientas de profile tienen la función  de monitorear y diagnosticar las consultas  ejecutadas en una Base de Datos.
+
+Hay varias herramientas de creación de perfiles en el mercado como NEOR Profiler SQL, DBeaver, JetProfiler, etc.
+La elección de una herramienta depende de la necesidad del desarrollador.
+(Más info, clase 14)
+
+#### Repaso
+1 - Se utilizan para monitorear y diagnosticar consultas contra una base de datos..
+* [ ] Herramientas de optimización.
+* [ ] Herramientas de indexación.
+* [X] Herramientas de Profile.
+
+2 - ¿Dónde se registra el comportamiento de la consulta procesada en una aplicación?
+* [X] LOG
+* [ ] CACHE
+* [ ] PROFILE
+
+3 -  ¿Cuál es el comando utilizado para habilitar el log de consultas? 
+* [X] set global general_log=ON.
+* [ ] set global individual_log=ON.
+* [ ] set global slow_log=ON.
+
+4 - ¿Cuál es el comando que se usa para ver la variable que almacena una consulta que es lenta? 
+* [ ] SHOW VARIABLES LIKE '%show_query_log%';.
+* [X] SHOW VARIABLES LIKE '%slow_query_log%';.
+* [ ] SHOW INDEX LIKE '%slow_query_log%';.
+
+5 - Señalar la alternativa correcta sobre la función Profile. 
+* [X] Es activada siempre que se utiliza.
+* [ ] Ya viene habilitada por default.
+* [ ] El sistema habilita automáticamente.
+
+6 - Para ver el registro de la consulta ejecutada en DBeaver, ¿es necesario hacer clic en qué botón?
+* [X] Show Execution Log.
+* [ ] Show Server Output.
+* [ ] Show SQL Variables.
+
+7 - En el Panel de salida de DBeaver se puede elegir ver el resultado de la consulta en los formatos..
+* [ ] Formato Grid y Metadata.
+* [X] Formato Texto y Grid.
+* [ ] Formato Texto y Record.
+
+8 - ¿Cómo maximizar un tablero en DBeaver?
+* [X] Seleccionando la opción “View Dashboard”, haciendo clic con el botón derecho del ratón sobre uno de ellos.
+* [ ] Seleccionando la opción “Zoom In”, haciendo clic derecho en uno de ellos.
+* [ ] Seleccionando la opción “Add Dashboard”, haciendo clic con el botón derecho del mouse sobre uno de ellos.
+
+9 - ¿Para qué sirve la herramienta de profiling? 
+* [X] Analizar una consulta.
+* [ ] Grabar una consulta.
+* [ ] Copiar una consulta.
+
+10 - Señalar la alternativa correcta sobre DBeaver. 
+* [ ] DBeaver se conecta solo con la base de datos MySQL
+* [X] DBeaver se conecta con cualquier base de datos.
+* [ ] DBeaver se conecta solo con la base de datos NoSQL.
+
+
+#### Planes de ejecución
+Cada vez que se ejecuta una consulta, sigue un Plan de 
+Ejecución elaborado por el optimizador de consultas.
+Es él quien, por ejemplo, define el orden de las tablas a consultar, y si va a ejecutar un índice creado o escanear la tabla.
+La mayoría de las veces, el optimizador de consultas 
+dibuja el mejor plan, que consume menos recursos o tiene más rendimiento
+
+
+#### Repaso
+1 - ¿Qué oración debemos usar para analizar el plan de ejecución de una consulta, elegida por el optimizador?.
+* [ ] Optimize
+* [X] Explain
+* [ ] Analize
+
+2 - Indicá la alternativa correcta sobre la cláusula STRAIGHT_JOIN
+* [ ] Mejora la performance de una consulta.
+* [X] Ignora el plan de ejecución del optimizador.
+* [ ] Retarda la performance de una consulta.
+
+3 -  Señalá la opción correcta sobre el costo de una consulta.
+* [ ] El costo está relacionado con la cantidad de datos consultados y el tipo de almacenamiento de índice.
+* [ ] sEl costo está relacionado con la cantidad y el tipo de datos consultados
+* [X] El costo está relacionado con la utilización del CPU y el tiempo que llevará la consulta.
+
+4 - Cuando el Visual Execution Plan muestra el texto "Full Table Scan", ¿de qué color es la tabla?
+* [ ] Azul
+* [ ] Verde
+* [X] Rojo
+
+5 - ¿Qué significa cuando Explain Visual muestra el mensaje "Index Merge"?
+* [ ] La consulta usó el índice correctamente.
+* [X] Seleccionó otro índice.
+* [ ] El índice se usó con otras columnas.
+
+6 - Cuando aparece el color rojo en el Plan de Ejecución Visual, significa: 
+* [X] Quiere decir que la consulta tuvo un costo muy alto.
+* [ ] Significa que la consulta tuvo errores.
+* [ ] Significa que la cita fue cancelada.
+
+7 - Qué significa cuando aparece el color amarillo en la vista Explain? 
+* [ ] Significa búsqueda muy lenta.
+* [X] Significa búsqueda de índice Fulltext.
+* [ ] Significa búsqueda con Table Scan.
+
+8 - ¿Qué significa el color naranja en Visual Execution Plan?. 
+* [ ] Verificación de índice completo
+* [X] Verificación de índice parcial
+* [ ] Verificación con escaneado total.
+
+9 - ¿Qué significa cuando Visual Execution Plan muestra el mensaje “Full Table Scan”? 
+* [ ] Significa que hubo una verificación de índice parcial.
+* [ ] Significa que se utilizó una clave única para el procesamiento eficiente de las subconsultas.
+* [X] Significa que el optimizador no encontró un índice y realizó un escaneo completo de la tabla.
+
+10 - Señalar la alternativa correcta sobre el Plan de Ejecución Visual. 
+* [X] A través del Plan de Ejecución Visual es posible seguir el procesamiento de la consulta en tiempo real
+* [ ] A través del Plan de Ejecución visual es posible elegir una consulta para su procesamiento..
+* [ ] A través del Plan de Ejecución visual es posible encontrar más fácilmente un problema para actuar en la corrección.
 
 -------
 <!--###############################################--  MÓDULO 3 --#####################################################################-->
 ## Bases de datos no relacionales <a id='m3'></a>
+Hasta ahora hemos estudiado las bases de datos  relacionales, donde los datos se almacenan en una  estructura de tablas, es decir, filas y columnas.
+El lenguaje utilizado es SQL, que es el lenguaje de  consulta estructurado.
+Existe, sin embargo, otro tipo de base de datos, no estructurado, capaz de almacenar y manipular grandes volúmenes de datos de forma rápida y cómoda. Estamos  hablando de NoSQL, que significa Not only SQL o No solo SQL. 
 
 
+Las bases de datos NoSQL han  existido desde finales de la década de  1960. Sin embargo, el acrónimo  "NoSQL" recién apareció en 2009, provocado por las necesidades de las 
+empresas de la Web 2.0 como Facebook, Google y Amazon.com. 
 
+
+#### Tipos de base de datos NoSQL <a id='c16-1'></a>
+■ Columna orientada o Columnar - Almacenar información columna por columna, lo que permite una mayor compresión, alto rendimiento y elimina la necesidad de un índice.
+■ Grafo u Orientada a grafos - El propósito de una base de datos de grafos es facilitar la creación y ejecución de aplicaciones que funcionan con conjuntos de datos altamente conectados. Los casos de uso típicos para este tipo de base de datos incluyen redes sociales, motores de recomendación, detección de fraudes y grafos de conocimiento.
+■ Orientado a valor-clave o Key-value - Las bases de datos de clave-valor son altamente segmentables y permiten escalas horizontales a escalas que otros tipos de bases de datos no pueden lograr. Casos de uso como juegos, tecnología publicitaria e IoT se prestan particularmente bien al modelo de datos clave-valor.
+■ Orientado a documentos - En el código de la aplicación, los datos generalmente se representan como un objeto o documento de tipo JSON, porque es un modelo de datos eficiente e intuitivo para los desarrolladores, lo que facilita su almacenamiento y consulta.
+
+La naturaleza flexible, semi estructurada y jerárquica de los documentos les permite evolucionar con las necesidades de la aplicación. La plantilla de documento funciona bien con catálogos, perfiles de usuario y sistemas de administración de contenido, donde cada documento es único y evoluciona con el tiempo.
+
+#### BBDD SQL vs NOSQL <a id='c16-2'></a>
+
+Las bases de datos NoSQL están diseñadas para casos de usos concretos y tienen esquemas flexibles para crear aplicaciones 
+modernas.
+
+Las bases de datos NoSQL son ampliamente  reconocidas por su facilidad de desarrollo, funcionalidad y rendimiento a escala.
+
+####¿Por qué debemos usar una base de datos NoSQL?
+Las bases de datos NoSQL se adaptan perfectamente a 
+muchas aplicaciones modernas. Como, por ejemplo, dispositivos móviles, web y juegos,  que requieren bases de datos flexibles, escalables, de  alto rendimiento y muy funcionales para ofrecer 
+excelentes experiencias de usuario Las bases de datos NoSQL tienen patrones de acceso  que permiten un mayor rendimiento en comparación con una base de datos relacional
+
+![](./img/sqlvsnosql.png)
+
+#### Repaso
+1 - ¿Qué significa la sigla NoSQL? 
+* [X] No solo SQL.
+* [ ] No SQL.
+* [ ] Noción SQL.
+
+2 - Señale la respuesta correcta sobre bases de datos no relacionales. 
+* [ ] Las bases de datos no relacionales tienden a ser menos flexibles y más consistentes.
+* [ ] Las bases de datos no relacionales se adhieren a todas las propiedades ACID.
+* [X] Las bases de datos no relacionales tienden a ser más flexibles y menos consistentes.
+
+3 -  Señalar los tipos de bases de datos NoSQL .
+* [X] Columnas, grafos, documentos y clave-valor
+* [ ] Cassandra, MongoDB,grafos y clave-valor.
+* [ ] Documentos, tablas, columnas y clave-valor.
+
+4 - Señale la alternativa correcta sobre bases de datos orientadas a documentos.
+* [ ] Las bases de datos orientadas a documentos son ideales para crear motores de recomendación.
+* [X] Las bases de datos orientadas a documentos se representan como un objeto o documento de tipo JSON.
+* [ ] Las bases de datos orientadas a documentos eliminan la necesidad de un índice.
+
+5 - Señalar las características de una base de datos NoSQL 
+* [ ] Esquema de datos rígido y escalabilidad vertical.
+* [X] Esquema de datos flexible y escalabilidad horizontal.
+* [ ] Esquema de datos rígido y escalabilidad horizontal.
+
+6 - ¿En qué año apareció la sigla noSQL?
+* [ ] 1960
+* [ ] 2006
+* [X] 2009
+
+7 - Big Data está relacionado ¿Con qué base de datos?
+* [ ] Base de Datos Relacional.
+* [X] Base de Datos No Relacional.
+* [ ] Base de Datos SQL Server.
+
+8 - Este tipo de Bases de datos son ampliamente reconocidas por su facilidad de desarrollo, funcionalidad y rendimiento a escala. ¿Qué alternativa corresponde a las características mencionadas?  
+* [ ] SQL.
+* [X] NoSQL.
+* [ ] Relacional.
+
+
+### MongoDB <a id='c17'></a>
+MongoDB es una base de datos NoSQL.
+Sus características:
+
+● Multiplataforma.
+
+● Orientado a documentos.
+
+● Ofrece alta disponibilidad, alto
+desempeño y fácil escalabilidad.
+
+● Trabaja en el concepto de colección y
+documento.
+
+Un documento es un conjunto de pares clave-valor.
+Los documentos tienen un esquema dinámico. El esquema dinámico significa que los documentos de la misma colección no necesitan tener el mismo conjunto de campos o estructura.
+También significa que los campos comunes en los documentos de una colección pueden contener diferentes tipos de datos.
+
+Una colección es un grupo de documentos de MongoDB.
+Existe en una única base de datos.
+Las colecciones no imponen un esquema.
+
+#### Fortalezas
+![](./img/mongofortalezas.png)
+
+#### Repaso
+1 - MongoDB es:
+* [ ] Una Base de datos orientada a columnas.
+* [ ] Una Base de datos orientada a grafías.
+* [X] Una Base de datos orientada a documentos.
+
+2 - Una colección es:
+* [ ] Un conjunto de pares clave-valor.
+* [X] Un grupo de documentos.
+* [ ] Un conjunto de tablas.
+
+3 -  En general, usamos el modelo de datos incorporados cuando:
+* [X] Tenemos una relación uno-a-uno o uno-a-muchos.
+* [ ] Tenemos una relación muchos-a-muchos.
+* [ ] Cuando queremos modelar un gran conjunto de datos jerárquicos.
+
+4 - Comando utilizado para exhibir la base de datos que está siendo utilizado en el momento:
+* [ ] show dbs
+* [X] db
+* [ ] use
+
+5 - Cuando aparece el color rojo en el Plan de Ejecución Visual, significa: 
+* [ ] find().
+* [ ] options().
+* [X] pretty().
+
+6 - ¿Cuál de los siguientes es un comando utilizado para ordenar documentos? 
+* [ ] capped().
+* [X] sort().
+* [ ] find().
+
+7 - La opción “Filter your data” del panel de Compass filtra: 
+* [ ] un término constante en un documento.
+* [X] una base de datos.
+* [ ] un documento.
+
+8 - ¿Cuál de las siguientes es una notación utilizada para almacenar e intercambiar datos en MongoDB?
+* [ ] Java
+* [X] Json
+* [ ] JavaScript.
+
+9 - Al escribir el comando db para ver qué banco estamos usando, si no hemos seleccionado ninguna base, se desplegará la base:
+* [X] test.
+* [ ] local.
+* [ ] mydb.
+
+10 - Si comparamos el MongoDB con el MySQL, las colecciones son similares a: 
+* [X] Las tablas.
+* [ ] Las columnas.
+* [ ] Los registros.
 
 
 <!--###############################################--  MÓDULO 4 --#####################################################################-->
