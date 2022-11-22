@@ -1,0 +1,20 @@
+Mesa de trabajo - SQL versus NoSQL
+Ahora que conocen las ventajas de una base de datos noSQL, llamen a sus compañeros y
+practiquemos.
+1. Observen la imagen del menú de McDonalds.
+2. Describan el funcionamiento de esta aplicación.
+El usuario al clickear en la sección productos ve una lista de categorias entre las cuales se encuentran: hamburguesas, bebidas, y papas o complementos.
+
+3. Si estuviéramos usando una base de datos relacional, ¿qué datos se necesitarían
+para que esta aplicación funcione como se describe en el punto 2?
+
+se necesitaría una tabla de productos que almancene los tipos de productos y los identifique con un id, otra tabla por cada categoría de productos relacionado a ese id; por ejemplo, a la tabla hamburguesas, la cual guardaría los tipos de hamburguesas como Mcnifica
+
+
+4. Por simplicidad y rendimiento, ¿cómo creen que se podrían almacenar estos datos en
+una base de datos no relacional?
+
+Productos [ {imagen: “hamburguesa.png”, titulo: “hamburguesas”}{imagen: “sandwiches.png”, titulo: “sandwiches”}{imagen: “papas.png”, titulo: “papas”},{imagen: “bebidas.png”, titulo: “bebidas”} ]
+
+Hamburguesas [{nombre: "Mcnifica",precio: 123, descripciónn:”esta buena”, imagen:”foto.png”}] 
+
