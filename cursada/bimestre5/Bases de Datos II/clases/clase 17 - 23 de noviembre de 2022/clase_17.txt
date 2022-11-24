@@ -1,0 +1,448 @@
+use bd2
+'switched to db bd2'
+db.createCollection('Contacto')
+{ ok: 1 }
+db.createCollection('contacto')
+{ ok: 1 }
+db.contacto.insertOne({"Nombre": "Camada 1", "Edad":"2", "Ciudad":"Bogota", "Estado": "", "Telefono":"123456789"})
+{ acknowledged: true,
+  insertedId: ObjectId("637ebb869a09f4190dcf026f") }
+db.contacto.insertOne({"Nombre": "Camada 1", "Edad":"2", "Ciudad":"Bogota", "Estado": "", "Telefono":"123456789"})
+{ acknowledged: true,
+  insertedId: ObjectId("637ebc4a9a09f4190dcf0270") }
+db.contacto.insertOne({"Nombre": "Camada 1", "Edad":"3", "Ciudad":"Buenos Aires", "Estado": "", "Telefono":"123456789"})
+{ acknowledged: true,
+  insertedId: ObjectId("637ebc629a09f4190dcf0271") }
+db.contacto.insertMany([
+  {"Nombre": "Camada 1", "Edad":"3", "Ciudad":"Buenos Aires", "Estado": "", "Telefono":"123456789"},
+  {"Nombre": "Camada 2", "Edad":"3", "Ciudad":"Buenos Aires", "Estado": "", "Telefono":"123456789"},
+  {"Nombre": "Camada 3", "Edad":"3", "Ciudad":"Buenos Aires", "Estado": "", "Telefono":"123456789"},
+  {"Nombre": "Camada 4", "Edad":"3", "Ciudad":"Buenos Aires", "Estado": "", "Telefono":"123456789"},
+  {"Nombre": "Camada 5", "Edad":"3", "Ciudad":"Buenos Aires", "Estado": "", "Telefono":"123456789"}
+  ])
+{ acknowledged: true,
+  insertedIds: 
+   { '0': ObjectId("637ebce39a09f4190dcf0272"),
+     '1': ObjectId("637ebce39a09f4190dcf0273"),
+     '2': ObjectId("637ebce39a09f4190dcf0274"),
+     '3': ObjectId("637ebce39a09f4190dcf0275"),
+     '4': ObjectId("637ebce39a09f4190dcf0276") } }
+db.contacto.insertOne({"Nombre": "Camada 1", "Edad":"3", "Ciudad":"Buenos Aires", "Estado": "", "Telefono":"123456789", "Email":"myemailgmai.com"})
+{ acknowledged: true,
+  insertedId: ObjectId("637ebdad9a09f4190dcf0277") }
+db.contacto.insertOne({"Nombre": "Camada 1", "Edad":"3", "Ciudad":"Buenos Aires", "Estado": "",  "Email":["myemailgmai.com", "otroemail"]})
+{ acknowledged: true,
+  insertedId: ObjectId("637ebe0f9a09f4190dcf0278") }
+db.contacto.find()
+{ _id: ObjectId("637ebb869a09f4190dcf026f"),
+  Nombre: 'Camada 1',
+  Edad: '2',
+  Ciudad: 'Bogota',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebc4a9a09f4190dcf0270"),
+  Nombre: 'Camada 1',
+  Edad: '2',
+  Ciudad: 'Bogota',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebc629a09f4190dcf0271"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0272"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0273"),
+  Nombre: 'Camada 2',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0274"),
+  Nombre: 'Camada 3',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0275"),
+  Nombre: 'Camada 4',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0276"),
+  Nombre: 'Camada 5',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebdad9a09f4190dcf0277"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789',
+  Email: 'myemailgmai.com' }
+{ _id: ObjectId("637ebe0f9a09f4190dcf0278"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Email: [ 'myemailgmai.com', 'otroemail' ] }
+db.contacto.find({},{"Edad":"3"})
+{ _id: ObjectId("637ebb869a09f4190dcf026f"), Edad: '3' }
+{ _id: ObjectId("637ebc4a9a09f4190dcf0270"), Edad: '3' }
+{ _id: ObjectId("637ebc629a09f4190dcf0271"), Edad: '3' }
+{ _id: ObjectId("637ebce39a09f4190dcf0272"), Edad: '3' }
+{ _id: ObjectId("637ebce39a09f4190dcf0273"), Edad: '3' }
+{ _id: ObjectId("637ebce39a09f4190dcf0274"), Edad: '3' }
+{ _id: ObjectId("637ebce39a09f4190dcf0275"), Edad: '3' }
+{ _id: ObjectId("637ebce39a09f4190dcf0276"), Edad: '3' }
+{ _id: ObjectId("637ebdad9a09f4190dcf0277"), Edad: '3' }
+{ _id: ObjectId("637ebe0f9a09f4190dcf0278"), Edad: '3' }
+db.contacto.find({"Edad":"3"},{})
+{ _id: ObjectId("637ebc629a09f4190dcf0271"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0272"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0273"),
+  Nombre: 'Camada 2',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0274"),
+  Nombre: 'Camada 3',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0275"),
+  Nombre: 'Camada 4',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0276"),
+  Nombre: 'Camada 5',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebdad9a09f4190dcf0277"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789',
+  Email: 'myemailgmai.com' }
+{ _id: ObjectId("637ebe0f9a09f4190dcf0278"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Email: [ 'myemailgmai.com', 'otroemail' ] }
+db.contacto.find({"Edad":"2"},{})
+{ _id: ObjectId("637ebb869a09f4190dcf026f"),
+  Nombre: 'Camada 1',
+  Edad: '2',
+  Ciudad: 'Bogota',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebc4a9a09f4190dcf0270"),
+  Nombre: 'Camada 1',
+  Edad: '2',
+  Ciudad: 'Bogota',
+  Estado: '',
+  Telefono: '123456789' }
+db.contacto.insertOne({_id: 1, "Nombre": "Camada 1", "Edad":"3", "Ciudad":"Buenos Aires", "Estado": "",  "Email":["myemailgmai.com", "otroemail"]})
+{ acknowledged: true, insertedId: 1 }
+db.contacto.find({"Edad":"3"},{})
+{ _id: ObjectId("637ebc629a09f4190dcf0271"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0272"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0273"),
+  Nombre: 'Camada 2',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0274"),
+  Nombre: 'Camada 3',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0275"),
+  Nombre: 'Camada 4',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0276"),
+  Nombre: 'Camada 5',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebdad9a09f4190dcf0277"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789',
+  Email: 'myemailgmai.com' }
+{ _id: ObjectId("637ebe0f9a09f4190dcf0278"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Email: [ 'myemailgmai.com', 'otroemail' ] }
+{ _id: 1,
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Email: [ 'myemailgmai.com', 'otroemail' ] }
+db.contacto.find().limit(2)
+{ _id: ObjectId("637ebb869a09f4190dcf026f"),
+  Nombre: 'Camada 1',
+  Edad: '2',
+  Ciudad: 'Bogota',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebc4a9a09f4190dcf0270"),
+  Nombre: 'Camada 1',
+  Edad: '2',
+  Ciudad: 'Bogota',
+  Estado: '',
+  Telefono: '123456789' }
+db.contacto.find().limit(2).skip(2)
+{ _id: ObjectId("637ebc629a09f4190dcf0271"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0272"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+db.contacto.find().limit(2).skip(2).sort(Ciudad:1)
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.contacto.find().limit(2).skip(2).sort("Ciudad":1)
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.contacto.find().limit(2).skip(2).sort({"Ciudad":1})
+{ _id: ObjectId("637ebce39a09f4190dcf0272"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebc629a09f4190dcf0271"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+db.contacto.find().limit(2).skip(2).sort({"Ciudad":-1})
+{ _id: ObjectId("637ebce39a09f4190dcf0273"),
+  Nombre: 'Camada 2',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebc629a09f4190dcf0271"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+db.contacto.find().limit(2).skip(2).sort({"Nombre":-1})
+{ _id: ObjectId("637ebce39a09f4190dcf0274"),
+  Nombre: 'Camada 3',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0273"),
+  Nombre: 'Camada 2',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+db.contacto.find().limit(2).skip(2).sort({"Nombre":1})
+{ _id: ObjectId("637ebb869a09f4190dcf026f"),
+  Nombre: 'Camada 1',
+  Edad: '2',
+  Ciudad: 'Bogota',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebc629a09f4190dcf0271"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+db.contacto.find().sort({"Nombre":1})
+{ _id: ObjectId("637ebb869a09f4190dcf026f"),
+  Nombre: 'Camada 1',
+  Edad: '2',
+  Ciudad: 'Bogota',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebc4a9a09f4190dcf0270"),
+  Nombre: 'Camada 1',
+  Edad: '2',
+  Ciudad: 'Bogota',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebc629a09f4190dcf0271"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0272"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebdad9a09f4190dcf0277"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789',
+  Email: 'myemailgmai.com' }
+{ _id: ObjectId("637ebe0f9a09f4190dcf0278"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Email: [ 'myemailgmai.com', 'otroemail' ] }
+{ _id: 1,
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Email: [ 'myemailgmai.com', 'otroemail' ] }
+{ _id: ObjectId("637ebce39a09f4190dcf0273"),
+  Nombre: 'Camada 2',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0274"),
+  Nombre: 'Camada 3',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0275"),
+  Nombre: 'Camada 4',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0276"),
+  Nombre: 'Camada 5',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+db.contacto.find().sort({"Nombre":1}).skip(2)
+{ _id: ObjectId("637ebc629a09f4190dcf0271"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0272"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebdad9a09f4190dcf0277"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789',
+  Email: 'myemailgmai.com' }
+{ _id: ObjectId("637ebe0f9a09f4190dcf0278"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Email: [ 'myemailgmai.com', 'otroemail' ] }
+{ _id: 1,
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Email: [ 'myemailgmai.com', 'otroemail' ] }
+{ _id: ObjectId("637ebce39a09f4190dcf0273"),
+  Nombre: 'Camada 2',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0274"),
+  Nombre: 'Camada 3',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0275"),
+  Nombre: 'Camada 4',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebce39a09f4190dcf0276"),
+  Nombre: 'Camada 5',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }
+db.contacto.find().sort({"Nombre":1}).skip(2).limit(2)
+{ _id: ObjectId("637ebb869a09f4190dcf026f"),
+  Nombre: 'Camada 1',
+  Edad: '2',
+  Ciudad: 'Bogota',
+  Estado: '',
+  Telefono: '123456789' }
+{ _id: ObjectId("637ebc629a09f4190dcf0271"),
+  Nombre: 'Camada 1',
+  Edad: '3',
+  Ciudad: 'Buenos Aires',
+  Estado: '',
+  Telefono: '123456789' }

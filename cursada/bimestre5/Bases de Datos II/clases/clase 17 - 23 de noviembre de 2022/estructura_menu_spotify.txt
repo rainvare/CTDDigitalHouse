@@ -1,0 +1,3 @@
+*Usuario puede acceder a álbum, accede a una lista desplegable donde se muestran los albumes por orden alfabético, con su imagen, cantidad de canciones, nombre del álbum y nombre del artista.
+
+*El menú usuario muestra una lista de artista con su foto, nombre y la categoría a la que pertenece. 
