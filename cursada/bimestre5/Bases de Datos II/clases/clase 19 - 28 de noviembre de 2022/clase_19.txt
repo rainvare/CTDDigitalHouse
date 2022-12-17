@@ -1,0 +1,569 @@
+use Catalogo
+'switched to db Catalogo'
+db.peliculas.countDocuments()
+19
+db.peliculas.find().count()
+19
+db.peliculas.count()
+'DeprecationWarning: Collection.count() is deprecated. Use countDocuments or estimatedDocumentCount.'
+19
+db.películas.aggregate(
+  [
+    {$group: {_id: "$genero",Total: {$sum: 1}}}]
+  )
+db.películas.aggregate([{$group: {_id: "$género",Total: {$sum: 1}}}])
+db.películas.aggregate([{$group: {_id: "$genero",Total: {$sum: 1}}}])
+db.peliculas.aggregate([{$group: {_id: "$genero",Total: {$sum: 1}}}])
+{ _id: 'Aventura', Total: 3 }
+{ _id: 'Animação', Total: 4 }
+{ _id: 'Ficção Científica', Total: 5 }
+{ _id: 'Drama', Total: 3 }
+{ _id: 'Infantil', Total: 2 }
+{ _id: 'Suspense', Total: 1 }
+{ _id: 'Comédia', Total: 1 }
+db.peliculas.find({},{}).sort({titulo: 1})
+{ _id: 3,
+  titulo: 'A Guerra das Galáxias: Episodio VI',
+  avaliacao: 9.1,
+  premios: 7,
+  data_lancamento: 2004-04-07T03:00:00.000Z,
+  genero: 'Ficção Científica' }
+{ _id: 4,
+  titulo: 'A Guerra das Galáxias: Episodio VII',
+  avaliacao: 4,
+  premios: 6,
+  data_lancamento: 2003-04-11T03:00:00.000Z,
+  duracao: 180,
+  genero: 'Ficção Científica' }
+{ _id: 14,
+  titulo: 'A vida é bela',
+  avaliacao: 8.3,
+  premios: 5,
+  data_lancamento: 1994-04-10T03:00:00.000Z,
+  genero: 'Drama' }
+{ _id: 1,
+  titulo: 'Avatar',
+  avaliacao: 7.9,
+  premios: 3,
+  data_lancamento: 2010-04-10T03:00:00.000Z,
+  duracao: 120,
+  genero: 'Ficção Científica' }
+{ _id: 17,
+  titulo: 'Big',
+  avaliacao: 7.3,
+  premios: 2,
+  data_lancamento: 1988-04-02T03:00:00.000Z,
+  duracao: 130,
+  genero: 'Aventura' }
+{ _id: 9,
+  titulo: 'Harry Potter e a Câmara Secreta',
+  avaliacao: 3.5,
+  premios: 2,
+  data_lancamento: 2009-04-08T03:00:00.000Z,
+  duracao: 200,
+  genero: 'Aventura' }
+{ _id: 8,
+  titulo: 'Harry Potter e a Pedra Filosofal',
+  avaliacao: 10,
+  premios: 1,
+  data_lancamento: 2008-04-04T03:00:00.000Z,
+  duracao: 120,
+  genero: 'Aventura' }
+{ _id: 6,
+  titulo: 'Harry Potter e as Relíquias da Morte - Parte 2',
+  avaliacao: 9,
+  premios: 2,
+  data_lancamento: 2008-04-07T03:00:00.000Z,
+  duracao: 190,
+  genero: 'Suspense' }
+{ _id: 19,
+  titulo: 'Hotel Transylvania',
+  avaliacao: 7.1,
+  premios: 1,
+  data_lancamento: 2012-04-05T03:00:00.000Z,
+  duracao: 90,
+  genero: 'Infantil' }
+{ _id: 18,
+  titulo: 'I am Sam',
+  avaliacao: 9,
+  premios: 4,
+  data_lancamento: 1999-04-03T03:00:00.000Z,
+  duracao: 130,
+  genero: 'Drama' }
+{ _id: 16,
+  titulo: 'Intensamente',
+  avaliacao: 9,
+  premios: 2,
+  data_lancamento: 2008-04-07T03:00:00.000Z,
+  duracao: 120,
+  genero: 'Animação' }
+{ _id: 5,
+  titulo: 'Jurassic Park',
+  avaliacao: 8.3,
+  premios: 5,
+  data_lancamento: 1999-04-01T03:00:00.000Z,
+  duracao: 270,
+  genero: 'Ficção Científica' }
+{ _id: 15,
+  titulo: 'Meu pobre anjinho',
+  avaliacao: 3.2,
+  premios: 1,
+  data_lancamento: 1989-04-01T03:00:00.000Z,
+  duracao: 120,
+  genero: 'Comédia' }
+{ _id: 10,
+  titulo: 'O Rei Leão',
+  avaliacao: 9.1,
+  premios: 3,
+  data_lancamento: 2000-04-02T03:00:00.000Z,
+  genero: 'Infantil' }
+{ _id: 11,
+  titulo: 'Procurando Nemo',
+  avaliacao: 8.3,
+  premios: 2,
+  data_lancamento: 2000-04-07T03:00:00.000Z,
+  duracao: 110,
+  genero: 'Animação' }
+{ _id: 2,
+  titulo: 'Titanic',
+  avaliacao: 7.7,
+  premios: 11,
+  data_lancamento: 1997-04-09T03:00:00.000Z,
+  duracao: 320,
+  genero: 'Drama' }
+{ _id: 12,
+  titulo: 'Toy Story',
+  avaliacao: 6.1,
+  premios: 0,
+  data_lancamento: 2008-04-03T03:00:00.000Z,
+  duracao: 150,
+  genero: 'Animação' }
+{ _id: 13,
+  titulo: 'Toy Story 2',
+  avaliacao: 3.2,
+  premios: 2,
+  data_lancamento: 2003-04-04T03:00:00.000Z,
+  duracao: 120,
+  genero: 'Animação' }
+{ _id: 7,
+  titulo: 'Transformers: o lado escuro da Lua',
+  avaliacao: 0.9,
+  premios: 1,
+  data_lancamento: 2005-04-07T03:00:00.000Z,
+  genero: 'Ficção Científica' }
+db.peliculas.find({},{_id: 0, titulo:1}).sort({titulo: 1})
+{ titulo: 'A Guerra das Galáxias: Episodio VI' }
+{ titulo: 'A Guerra das Galáxias: Episodio VII' }
+{ titulo: 'A vida é bela' }
+{ titulo: 'Avatar' }
+{ titulo: 'Big' }
+{ titulo: 'Harry Potter e a Câmara Secreta' }
+{ titulo: 'Harry Potter e a Pedra Filosofal' }
+{ titulo: 'Harry Potter e as Relíquias da Morte - Parte 2' }
+{ titulo: 'Hotel Transylvania' }
+{ titulo: 'I am Sam' }
+{ titulo: 'Intensamente' }
+{ titulo: 'Jurassic Park' }
+{ titulo: 'Meu pobre anjinho' }
+{ titulo: 'O Rei Leão' }
+{ titulo: 'Procurando Nemo' }
+{ titulo: 'Titanic' }
+{ titulo: 'Toy Story' }
+{ titulo: 'Toy Story 2' }
+{ titulo: 'Transformers: o lado escuro da Lua' }
+db.peliculas.find({},{titulo:1}).sort({titulo: 1})
+{ _id: 3, titulo: 'A Guerra das Galáxias: Episodio VI' }
+{ _id: 4, titulo: 'A Guerra das Galáxias: Episodio VII' }
+{ _id: 14, titulo: 'A vida é bela' }
+{ _id: 1, titulo: 'Avatar' }
+{ _id: 17, titulo: 'Big' }
+{ _id: 9, titulo: 'Harry Potter e a Câmara Secreta' }
+{ _id: 8, titulo: 'Harry Potter e a Pedra Filosofal' }
+{ _id: 6,
+  titulo: 'Harry Potter e as Relíquias da Morte - Parte 2' }
+{ _id: 19, titulo: 'Hotel Transylvania' }
+{ _id: 18, titulo: 'I am Sam' }
+{ _id: 16, titulo: 'Intensamente' }
+{ _id: 5, titulo: 'Jurassic Park' }
+{ _id: 15, titulo: 'Meu pobre anjinho' }
+{ _id: 10, titulo: 'O Rei Leão' }
+{ _id: 11, titulo: 'Procurando Nemo' }
+{ _id: 2, titulo: 'Titanic' }
+{ _id: 12, titulo: 'Toy Story' }
+{ _id: 13, titulo: 'Toy Story 2' }
+{ _id: 7, titulo: 'Transformers: o lado escuro da Lua' }
+db.peliculas.find({},{_id: 0, titulo:1, avaliacao:1}).sort({titulo: 1})
+{ titulo: 'A Guerra das Galáxias: Episodio VI', avaliacao: 9.1 }
+{ titulo: 'A Guerra das Galáxias: Episodio VII', avaliacao: 4 }
+{ titulo: 'A vida é bela', avaliacao: 8.3 }
+{ titulo: 'Avatar', avaliacao: 7.9 }
+{ titulo: 'Big', avaliacao: 7.3 }
+{ titulo: 'Harry Potter e a Câmara Secreta', avaliacao: 3.5 }
+{ titulo: 'Harry Potter e a Pedra Filosofal', avaliacao: 10 }
+{ titulo: 'Harry Potter e as Relíquias da Morte - Parte 2',
+  avaliacao: 9 }
+{ titulo: 'Hotel Transylvania', avaliacao: 7.1 }
+{ titulo: 'I am Sam', avaliacao: 9 }
+{ titulo: 'Intensamente', avaliacao: 9 }
+{ titulo: 'Jurassic Park', avaliacao: 8.3 }
+{ titulo: 'Meu pobre anjinho', avaliacao: 3.2 }
+{ titulo: 'O Rei Leão', avaliacao: 9.1 }
+{ titulo: 'Procurando Nemo', avaliacao: 8.3 }
+{ titulo: 'Titanic', avaliacao: 7.7 }
+{ titulo: 'Toy Story', avaliacao: 6.1 }
+{ titulo: 'Toy Story 2', avaliacao: 3.2 }
+{ titulo: 'Transformers: o lado escuro da Lua', avaliacao: 0.9 }
+db.peliculas.find({},{_id: 0, titulo:1, avaliacao:0}).sort({titulo: 1})
+MongoServerError: Cannot do exclusion on field avaliacao in inclusion projection
+db.peliculas.find({},{_id: 0, titulo:1}).sort({titulo: 1})
+{ titulo: 'A Guerra das Galáxias: Episodio VI' }
+{ titulo: 'A Guerra das Galáxias: Episodio VII' }
+{ titulo: 'A vida é bela' }
+{ titulo: 'Avatar' }
+{ titulo: 'Big' }
+{ titulo: 'Harry Potter e a Câmara Secreta' }
+{ titulo: 'Harry Potter e a Pedra Filosofal' }
+{ titulo: 'Harry Potter e as Relíquias da Morte - Parte 2' }
+{ titulo: 'Hotel Transylvania' }
+{ titulo: 'I am Sam' }
+{ titulo: 'Intensamente' }
+{ titulo: 'Jurassic Park' }
+{ titulo: 'Meu pobre anjinho' }
+{ titulo: 'O Rei Leão' }
+{ titulo: 'Procurando Nemo' }
+{ titulo: 'Titanic' }
+{ titulo: 'Toy Story' }
+{ titulo: 'Toy Story 2' }
+{ titulo: 'Transformers: o lado escuro da Lua' }
+db.peliculas.find({},{titulo:1, avaliacao:0}).sort({titulo: 1})
+MongoServerError: Cannot do exclusion on field avaliacao in inclusion projection
+db.peliculas.find({},{titulo:1, avaliacao:1}).sort({titulo: 1})
+{ _id: 3,
+  titulo: 'A Guerra das Galáxias: Episodio VI',
+  avaliacao: 9.1 }
+{ _id: 4,
+  titulo: 'A Guerra das Galáxias: Episodio VII',
+  avaliacao: 4 }
+{ _id: 14, titulo: 'A vida é bela', avaliacao: 8.3 }
+{ _id: 1, titulo: 'Avatar', avaliacao: 7.9 }
+{ _id: 17, titulo: 'Big', avaliacao: 7.3 }
+{ _id: 9,
+  titulo: 'Harry Potter e a Câmara Secreta',
+  avaliacao: 3.5 }
+{ _id: 8,
+  titulo: 'Harry Potter e a Pedra Filosofal',
+  avaliacao: 10 }
+{ _id: 6,
+  titulo: 'Harry Potter e as Relíquias da Morte - Parte 2',
+  avaliacao: 9 }
+{ _id: 19, titulo: 'Hotel Transylvania', avaliacao: 7.1 }
+{ _id: 18, titulo: 'I am Sam', avaliacao: 9 }
+{ _id: 16, titulo: 'Intensamente', avaliacao: 9 }
+{ _id: 5, titulo: 'Jurassic Park', avaliacao: 8.3 }
+{ _id: 15, titulo: 'Meu pobre anjinho', avaliacao: 3.2 }
+{ _id: 10, titulo: 'O Rei Leão', avaliacao: 9.1 }
+{ _id: 11, titulo: 'Procurando Nemo', avaliacao: 8.3 }
+{ _id: 2, titulo: 'Titanic', avaliacao: 7.7 }
+{ _id: 12, titulo: 'Toy Story', avaliacao: 6.1 }
+{ _id: 13, titulo: 'Toy Story 2', avaliacao: 3.2 }
+{ _id: 7,
+  titulo: 'Transformers: o lado escuro da Lua',
+  avaliacao: 0.9 }
+db.peliculas.find({},{_id: 0, titulo:1, avaliacao:1}).sort({titulo: 1})
+{ titulo: 'A Guerra das Galáxias: Episodio VI', avaliacao: 9.1 }
+{ titulo: 'A Guerra das Galáxias: Episodio VII', avaliacao: 4 }
+{ titulo: 'A vida é bela', avaliacao: 8.3 }
+{ titulo: 'Avatar', avaliacao: 7.9 }
+{ titulo: 'Big', avaliacao: 7.3 }
+{ titulo: 'Harry Potter e a Câmara Secreta', avaliacao: 3.5 }
+{ titulo: 'Harry Potter e a Pedra Filosofal', avaliacao: 10 }
+{ titulo: 'Harry Potter e as Relíquias da Morte - Parte 2',
+  avaliacao: 9 }
+{ titulo: 'Hotel Transylvania', avaliacao: 7.1 }
+{ titulo: 'I am Sam', avaliacao: 9 }
+{ titulo: 'Intensamente', avaliacao: 9 }
+{ titulo: 'Jurassic Park', avaliacao: 8.3 }
+{ titulo: 'Meu pobre anjinho', avaliacao: 3.2 }
+{ titulo: 'O Rei Leão', avaliacao: 9.1 }
+{ titulo: 'Procurando Nemo', avaliacao: 8.3 }
+{ titulo: 'Titanic', avaliacao: 7.7 }
+{ titulo: 'Toy Story', avaliacao: 6.1 }
+{ titulo: 'Toy Story 2', avaliacao: 3.2 }
+{ titulo: 'Transformers: o lado escuro da Lua', avaliacao: 0.9 }
+db.peliculas.find({},{_id: 0, titulo:1, avaliacao:1}).sort({titulo: -1})
+{ titulo: 'Transformers: o lado escuro da Lua', avaliacao: 0.9 }
+{ titulo: 'Toy Story 2', avaliacao: 3.2 }
+{ titulo: 'Toy Story', avaliacao: 6.1 }
+{ titulo: 'Titanic', avaliacao: 7.7 }
+{ titulo: 'Procurando Nemo', avaliacao: 8.3 }
+{ titulo: 'O Rei Leão', avaliacao: 9.1 }
+{ titulo: 'Meu pobre anjinho', avaliacao: 3.2 }
+{ titulo: 'Jurassic Park', avaliacao: 8.3 }
+{ titulo: 'Intensamente', avaliacao: 9 }
+{ titulo: 'I am Sam', avaliacao: 9 }
+{ titulo: 'Hotel Transylvania', avaliacao: 7.1 }
+{ titulo: 'Harry Potter e as Relíquias da Morte - Parte 2',
+  avaliacao: 9 }
+{ titulo: 'Harry Potter e a Pedra Filosofal', avaliacao: 10 }
+{ titulo: 'Harry Potter e a Câmara Secreta', avaliacao: 3.5 }
+{ titulo: 'Big', avaliacao: 7.3 }
+{ titulo: 'Avatar', avaliacao: 7.9 }
+{ titulo: 'A vida é bela', avaliacao: 8.3 }
+{ titulo: 'A Guerra das Galáxias: Episodio VII', avaliacao: 4 }
+{ titulo: 'A Guerra das Galáxias: Episodio VI', avaliacao: 9.1 }
+db.peliculas.find({},{}).sort({avaliacao: -1})
+{ _id: 8,
+  titulo: 'Harry Potter e a Pedra Filosofal',
+  avaliacao: 10,
+  premios: 1,
+  data_lancamento: 2008-04-04T03:00:00.000Z,
+  duracao: 120,
+  genero: 'Aventura' }
+{ _id: 3,
+  titulo: 'A Guerra das Galáxias: Episodio VI',
+  avaliacao: 9.1,
+  premios: 7,
+  data_lancamento: 2004-04-07T03:00:00.000Z,
+  genero: 'Ficção Científica' }
+{ _id: 10,
+  titulo: 'O Rei Leão',
+  avaliacao: 9.1,
+  premios: 3,
+  data_lancamento: 2000-04-02T03:00:00.000Z,
+  genero: 'Infantil' }
+{ _id: 6,
+  titulo: 'Harry Potter e as Relíquias da Morte - Parte 2',
+  avaliacao: 9,
+  premios: 2,
+  data_lancamento: 2008-04-07T03:00:00.000Z,
+  duracao: 190,
+  genero: 'Suspense' }
+{ _id: 16,
+  titulo: 'Intensamente',
+  avaliacao: 9,
+  premios: 2,
+  data_lancamento: 2008-04-07T03:00:00.000Z,
+  duracao: 120,
+  genero: 'Animação' }
+{ _id: 18,
+  titulo: 'I am Sam',
+  avaliacao: 9,
+  premios: 4,
+  data_lancamento: 1999-04-03T03:00:00.000Z,
+  duracao: 130,
+  genero: 'Drama' }
+{ _id: 5,
+  titulo: 'Jurassic Park',
+  avaliacao: 8.3,
+  premios: 5,
+  data_lancamento: 1999-04-01T03:00:00.000Z,
+  duracao: 270,
+  genero: 'Ficção Científica' }
+{ _id: 11,
+  titulo: 'Procurando Nemo',
+  avaliacao: 8.3,
+  premios: 2,
+  data_lancamento: 2000-04-07T03:00:00.000Z,
+  duracao: 110,
+  genero: 'Animação' }
+{ _id: 14,
+  titulo: 'A vida é bela',
+  avaliacao: 8.3,
+  premios: 5,
+  data_lancamento: 1994-04-10T03:00:00.000Z,
+  genero: 'Drama' }
+{ _id: 1,
+  titulo: 'Avatar',
+  avaliacao: 7.9,
+  premios: 3,
+  data_lancamento: 2010-04-10T03:00:00.000Z,
+  duracao: 120,
+  genero: 'Ficção Científica' }
+{ _id: 2,
+  titulo: 'Titanic',
+  avaliacao: 7.7,
+  premios: 11,
+  data_lancamento: 1997-04-09T03:00:00.000Z,
+  duracao: 320,
+  genero: 'Drama' }
+{ _id: 17,
+  titulo: 'Big',
+  avaliacao: 7.3,
+  premios: 2,
+  data_lancamento: 1988-04-02T03:00:00.000Z,
+  duracao: 130,
+  genero: 'Aventura' }
+{ _id: 19,
+  titulo: 'Hotel Transylvania',
+  avaliacao: 7.1,
+  premios: 1,
+  data_lancamento: 2012-04-05T03:00:00.000Z,
+  duracao: 90,
+  genero: 'Infantil' }
+{ _id: 12,
+  titulo: 'Toy Story',
+  avaliacao: 6.1,
+  premios: 0,
+  data_lancamento: 2008-04-03T03:00:00.000Z,
+  duracao: 150,
+  genero: 'Animação' }
+{ _id: 4,
+  titulo: 'A Guerra das Galáxias: Episodio VII',
+  avaliacao: 4,
+  premios: 6,
+  data_lancamento: 2003-04-11T03:00:00.000Z,
+  duracao: 180,
+  genero: 'Ficção Científica' }
+{ _id: 9,
+  titulo: 'Harry Potter e a Câmara Secreta',
+  avaliacao: 3.5,
+  premios: 2,
+  data_lancamento: 2009-04-08T03:00:00.000Z,
+  duracao: 200,
+  genero: 'Aventura' }
+{ _id: 13,
+  titulo: 'Toy Story 2',
+  avaliacao: 3.2,
+  premios: 2,
+  data_lancamento: 2003-04-04T03:00:00.000Z,
+  duracao: 120,
+  genero: 'Animação' }
+{ _id: 15,
+  titulo: 'Meu pobre anjinho',
+  avaliacao: 3.2,
+  premios: 1,
+  data_lancamento: 1989-04-01T03:00:00.000Z,
+  duracao: 120,
+  genero: 'Comédia' }
+{ _id: 7,
+  titulo: 'Transformers: o lado escuro da Lua',
+  avaliacao: 0.9,
+  premios: 1,
+  data_lancamento: 2005-04-07T03:00:00.000Z,
+  genero: 'Ficção Científica' }
+db.peliculas.find({},{titulo:1}).sort({avaliacao: -1})
+{ _id: 8, titulo: 'Harry Potter e a Pedra Filosofal' }
+{ _id: 3, titulo: 'A Guerra das Galáxias: Episodio VI' }
+{ _id: 10, titulo: 'O Rei Leão' }
+{ _id: 6,
+  titulo: 'Harry Potter e as Relíquias da Morte - Parte 2' }
+{ _id: 16, titulo: 'Intensamente' }
+{ _id: 18, titulo: 'I am Sam' }
+{ _id: 5, titulo: 'Jurassic Park' }
+{ _id: 11, titulo: 'Procurando Nemo' }
+{ _id: 14, titulo: 'A vida é bela' }
+{ _id: 1, titulo: 'Avatar' }
+{ _id: 2, titulo: 'Titanic' }
+{ _id: 17, titulo: 'Big' }
+{ _id: 19, titulo: 'Hotel Transylvania' }
+{ _id: 12, titulo: 'Toy Story' }
+{ _id: 4, titulo: 'A Guerra das Galáxias: Episodio VII' }
+{ _id: 9, titulo: 'Harry Potter e a Câmara Secreta' }
+{ _id: 13, titulo: 'Toy Story 2' }
+{ _id: 15, titulo: 'Meu pobre anjinho' }
+{ _id: 7, titulo: 'Transformers: o lado escuro da Lua' }
+db.peliculas.find({},{titulo:1, avaliacao:1}).sort({avaliacao: -1})
+{ _id: 8,
+  titulo: 'Harry Potter e a Pedra Filosofal',
+  avaliacao: 10 }
+{ _id: 3,
+  titulo: 'A Guerra das Galáxias: Episodio VI',
+  avaliacao: 9.1 }
+{ _id: 10, titulo: 'O Rei Leão', avaliacao: 9.1 }
+{ _id: 6,
+  titulo: 'Harry Potter e as Relíquias da Morte - Parte 2',
+  avaliacao: 9 }
+{ _id: 16, titulo: 'Intensamente', avaliacao: 9 }
+{ _id: 18, titulo: 'I am Sam', avaliacao: 9 }
+{ _id: 5, titulo: 'Jurassic Park', avaliacao: 8.3 }
+{ _id: 11, titulo: 'Procurando Nemo', avaliacao: 8.3 }
+{ _id: 14, titulo: 'A vida é bela', avaliacao: 8.3 }
+{ _id: 1, titulo: 'Avatar', avaliacao: 7.9 }
+{ _id: 2, titulo: 'Titanic', avaliacao: 7.7 }
+{ _id: 17, titulo: 'Big', avaliacao: 7.3 }
+{ _id: 19, titulo: 'Hotel Transylvania', avaliacao: 7.1 }
+{ _id: 12, titulo: 'Toy Story', avaliacao: 6.1 }
+{ _id: 4,
+  titulo: 'A Guerra das Galáxias: Episodio VII',
+  avaliacao: 4 }
+{ _id: 9,
+  titulo: 'Harry Potter e a Câmara Secreta',
+  avaliacao: 3.5 }
+{ _id: 13, titulo: 'Toy Story 2', avaliacao: 3.2 }
+{ _id: 15, titulo: 'Meu pobre anjinho', avaliacao: 3.2 }
+{ _id: 7,
+  titulo: 'Transformers: o lado escuro da Lua',
+  avaliacao: 0.9 }
+db.peliculas.find({},{titulo:1}).sort({avaliacao: -1})
+{ _id: 8, titulo: 'Harry Potter e a Pedra Filosofal' }
+{ _id: 3, titulo: 'A Guerra das Galáxias: Episodio VI' }
+{ _id: 10, titulo: 'O Rei Leão' }
+{ _id: 6,
+  titulo: 'Harry Potter e as Relíquias da Morte - Parte 2' }
+{ _id: 16, titulo: 'Intensamente' }
+{ _id: 18, titulo: 'I am Sam' }
+{ _id: 5, titulo: 'Jurassic Park' }
+{ _id: 11, titulo: 'Procurando Nemo' }
+{ _id: 14, titulo: 'A vida é bela' }
+{ _id: 1, titulo: 'Avatar' }
+{ _id: 2, titulo: 'Titanic' }
+{ _id: 17, titulo: 'Big' }
+{ _id: 19, titulo: 'Hotel Transylvania' }
+{ _id: 12, titulo: 'Toy Story' }
+{ _id: 4, titulo: 'A Guerra das Galáxias: Episodio VII' }
+{ _id: 9, titulo: 'Harry Potter e a Câmara Secreta' }
+{ _id: 13, titulo: 'Toy Story 2' }
+{ _id: 15, titulo: 'Meu pobre anjinho' }
+{ _id: 7, titulo: 'Transformers: o lado escuro da Lua' }
+db.peliculas.updateMany({duracao: null}, { $set: {duracao: 80}})
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 4,
+  modifiedCount: 4,
+  upsertedCount: 0 }
+db.peliculas.updateMany({duracao: null}, { $set: {duracao: 80}, {multi: true}})
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.peliculas.updateMany({duracao: null}, { $set: {duracao: 80},{multi: true}})
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.peliculas.updateMany({duracao: null}, { $set: {duracao: 80},{multi: true})
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.peliculas.updateMany({duracao: null}, { $set: {duracao: 80}},{multi: true})
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0 }
+db.peliculas.updateMany({duracao: null}, { $set: {duracao: 80}})
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0 }
+db.peliculas.insertOne(
+  {_id: 20,
+	titulo: "La Sirenita",
+	avaliacao: 8.3,
+	premios: 5,
+	data_lancamento:1989-12-11,
+	duracao: 120
+	}
+  )
+{ acknowledged: true, insertedId: 20 }
+db.peliculas.updateOne({_id:6},{$set: {genero: "Aventura"}})
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0 }
+db.peliculas.find().sort({avaliacao: 1}).limit(1)
+{ _id: 7,
+  titulo: 'Transformers: o lado escuro da Lua',
+  avaliacao: 0.9,
+  premios: 1,
+  data_lancamento: 2005-04-07T03:00:00.000Z,
+  genero: 'Ficção Científica',
+  duracao: 80 }
+db.peliculas.deleteOne(_id: 7)
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.peliculas.deleteOne({_id: 7})
+{ acknowledged: true, deletedCount: 1 }
