@@ -1,0 +1,38 @@
+version: '3.9'
+services:
+postgres:
+image: postgres:latest
+restart: unless-stopped
+environment:
+POSTGRES_DB: keycloak
+POSTGRES_USER: postgres
+POSTGRES_PASSWORD: 1234
+ports:
+- '5439:5439'
+networks:
+- local-keycloak
+1
+volumes:
+- db:/var/lib/postgresql/data
+keycloak:
+depends_on:
+- postgres
+container_name: local_keycloak
+environment:
+KEYCLOAK_ADMIN: admin
+KEYCLOAK_ADMIN_PASSWORD: admin
+KC_DB: postgres
+KC_DB_PASSWORD: 1234
+KC_DB_USERNAME: postgres
+KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
+image: quay.io/keycloak/keycloak:18.0.0
+command: start-dev
+ports:
+- "8082:8080"
+restart: unless-stopped
+networks:
+- local-keycloak
+networks:
+local-keycloak:
+volumes:
+db:
