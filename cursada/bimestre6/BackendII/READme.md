@@ -43,26 +43,36 @@ En este curso, vamos a conocer cómo las grandes compañías abordan este tema y
  - [Json Web Token (JWT)](#c2d)
  - [OIDC Discovery](#c2e)
  - [Autenticación de un usuario](#c2f)
-    - [Recrear flujo de autenticación de OpenID Connect](#c2fa)
-    - [Análisis de un ID token](#c2e)
- - [ ](#c2e)
+    - [Recrear flujo de autenticación de OpenID Connect](#c2f1)
+    - [Análisis de un ID token](#c2ef2)
+    - [Refresh token](#c2g)
+    - [Modificación del perfil de usuario](#c2h)
+    - [Agregar roles al ID token](#c2i)
+    - [Logout](#c2j)
 
 
-- [Autenticación avanzada](#c3)
-- [ ](#c3a)
- - [ ](#c3b)
- - [ ](#c3c)
- - [ ](#c3d)
- - [ ](#c3e)
+- [Autenticación avanzada](#c4)
+    - [RBAC (role-based access control)](#c4a)
+    - [ABAC (attribute-based access control)](#c4b)
+    - [Roles dentro de Keycloak](#c4c)
+    - [OAuth 2.0 scopes](#c4d)
+    - [GBAC (group-based access control)](#c4e)
+- [Repaso](#c4f)
 
 - [Tokens y sesiones](#c5)
-- [ ](#c5a)
- - [ ](#c5b)
- - [ ](#c5c)
- - [ ](#c5d)
- - [ ](#c5e)
+    - [Gestión de sesiones](#c5a)
+    - [Tiempo de vida de una sesión](#c5b)
+    - [Forzar expiración de una sesión](#c5c)
+    - [Gestionando tokens](#c5d)
 
-- mdts
+
+- [Integración de Keycload con Spring boot](#c7)
+    - [Integración Keycloak con back end](#c7a)
+    - [Integración de Keycloak con Spring Cloud](#c7b)
+- [ ](#c7e)
+- [ ](#c7d)
+- [ ](#c7e)
+
 
 2. Módulo 2 -  
 
@@ -295,9 +305,9 @@ OpenID es una especificación, o sea, podemos verla como una serie de reglas a s
 
 [Presentación genially](https://view.genial.ly/6269ead65b9e510018039fd0)
 
-<a id='c2fa'>[Recrear flujo de autenticación de OpenID Connect](./clase%202%20-%2015%20de%20feb%20de%202023/4.%20Recrear%20flujo%20de%20autenticaci%C3%B3n%20de%20%20OpenID%20Connect%20.html) </a>
+<a id='c2f1'>[Recrear flujo de autenticación de OpenID Connect](./clase%202%20-%2015%20de%20feb%20de%202023/4.%20Recrear%20flujo%20de%20autenticaci%C3%B3n%20de%20%20OpenID%20Connect%20.html) </a>
 
-### Análisis de un ID token
+### Análisis de un ID token <a id='c2f2'></a>
 
 En la consulta anterior obtuvimos —en la respuesta— un campo llamado id_token, cuyo valor es un JWT que contiene la información del usuario autenticado. Si copiamos el id_token y lo pegamos en https://jwt.io/ para decodificarlo y ver su información, nos muestra algo como lo siguiente:
 
@@ -315,3 +325,250 @@ En la consulta anterior obtuvimos —en la respuesta— un campo llamado id_toke
 <coments>
 Las fechas en los JWT están representadas en segundos desde el 1 de enero de 1970. Si queremos averiguar la fecha de algún campo, podemos utilizar la página www.epochconverter.com.
 </coments>
+
+### Refresh token <a id='c2g'></a>
+Generalmente, el ID token tiene una corta duración. Luego de unos pocos minutos, vence. Para obtener un nuevo token tenemos que enviar el refresh_token al mismo endpoint que enviamos el code autenticamos un usuario.
+
+Ejemplo de request:
+![](./img/example-request.png)
+
+Ahora, en lugar de pasar el valor “code” para la key grant_type, le pasamos “refresh_token”. La respuesta nos envía el nuevo id_token y un nuevo refresh_token, ya que solamente lo podemos usar una única vez.
+
+![](./img/example-response.png)
+### Modificación del perfil de usuario <a id='c2h'></a>
+Podemos agregar atributos a los usuarios y luego agregar estos nuevos atributos al JWT para que sean utilizados por cualquier aplicación que consuma el token, por ejemplo, los microservicios del back end.
+[](./clase%202%20-%2015%20de%20feb%20de%202023/2.%20Modificaci%C3%B3n%20del%20perfil%20de%20usuario.pdf)
+
+### Agregar roles al ID token <a id='c2i'></a>
+Por defecto, los roles no se agregan al ID token. Si queremos agregarlos para hacer validaciones o simplemente leer la información, podemos hacerlo fácilmente de la siguiente forma:
+
+1. Debemos hacer clic en Client Scopes en el menú de la izquierda y luego ingresar a Roles
+![](./img/client-scopes.png)
+
+2. Establecer en ON la opción Include in Token Scope
+![](./img/include-token-scope.png)
+
+3. De esta manera, podremos ver el rol del usuario desde el ID token (por ejemplo, copiando el access token y decodificándolo como ya vimos previamente con la herramienta www.jwt.io)
+![](./img/jwt-payload.png)
+
+
+### Logout <a id='c2j'></a>
+
+El proceso de cerrar una sesión consiste, simplemente, en invalidar todos los tokens de un usuario. Para hacer esto:
+
+1. La aplicación (es decir, nosotros que estamos probando) enviará una petición al endpoint end_session_endpoint (podemos ver la URL en el JSON de resultado donde se listan todos los endpoints, el endpoint del Discovery)
+![](./img/end-session-endpoint.png)
+
+2. Además, debemos agregar como query param el id_token del usuario autenticado (el id_token podemos encontrarlo en el resultado del endpoint openid-connect/token)
+![](./img/id-token.png)
+
+![](./img/id-token-2.png)
+
+3. Keycloak recibirá la petición, avisará a los otros clientes con los que el usuario podría intentar conectarse y luego invalidará la sesión, es decir, no permitirá renovar nunca más el ID token utilizando el refresh token.
+
+----------------------------------------
+
+### Autenticación avanzada <a id='c4'></a>
+Los mecanismos de control de acceso se pueden definir como un componente lógico que sirve para capturar una solicitud de acceso (de un usuario/cliente), tomar una decisión y verificar que esa decisión de acceso se cumpla.
+
+Existen diversas estrategias (cada una con sus puntos fuertes y débiles), pero no se puede decir que una sea superadora por sobre otra, sino que son distintos enfoques que —muy a menudo— se usan en forma conjunta para enfrentar escenarios complejos.
+
+Conocer y comprender estos métodos y sus características es un buen punto de partida para aplicarlos en distintos casos de uso de forma eficaz y costo-eficiente.
+
+Las estrategias de control de acceso sobre las cuales estaremos aprendiendo son:
+
+1. RBAC (role-based access control)
+2. ABAC (attribute-based access control)
+3. Scopes de OAuth 2.0
+4. GBAC (group-based access control)
+
+
+### RBAC (role-based access control) <a id='c4a'></a>
+Tradicionalmente, para garantizar la seguridad, el control de acceso se gestionaba de forma individual mediante listas de control de acceso (ACL o access control list). El problema de este tipo de mecanismo es que tanto el costo de mantenimiento como el número de errores de gestión aumentan a medida que crece el número de usuarios a gestionar.
+
+El control de acceso basado en roles (de ahora en adelante, RBAC, y también conocido como seguridad basada en roles) es un mecanismo de control de acceso que define los roles y asigna permisos a los usuarios finales para determinar si se le debe dar acceso a un recurso.
+
+El aprovisionamiento u otorgamiento de acceso de usuarios se basa en las necesidades de un grupo dentro de la compañía u organización y en función de responsabilidades y necesidades comunes. Esto significa que los roles se definen en función de características propias de la organización, como la ubicación, el departamento, la antigüedad o las funciones del usuario. Por otro lado, los permisos se asignan según el acceso (lo que el usuario puede ver), las operaciones (lo que el usuario puede hacer) y las sesiones (cuánto tiempo puede hacerlo el usuario).
+
+Vamos a ver 3 reglas fundamentales por las cuales se rige el RBAC:
+
+- Asignación de roles: un usuario solo puede ejercer privilegios si se le ha asignado un rol.
+- Autorización basada en roles: dicho rol del usuario debe estar autorizado, lo que garantiza que los usuarios solo puedan asumir roles para los que están autorizados.
+- Autorización de privilegios: un usuario puede ejercer ciertos privilegios si, por supuesto, está autorizado para hacerlo.
+
+![](./img/funciones-rbac.png
+
+![](./img/rbac-mesa-de-trabajo.png)
+
+Todas estas características hacen del RBAC muy popular en grandes organizaciones que necesitan otorgar acceso a cientos o miles de empleados. Pero también es cada vez más popular entre las organizaciones más pequeñas, ya que a menudo es más fácil de administrar que las listas de control de acceso.
+
+¿Y cómo hace Keycloak para poner en juego este mecanismo de seguridad?
+![](./img/tipos-de-roles-keycloak.jpg)
+
+### ABAC (attribute-based access control) <a id='c4b'></a>
+A diferencia de RBAC, en un sistema de control de acceso basado en atributos (ABAC), cualquier tipo de atributo —como los atributos de usuario y los atributos de recursos— se utilizan para determinar el acceso. Estos atributos se comparan con valores estáticos definidos o incluso con otros atributos, lo que lo convierte en un control de acceso basado en relaciones. Los atributos vienen en pares clave-valor (como "Rol = Supervisor"), que se pueden usar para limitar el acceso a una determinada característica de un sistema. Es decir, que este tipo de control utiliza los atributos que contiene el token e información sobre el contexto de autorización para conceder acceso a los recursos. Es probablemente el mecanismo de control más flexible y soporta de forma natural la autorización de accesos de granularidad fina.
+![](./img/texto-intro-abac.png)
+
+Como ya vimos, la autorización a partir de tokens se basa en realizar una introspección de los mismos y utilizar la información que contienen para así permitir el acceso a los recursos. Esta información se representa como un set de atributos, o claims, y son sus valores los que verificaremos para conceder el acceso.
+
+### Roles dentro de Keycloak <a id='c4c'></a>
+![](./img/roles-dentro-keycloak.png)
+
+### OAuth 2.0 scopes <a id='c4d'></a>
+Keycloak es, fundamentalmente, un servidor de autorización basado en OAuth 2.0. A OAuth 2.0 ya lo conocemos y lo revisamos a fondo en clases pasadas, pero repasemos un aspecto importante. En OAuth hay dos tipos de aplicaciones: clientes y servidores de recursos. Vimos también que los tokens se generan para que los clientes puedan actuar en nombre de un usuario y están limitados al alcance (scope) al que el usuario otorgue su consentimiento. Por otro lado, los servidores de recursos son los que, basándose en ese token, deciden si un cliente puede acceder a un recurso protegido.
+
+¿Pero qué es el scope? Es el alcance de la autorización y se usa para restringir el acceso a los recursos. Cuando se solicita un access token del servidor de autorizaciones, la aplicación cliente incluirá un scope como parámetro de la petición, especificando una lista de scopes (alcances) o determinados accesos a los recursos del usuario, que el token generado debe tener.
+
+![](./img/texto-intro-oauth.jpg)
+
+Por defecto, los clientes en Keycloak no están configurados para pedir consentimiento del usuario. Esto sucede porque usualmente se emplea dentro de un ámbito empresarial, donde los clientes se encuentran dentro de los límites de la organización y los recursos a los cuales se puede acceder no requieren del consentimiento del usuario. En su lugar, requieren de un permiso de acceso que se define de acuerdo a roles, atributos específicos de un usuario o incluso grupos de usuarios (como veremos más adelante).
+
+La autorización mediante los scopes de OAuth 2.0 se basa solamente en el consentimiento del usuario. Es una mejor estrategia a la hora de integrar servicios de terceros en nuestra aplicación y, en este caso, el usuario tendrá la decisión a la hora de autorizar a una aplicación de terceros a acceder a sus recursos. Para implementar esta estrategia se deberá poner énfasis en proteger la información de los usuarios. Debemos entender que esta estrategia de autorización se enfoca en proteger a los recursos de otros clientes (aplicaciones o servicios). Esto difiere de las estrategias que vimos anteriormente, como RBAC, en la cual se protege a los recursos de los usuarios.
+
+### GBAC (group-based access control) <a id='c4e'></a>
+Keycloak nos permite administrar grupos (groups) dentro de nuestro reino. Los usuarios pueden formar parte de un group ya sea para representar su función dentro de una unidad de negocio de la organización o para agruparlos de acuerdo a los roles que cumplen dentro del contexto de nuestra aplicación —como podría ser, por ejemplo, un grupo de usuarios administradores—. Aquí entra en juego GBAC, asignando roles a los groups. De esta manera, Keycloak hace mucho más fácil la tarea de administrar roles comunes para múltiples usuarios sin obligarnos a otorgar o revocar roles a cada usuario de forma individual dentro del reino.
+
+Los groups dentro de Keycloak son jerárquicos y, cuando se emiten los tokens, se puede atravesar esta jerarquía observando el path del group. Supongamos un ejemplo: tenemos un group de recursos humanos llamado “human resource”. Como hijo de este group, tenemos un grupo de administradores llamado “manager”. Cuando Keycloak almacena información sobre groups dentro de los tokens, la información debería llegar en el siguiente formato: /human resource/manager. Esta información estará disponible para cada token emitido por el servidor, donde el sujeto (usuario) sea miembro del group.
+
+A diferencia de los roles, la información sobre el group no se incluye de forma automática dentro de los tokens, sino que debemos asociar un protocolo de mapeo al client (o un client scope con el mismo mapeo).
+
+[Mapear membresías](./clase%203%20y%204%20-%2022%20de%20feb%20de%202023/2.%20Mapear%20membres%C3%ADas%20de%20groups%20dentro%20del%20token.pdf)
+
+
+### Repaso <a id='c4f'></a>
+1. ¿Qué mecanismo conviene utilizar a la hora de autorizar aplicaciones de terceros? 
+* [ ] ABAC
+* [ ] RBAC
+* [ ] GBAC
+* [X] OAuth 2.0 scopes
+
+2. Los tokens emitidos por Keycloak no pueden guardar información sobre grupos. 
+* [ ]  Verdadero
+* [X]  Falso
+
+3. No se puede implementar más de un mecanismo de control en una aplicación. 
+* [ ]  Verdadero
+* [X]  Falso
+
+4.  ¿Qué mecanismos pueden aprovechar los roles de Keycloak para autorizar accesos? 
+* [X] ABAC
+* [X] RBAC
+* [X] GBAC
+* [ ] OAuth 2.0 scopes
+
+5. Por más que tengamos un servicio de autorización centralizado, podemos aplicar autorizaciones específicas a nivel de aplicación. 
+* [X] Verdadero
+* [ ] Falso
+
+6. Se recomienda crear una gran cantidad de roles para autorizar los accesos a nuestros recursos. 
+* [ ]  Verdadero
+* [X]  Falso
+
+7. Keycloak nos permite encadenar varios roles en uno solo.
+* [X] Verdadero
+* [ ] Falso
+
+8. Sobre los grupos de Keycloak: 
+* [X] Pueden tener roles.
+* [ ] Por defecto, son incluidos dentro del token.
+* [ ] Un usuario no puede pertenecer a más de un grupo.
+* [ ] Pueden tener grupos hijos o padres.
+
+9. Sobre Keycloak como servidor centralizado: 
+* [ ] Acopla la lógica de autorización a las aplicaciones.
+* [ ] No permite el uso de ABAC.
+* [X] Aprovecha el uso de los protocol mappers.
+
+---------------------
+
+### Tokens y sesiones <a id='c5'></a>
+Keycloak es —en esencia— un sistema de gestión de tokens y sesiones.
+
+Como parte del proceso de autenticación, Keycloak puede crear sesiones del lado del servidor y correlacionarse con tokens. Con las sesiones, Keycloak puede mantener el estado del contexto de autenticación donde se originaron las sesiones, rastrear la actividad de los usuarios y clientes, verificar la validez de los tokens y decir cuándo los usuarios y clientes deben volver a autenticarse.
+
+### Gestión de sesiones <a id='c5a'></a>
+La gestión de sesiones tiene un impacto directo en algunos aspectos clave, como la experiencia del usuario, la seguridad y el rendimiento. Veamos cada caso.
+
+- Experiencia del usuario
+Keycloak se basa en las sesiones para determinar si los usuarios y clientes están autenticados, durante cuánto tiempo deben estar autenticados y cuándo es el momento de volver a autenticarse. Esta característica de las sesiones es básicamente lo que brinda a los usuarios la experiencia de inicio de sesión único (single sign-on), ya que —al autenticarse— la sesión será válida para todos los clientes dentro del mismo reino.
+
+- Seguridad
+Las sesiones brindan una capa de seguridad para rastrear y controlar la actividad del usuario y para asegurarse de que los tokens emitidos a los clientes sigan siendo válidos. También son importantes para limitar y controlar el tiempo que los usuarios podrán permanecer conectados a un reino.
+
+- Rendimiento
+Las sesiones se guardan en la memoria y tienen un impacto directo en el rendimiento general de Keycloak. Este almacena sesiones en cachés, donde la cantidad de sesiones activas y el tiempo que se mantienen vivas son factores clave que deben equilibrarse para optimizar la memoria y los recursos.
+
+![](./img/gestionsesiones.png)
+
+[Presentación genially](https://view.genial.ly/62b495c9933c580011b7dd38)
+
+### Tiempo de vida de una sesión <a id='c5b'></a>
+La duración de la sesión determina cuándo las sesiones deben caducar y destruirse. Una vez que expira, los usuarios y clientes asociados con estas sesiones ya no se encuentran autenticados y se ven obligados a volver a autenticarse para establecer una nueva sesión.
+
+![](./img/tiempo-vida-sesion.png)
+[Ejercicio Práctico](./clase%205%20y%206/3.%20Configurando%20el%20tiempo%20de%20expiraci%C3%B3n%20y%20de%20inactividad.pdf)
+
+### Forzar expiración de una sesión <a id='c5c'></a>
+Podemos administrar las sesiones a través de tres niveles:
+* Por reino
+* Por cliente
+* Por usuario
+
+A nivel de reino podemos ver las sesiones activas agrupadas por cliente. Para visualizar esto debemos ir a “Sessions” y luego a la pestaña “Realm Sessions”.
+![](./img/image-sessions.png)
+
+Tenemos la opción de realizar un logout de todas las sesiones haciendo clic en el botón “Logout all”.
+
+A nivel de cliente, podemos ver qué usuarios tienen una sesión activa. Tan solo debemos ir al cliente que queremos analizar y luego a la pestaña “Sessions”. Ahí podemos ver el listado de usuarios.
+![](./img/image-acc-console.png)
+
+Para cerrar la sesión de un usuario en particular debemos hacer clic en el usuario y, luego, en la pestaña “Sessions” podemos cerrar todas las sesiones o alguna en particular.
+![](./img/image-user.png)
+
+
+### Gestionando tokens <a id='c5d'></a>
+Los tokens tienen su propia vida útil y su duración depende en cómo son validados. Configurando JSON Web Token (JWT) como formato de tokens, Keycloak habilita a las aplicaciones a validar e inspeccionar los tokens localmente, sin una llamada adicional al servidor. Obviamente, la consecuencia de este proceso es que la sesión asociada al token puede haber sido invalidada o expirada.
+
+
+
+¿Cómo evitar esta vulnerabilidad?
+Debemos considerar siempre una estrategia clara de expiración de tokens y establecer cuándo las aplicaciones deben obtener los tokens, utilizando:
+
+* ID token
+* Access token
+* Refresh token
+
+Cada uno de estos tokens tiene una vida útil. Para el caso de ID token y access token es la misma vida útil, generalmente corta, ya que son utilizados por clientes públicos como una aplicación de única página —o SPA—, donde el guardado de tokens no es seguro. Cabe destacar que el access token se envía en cada petición para identificar al token de la sesión del momento. Por último, tenemos el refresh token, que debe tener una vida útil mayor a los otros dos dada su naturaleza de recrear el access token para mantener el acceso seguro a la aplicación.
+------------------------------------
+
+
+### Integración de Keycload con Spring boot <a id='c7'></a>
+Keycloak —si bien tiene una plataforma que nos permite realizar todas las configuraciones y poder ver y gestionar permisos, grupos, ambientes, dominios, etc.— es un proveedor… y, como proveedor, ofrece esos servicios a una aplicación que estará funcionando como “consumidor” de los servicios de Keycloak.
+
+¿Qué significa esto? Significa que habrá un back end en donde se alojará la configuración de seguridad que provee Keycloak. En nuestro caso, Keycloak, como ya vimos, va a generar un token en forma de JSON donde se almacenarán los datos propios del usuario, así como información de contexto que permita al IAM realizar sucesivas validaciones, como el día y fecha exacta de login, entre otras.
+
+En esta clase, vamos a ver que podemos limitar el acceso a nuestras API (back end) utilizando diferentes datos del usuario —como los roles, el scope o la audiencia—. Esto podemos hacerlo en un solo proyecto aislado o en una serie de proyectos, por ejemplo, en una arquitectura de microservicios (servicios cloud), en donde veremos dos posibilidades de configuración.
+
+[Configuración](./clase%207%20-%20feb%2027%20de%202023/2.%20Configuraci%C3%B3n%20de%20Seguridad%20en%20Key%20Cloack.pdf)
+
+### Integración Keycloak con back end <a id='c7a'></a>
+
+En una primera instancia, configuramos Keycloak para que tenga un realm (el ambiente o dominio de la aplicación), un cliente (que es quién va a estar solicitando la autenticación del usuario) y un usuario de ejemplo (quien va a estar tratando de autenticarse). Pero todo esto lo hicimos desde la misma plataforma. En la vida real, habrá una aplicación que consuma los endpoints que pone a disposición el IAM, nuestro querido Keycloak. Ese servicio puede ser un back end, el cual tiene la posibilidad de ser de diversos tipos.
+
+Nosotros vamos a crear uno básico, con una arquitectura familiar y un framework ya conocido por nosotros: una API REST con Spring Boot. Esta aplicación será la elegida para solicitar la autenticación del usuario, elegir el IAM que provee los mecanismos de seguridad (mediante URL, como venimos observando con Keycloak) y requerir las credenciales adecuadas para ese usuario.
+
+[Configuración](./clase%207%20-%20feb%2027%20de%202023/2.%20Crear%20una%20aplicaci%C3%B3n%20en%20Springboot.pdf)
+
+### Integración de Keycloak con Spring Cloud <a id='c7b'></a>
+Pensando en una arquitectura cloud, vamos a ver dos opciones posibles para agregar el proveedor de seguridad: en el gateway (pensando que todas las peticiones pasan por ese microservicio) o por medio de un componente externo que se encargará de validar la autenticación del usuario.
+
+Estos dos tipos de arquitecturas de integración son:
+
+1.  Integración embebida en nuestra aplicación.
+2.  Integración mediante el uso de un proxy inverso.
+
+1. Integrar de forma embebida Keycloak con Spring Cloud:
+[Configuración integración embebida](./clase%207%20-%20feb%2027%20de%202023/4.%20Integraci%C3%B3n%20embebida%20utilizando%20Spring%20Cloud%20Gateway%20.html)
+
+2. Implementar e integrar Keycloak con una integración por medio de proxy.
+[Configuración integración proxy](./clase%207%20-%20feb%2027%20de%202023/6.%20Instalaci%C3%B3n%20de%20Oauth2%20Proxy%20.pdf)
