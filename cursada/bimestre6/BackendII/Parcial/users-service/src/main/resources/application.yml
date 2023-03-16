@@ -1,0 +1,37 @@
+eureka:
+  client:
+    enabled: false
+
+server:
+  port: 8086
+
+springdoc:
+  show-actuator: true
+  swagger-ui:
+    groups-order: DESC
+    disable-swagger-default-url: true
+management:
+  endpoints:
+    web:
+      exposure.include: beans, env, health, info, metrics, mappings
+  endpoint:
+    health:
+      show-details: always
+
+app:
+  cors:
+    allowed-origins: http://localhost:3000
+
+spring:
+  application:
+    name: users-service
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      password: admin
+      username: root
+      authentication-database: admin
+      database: moviesdb
+  main:
+    allow-circular-references: true
