@@ -20,17 +20,20 @@ public class SearchPage extends BasePage{
     private static final String productMessage = "/html/body/div[2]/div[1]";
 
     public void addProduct(String iphone) throws InterruptedException{
-        WebElement firstStep = getWebElement(By.xpath(searchBox));
-        firstStep.click();
-        firstStep.sendKeys(iphone);
-        WebElement secondStep = getWebElement(By.xpath(clickSearch));
-        secondStep.click();
+        WebElement first = driver.findElement(By.xpath(searchBox));
+        first.click();
+        first.sendKeys(iphone);
+
+        WebElement second = driver.findElement(By.xpath(clickSearch));
+        second.click();
         Thread.sleep(400);
-        WebElement thirdStep = getWebElement(By.xpath(addProductcart));
-        thirdStep.click();
+
+        WebElement third = driver.findElement(By.xpath(addProductcart));
+        third.click();
         Thread.sleep(400);
-        WebElement finalStep = getWebElement(By.xpath(productMessage));
-        finalStep.getText().contains("Success: You have added iPhone to your shopping cart!");
+
+        WebElement finaly = driver.findElement(By.xpath(productMessage));
+        finaly.getText().contains("Success: You have added iPhone to your shopping cart!");
         //"Éxito: ¡ha añadido el iPhone a su cesta de la compra!
         Thread.sleep(1500);
     }

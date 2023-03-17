@@ -3,76 +3,69 @@
  **/
 
 package Pages;
-
 import Base.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class RegisterPage extends BasePage {
-    // Register inputs xpaths
-    private static final String myAccount = "//*[@id=\"top-links\"]/ul/li[2]/a";
+    By inputFirstName = By.id("input-firstname");
+    By inputLastName = By.id("input-lastname");
+    By inputEmail = By.id("input-email");
+    By inputTelephone = By.id("input-telephone");
+    By inputPassword = By.id("input-password");
+    By inputPasswordConfirm = By.id("input-confirm");
+    By inputPrivacyPolicy = By.name("agree");
+    By myAccount = By.xpath("//ul[@class='list-inline']//li[@class='dropdown']");
+    By registration = By.xpath("//*[@id=\"top-links\"]/ul/li[2]/ul/li[1]/a");
+    By btnContinue1 = By.xpath("//input[@value='Continue']");
+    By message = By.id("content");
+    By alert= By.id("account-register");
+    By btnContinue2 = By.xpath("//*[@id=\"content\"]/div/div/a");
 
-    private static final String btnRegister = "//*[@id=\"top-links\"]/ul/li[2]/ul/li[1]";
-
-    private static final String firstName = "//*[@id=\"input-firstname\"]";
-
-    private static final String lastName = "//*[@id=\"input-lastname\"]";
-
-    private static final String email = "//*[@id=\"input-email\"]";
-
-    private static final String telephone = "//*[@id=\"input-telephone\"]";
-
-    private static final String password = "//*[@id=\"input-password\"]";
-
-    private static final String confirmPassword = "//*[@id=\"input-confirm\"]";
-
-    private static final String newsletter = "/html/body/div[2]/div/div/form/fieldset[3]/div/div/label[2]";
-
-    private static final String checkbox = "/html/body/div[2]/div/div/form/div/div/input[1]";
-
-    private static final String btnContinue = "/html/body/div[2]/div/div/form/div/div/input[2]";
-
-    private static final String assertSignUp = "/html/body/div[2]/div/div/p[1]";
-
-    // --------------------------------------------------------------------
-
-
-    public void signUp(String name, String lastName, String email, String telephone, String password) throws InterruptedException {
-        WebElement clickingMyAccount = getWebElement(By.xpath(myAccount));
-        clickingMyAccount.click();
-        Thread.sleep(200);
-        WebElement clickingRegister = getWebElement(By.xpath(btnRegister));
-        clickingRegister.click();
-        Thread.sleep(200);
-        WebElement insertFirstName = getWebElement(By.xpath(firstName));
-        insertFirstName.click();
-        insertFirstName.sendKeys(name);
-        WebElement insertLastName = getWebElement(By.xpath(RegisterPage.lastName));
-        insertLastName.click();
-        insertLastName.sendKeys(lastName);
-        WebElement insertEmail = getWebElement(By.xpath(RegisterPage.email));
-        insertEmail.click();
-        insertEmail.sendKeys(email);
-        WebElement insertTelephone = getWebElement(By.xpath(RegisterPage.telephone));
-        insertTelephone.click();
-        insertTelephone.sendKeys(telephone);
-        WebElement insertPassword = getWebElement(By.xpath(RegisterPage.password));
-        insertPassword.click();
-        insertPassword.sendKeys(password);
-        WebElement confirmingPassword = getWebElement(By.xpath(confirmPassword));
-        confirmingPassword.click();
-        confirmingPassword.sendKeys(password);
-        WebElement newsletterStep = getWebElement(By.xpath(newsletter));
-        newsletterStep.click();
-        WebElement checkboxStep = getWebElement(By.xpath(checkbox));
-        checkboxStep.click();
-        WebElement continueStep = getWebElement(By.xpath(btnContinue));
-        continueStep.click();
-        Thread.sleep(200);
-        WebElement lastStep = getWebElement(By.xpath(assertSignUp));
-        lastStep.getText().contains("Congratulations! Your new account has been successfully created!");
-        //¡Felicitaciones! Su nueva cuenta se ha creado con éxito
-        Thread.sleep(1500);
+    public RegisterPage(WebDriver driver, WebDriverWait wait) {
     }
+    public String response() throws InterruptedException {
+        Thread.sleep(1000);
+        String res = findElement(message).getText();
+        System.out.println("Result: " + res);
+        return res;
+    }
+
+    public void clickLogin() throws InterruptedException {
+        click(myAccount);
+        click(registration);
+    }
+
+    public void singUpForm(String name, String lastName, String mail, String tel, String password) throws InterruptedException {
+        writeInput(name, inputFirstName);
+        writeInput(lastName, inputLastName);
+        writeInput(mail, inputEmail);
+        writeInput(tel, inputTelephone);
+        writeInput(password, inputPassword);
+        writeInput(password, inputPasswordConfirm);
+        click(inputPrivacyPolicy);
+    }
+
+    public void clickContinueBtn1() throws InterruptedException {
+        Thread.sleep(2000);
+        click(btnContinue1);
+    }
+
+    public void clickContinueBtn2() throws InterruptedException {
+        Thread.sleep(2000);
+        click(btnContinue2);
+    }
+
+    public String pageResult() throws InterruptedException {
+        Thread.sleep(2000);
+        String res= findElement(alert).getText();
+        System.out.println("Result: " + res);
+        return res;
+    }
+
+
+
 
 }

@@ -1,3 +1,7 @@
+/**
+ SearchTest Class - @author Rainvare - Parcial Testing II - CTD
+ **/
+
 package Tests;
 
 import Base.BasePage;
@@ -14,7 +18,7 @@ public class SearchTest {
     static void setUp() {
         BasePage basePage = new BasePage();
         basePage.openApp();
-        driver = basePage.getDriver();
+
     }
 
     @Test
