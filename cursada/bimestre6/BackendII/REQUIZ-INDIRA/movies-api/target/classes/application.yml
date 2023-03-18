@@ -1,0 +1,57 @@
+server:
+  port: 8086
+# Configuraciones de Eureka
+eureka:
+  client:
+    enabled: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+#Configuraciones de Spring cloud
+spring:
+  application:
+    name: ms-movies
+
+  #Configuraciones de BBDD
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/moviesdb
+      username: admin
+      password: admin
+      database: ms-movies-parcial
+      port: 27017
+      host: mongodb
+
+  main:
+    allow-circular-references: true
+
+app:
+  cors:
+    allowed-origins: http://localhost:3000
+
+management:
+  endpoints:
+    web:
+      exposure.include: beans, env, health, info, metrics, mappings
+  endpoint:
+    health:
+      show-details: always
+
+springdoc:
+  show-actuator: true
+  swagger-ui:
+    groups-order: DESC
+    disable-swagger-default-url: true
+
+#Configuraciones de Spring security
+security:
+  oauth2:
+    client:
+      provider:
+        keycloak:
+          issuer-uri: http://localhost:8082/realms/digitalmedia
+      registration:
+        keycloak:
+          client-id: microserservicios
+          client-secret: FGL8s7cUZLnS2h470PFBG3AZ1EAo42vY
+          scope: openid
+          redirect_uri: http://localhost:8080/*

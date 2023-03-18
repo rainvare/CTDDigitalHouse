@@ -1,0 +1,55 @@
+# Configuración de Spring
+spring:
+  application:
+    name: ms-bills
+  # Configuración de security
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8082/realms/digitalmedia
+            token-uri: http://localhost:8082/realms/digitalmedia/protocol/openid-connect/token
+        registration:
+          keycloak:
+            scope: openid
+            authorization-grant-type: client_credentials
+            client-id: microservicios
+            client-secret: FGL8s7cUZLnS2h470PFBG3AZ1EAo42vY
+            redirect-uri: http://localhost:8080/*
+
+  # Configuración de BBDD
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    driverClassName: org.h2.Driver
+    username: sa
+    password: sa
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+    open-in-view: false
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+# Configuración de puerto
+server:
+  port: 8085
+
+# Configuración de Eureka
+eureka:
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    enabled: false
