@@ -1,0 +1,60 @@
+info:
+  app:
+    version: 1.0.0
+    description: Acá un intento de gateway (gracias a J. Victorica, que sí me dió clases de cómo funcionaba esta cosa)
+# Configuraciones del servidor
+server:
+  port: 8080
+# Configuraciones de eureka
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    enabled: true
+
+# Configuraciones de spring cloud
+spring:
+  application:
+    name: api-gateway
+  # Configuraciones de cloud de seguridad
+  security:
+    oauth2:
+      client:
+        registration:
+          api-gateway:
+            provider: keycloak
+            client-id: api-gateway
+            client-secret: By7SLGmAaknlUXV0S1E9drIrQEDK4y35
+            scope: openid
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:${server.port}/login/oauth2/code/keycloak
+        provider:
+          keycloak:
+            issuer-uri:  http://localhost:8082/realms/digitalmedia
+            #jwk-set-uri: http://localhost:8082/realms/digitalmedia/protocol/openid-connect/certs
+# Configuraciones de cloud por ms
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      default-filters:
+        - TokenRelay
+      routes:
+        - id: users-service
+          uri: lb://users-service
+          predicates:
+            - Path=/users/**
+        - id: ms-movies
+          uri: lb://ms-movies
+          predicates:
+            - Path=/movies/**
+        - id: ms-bills
+          uri: lb://ms-bills
+          predicates:
+              - Path=/bills/**

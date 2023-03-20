@@ -1,0 +1,70 @@
+# Configuraciones de Eureka
+eureka:
+  client:
+    enabled: false
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  #Vars de config
+dh:
+  keycloak-vars:
+      realm: digitalmedia
+      serverUrl: ${KEYCLOAK_URL:http://keycloak:8082/}
+      clientId: microservicios
+      clientSecret: FGL8s7cUZLnS2h470PFBG3AZ1EAo42vY
+
+# Configuraciones del server
+server:
+  port: 8087
+
+#Configuraciones de Spring cloud
+springdoc:
+  show-actuator: true
+  swagger-ui:
+    groups-order: DESC
+    disable-swagger-default-url: true
+management:
+  endpoints:
+    web:
+      exposure.include: beans, env, health, info, metrics, mappings
+  endpoint:
+    health:
+      show-details: always
+
+app:
+  cors:
+    allowed-origins: http://localhost:3000
+
+# Configuraciones de spring app
+spring:
+  application:
+    name: users-service
+
+  # Configuraciones de BBDD
+  data:
+    mongodb:
+      host: mongodb
+      port: 27017
+      password: admin
+      username: root
+      authentication-database: admin
+      database: ms-movies-parcial
+      uri: mongodb://localhost:27017/usersdb
+  main:
+    allow-circular-references: true
+
+  # Configuraciones de security
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8082/realms/digitalmedia
+        registration:
+          keycloak:
+            client-id: microservicios
+            client-secret: FGL8s7cUZLnS2h470PFBG3AZ1EAo42vY
+            scope: openid
+            redirect_uri: http://localhost:8080/login/oauth2/code/keycloak
+            realm: digitalmedia
+            serverUrl: http://localhost:8082
+
