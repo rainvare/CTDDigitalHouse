@@ -75,7 +75,7 @@ public class TestApi {
 
     @Test
     // cuentas
-    public void visaoGeralOverview() {
+    public void vgOverview() {
         given()
                 .when()
                 .get("overview.htm")
