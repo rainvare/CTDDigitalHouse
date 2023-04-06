@@ -30,7 +30,7 @@ public class RegisterPage extends BasePage {
         Thread.sleep(2000);
 
     }
-
+// registro
     public void fillForm(String name,
                          String lastName,
                          String addressT,
@@ -72,8 +72,8 @@ public class RegisterPage extends BasePage {
         WebElement password = getWebElement(By.id(passwordInput));
         password.sendKeys(passwordT);
         Thread.sleep(2000);
-        WebElement passwordConf = getWebElement(By.id(confirmInput));
-        passwordConf.sendKeys(passwordT);
+        WebElement passwordConfirm = getWebElement(By.id(confirmInput));
+        passwordConfirm.sendKeys(passwordT);
         Thread.sleep(2000);
 
     }

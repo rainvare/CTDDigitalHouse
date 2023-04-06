@@ -17,6 +17,7 @@ public class BasePage {
 
     public BasePage() {
         if (driver == null) {
+            //Tuve que setear propiedades para que pudiesen ejecutarse los drivers
             System.setProperty("webdriver.http.factory", "jdk-http-client");
             System.setProperty("webdriver.chrome.whitelistedIps", "");
             System.setProperty("webdriver.chrome.driver", ".\\src\\main\\resources\\chromedriver.exe");
@@ -39,11 +40,13 @@ public class BasePage {
         try {
             element = driver.findElement(locator);
         } catch (Exception e) {
-            System.out.println("No encontrado");
+            System.out.println("No encontrado"+ locator);
             System.out.println("Error: " + e.getMessage());
         }
         return element;
     }
+
+
 // login de usuario
     public void loginUser() throws InterruptedException {
         WebElement loginInput = getWebElement(By.xpath(login));
