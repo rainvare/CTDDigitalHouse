@@ -94,3 +94,4 @@ func maxCalc(i ...int) int {
 	}
 	return max
 }
+}
